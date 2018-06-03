@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Mathematics on Paul&#39;s blog</title>
-    <link>https://paulhankin.github.io/tags/mathematics/</link>
+    <link>//paulhankin.github.io/tags/mathematics/</link>
     <description>Recent content in Mathematics on Paul&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Thu, 21 May 2015 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://paulhankin.github.io/tags/mathematics/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="//paulhankin.github.io/tags/mathematics/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Near-optimal closed-hand Chinese Poker.</title>
-      <link>https://paulhankin.github.io/chinesepoker/</link>
+      <link>//paulhankin.github.io/chinesepoker/</link>
       <pubDate>Thu, 21 May 2015 00:00:00 +0000</pubDate>
       
-      <guid>https://paulhankin.github.io/chinesepoker/</guid>
+      <guid>//paulhankin.github.io/chinesepoker/</guid>
       <description>&lt;p&gt;This blog post looks at closed-hand Chinese Poker, and describes
 a near-optimal strategy for it which is readily implementable
 on a computer.&lt;/p&gt;

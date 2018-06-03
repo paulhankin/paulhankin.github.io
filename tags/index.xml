@@ -2,138 +2,138 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on Paul&#39;s blog</title>
-    <link>https://paulhankin.github.io/tags/</link>
+    <link>//paulhankin.github.io/tags/</link>
     <description>Recent content in Tags on Paul&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Wed, 06 May 2015 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://paulhankin.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="//paulhankin.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Advanced</title>
-      <link>https://paulhankin.github.io/tags/advanced/</link>
+      <link>//paulhankin.github.io/tags/advanced/</link>
       <pubDate>Wed, 06 May 2015 00:00:00 +0000</pubDate>
       
-      <guid>https://paulhankin.github.io/tags/advanced/</guid>
+      <guid>//paulhankin.github.io/tags/advanced/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Assembler</title>
-      <link>https://paulhankin.github.io/tags/assembler/</link>
+      <link>//paulhankin.github.io/tags/assembler/</link>
       <pubDate>Wed, 20 Apr 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://paulhankin.github.io/tags/assembler/</guid>
+      <guid>//paulhankin.github.io/tags/assembler/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Complexity</title>
-      <link>https://paulhankin.github.io/tags/complexity/</link>
+      <link>//paulhankin.github.io/tags/complexity/</link>
       <pubDate>Wed, 06 May 2015 00:00:00 +0000</pubDate>
       
-      <guid>https://paulhankin.github.io/tags/complexity/</guid>
+      <guid>//paulhankin.github.io/tags/complexity/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Compsci</title>
-      <link>https://paulhankin.github.io/tags/compsci/</link>
+      <link>//paulhankin.github.io/tags/compsci/</link>
       <pubDate>Wed, 06 May 2015 00:00:00 +0000</pubDate>
       
-      <guid>https://paulhankin.github.io/tags/compsci/</guid>
+      <guid>//paulhankin.github.io/tags/compsci/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Education</title>
-      <link>https://paulhankin.github.io/tags/education/</link>
+      <link>//paulhankin.github.io/tags/education/</link>
       <pubDate>Wed, 20 Apr 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://paulhankin.github.io/tags/education/</guid>
+      <guid>//paulhankin.github.io/tags/education/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Fibonacci</title>
-      <link>https://paulhankin.github.io/tags/fibonacci/</link>
+      <link>//paulhankin.github.io/tags/fibonacci/</link>
       <pubDate>Mon, 27 Apr 2015 00:00:00 +0000</pubDate>
       
-      <guid>https://paulhankin.github.io/tags/fibonacci/</guid>
+      <guid>//paulhankin.github.io/tags/fibonacci/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Gametheory</title>
-      <link>https://paulhankin.github.io/tags/gametheory/</link>
+      <link>//paulhankin.github.io/tags/gametheory/</link>
       <pubDate>Thu, 21 May 2015 00:00:00 +0000</pubDate>
       
-      <guid>https://paulhankin.github.io/tags/gametheory/</guid>
+      <guid>//paulhankin.github.io/tags/gametheory/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Go code</title>
-      <link>https://paulhankin.github.io/tags/go-code/</link>
+      <link>//paulhankin.github.io/tags/go-code/</link>
       <pubDate>Thu, 21 May 2015 00:00:00 +0000</pubDate>
       
-      <guid>https://paulhankin.github.io/tags/go-code/</guid>
+      <guid>//paulhankin.github.io/tags/go-code/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Littlemancomputer</title>
-      <link>https://paulhankin.github.io/tags/littlemancomputer/</link>
+      <link>//paulhankin.github.io/tags/littlemancomputer/</link>
       <pubDate>Wed, 20 Apr 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://paulhankin.github.io/tags/littlemancomputer/</guid>
+      <guid>//paulhankin.github.io/tags/littlemancomputer/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Mathematics</title>
-      <link>https://paulhankin.github.io/tags/mathematics/</link>
+      <link>//paulhankin.github.io/tags/mathematics/</link>
       <pubDate>Thu, 21 May 2015 00:00:00 +0000</pubDate>
       
-      <guid>https://paulhankin.github.io/tags/mathematics/</guid>
+      <guid>//paulhankin.github.io/tags/mathematics/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Maths</title>
-      <link>https://paulhankin.github.io/tags/maths/</link>
+      <link>//paulhankin.github.io/tags/maths/</link>
       <pubDate>Mon, 27 Apr 2015 00:00:00 +0000</pubDate>
       
-      <guid>https://paulhankin.github.io/tags/maths/</guid>
+      <guid>//paulhankin.github.io/tags/maths/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Poker</title>
-      <link>https://paulhankin.github.io/tags/poker/</link>
+      <link>//paulhankin.github.io/tags/poker/</link>
       <pubDate>Thu, 21 May 2015 00:00:00 +0000</pubDate>
       
-      <guid>https://paulhankin.github.io/tags/poker/</guid>
+      <guid>//paulhankin.github.io/tags/poker/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Python</title>
-      <link>https://paulhankin.github.io/tags/python/</link>
+      <link>//paulhankin.github.io/tags/python/</link>
       <pubDate>Mon, 27 Apr 2015 00:00:00 +0000</pubDate>
       
-      <guid>https://paulhankin.github.io/tags/python/</guid>
+      <guid>//paulhankin.github.io/tags/python/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Sorting</title>
-      <link>https://paulhankin.github.io/tags/sorting/</link>
+      <link>//paulhankin.github.io/tags/sorting/</link>
       <pubDate>Wed, 06 May 2015 00:00:00 +0000</pubDate>
       
-      <guid>https://paulhankin.github.io/tags/sorting/</guid>
+      <guid>//paulhankin.github.io/tags/sorting/</guid>
       <description></description>
     </item>
     
