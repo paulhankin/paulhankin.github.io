@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<script type="application/ld+json">
+    {
+        "@context" : "http://schema.org",
+        "@type" : "BlogPosting",
+        "mainEntityOfPage": {
+             "@type": "WebPage",
+             "@id": "https://paulhankin.github.io/"
+        },
+        "articleSection" : "post",
+        "name" : "Everything you know about complexity is wrong",
+        "headline" : "Everything you know about complexity is wrong",
+        "description" : "<p>Who would disagree that the run-time of mergesort is <span  class="math">\(O(n\mathrm{log}\,n)\)</span> and it's asymptotically optimal?
+Not many programmers I reckon, except perhaps to question whether it's talking about
+a model of computation that's not sufficiently close to a real computer, for example a quantum
+computer or one that performs arbitrary operations in parallel (possibly
+involving <a href="http://en.wikipedia.org/wiki/Spaghetti_sort">sticks of spaghetti</a>).</p>
+
+<p>However, if you try to understand how to formalize what it means for a sort
+to run in <span  class="math">\(O(n\mathrm{log}\,n)\)</span> and for it to be optimal,
+it's surprisingly difficult to find a suitable computational model, that is,
+an abstraction of a computer which elides all but the important
+details of the computer: the operations it can perform, and how the memory
+works.</p>
+
+<p>In this post, I'll look at some of
+the most common computational models used in both practice and theory, and
+find out that they're all flawed in one way or another, and in fact in all
+of them either mergesort doesn't run in <span  class="math">\(O(n\mathrm{log}\,n)\)</span> or there's
+asymptotically faster sorts.</p>
+
+<p></p>",
+        "inLanguage" : "en-US",
+        "author" : "",
+        "creator" : "",
+        "publisher": "",
+        "accountablePerson" : "",
+        "copyrightHolder" : "",
+        "copyrightYear" : "2015",
+        "datePublished": "2015-05-06 00:00:00 &#43;0000 UTC",
+        "dateModified" : "2015-05-06 00:00:00 &#43;0000 UTC",
+        "url" : "https://paulhankin.github.io/complexity-rant/",
+        "wordCount" : "925",
+        "image" : https://paulhankin.github.io/%!s(&lt;nil&gt;)",
+        "keywords" : [ "compsci","complexity","sorting","advanced","Blog" ]   
+    }
+    </script>
+
+ <title>Everything you know about complexity is wrong </title>
+
+
+<meta name="description" content="Programming, Computer Science, Games and Other Things" />
+
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="all,follow">
+<meta name="googlebot" content="index,follow,snippet,archive">
+<link rel="stylesheet" id="ct-tracks-google-fonts-css" href="//fonts.googleapis.com/css?family=Raleway%3A400%2C700&amp;subset=latin%2Clatin-ext&amp;ver=4.7.2" type="text/css" media="all">
+<link rel="stylesheet" href="https://paulhankin.github.io/css/font-awesome.min.css" type='text/css' media='all'>
+
+<link href="https://paulhankin.github.io/css/style.css" rel="stylesheet" id="theme-stylesheet" type='text/css' media='all'>
+
+<link href="https://paulhankin.github.io/css/custom.css" rel="stylesheet" type='text/css' media='all'>
+<link rel="shortcut icon" href="https://paulhankin.github.io/img/favicon.ico" type="image/x-icon">
+<link rel="icon" href="https://paulhankin.github.io/img/favicon.ico" type="image/x-icon">
+
+
+</head>
+
+
+<body class="post-template-default single single-post single-format-standard ct-body singular singular-post not-front standard">
+  
+  <div id="overflow-container" class="overflow-container">
+    <a class="skip-content" href="#main">Skip to content</a>
+    <header id="site-header" class="site-header" role="banner">
+      <div class='top-navigation'>
+        <div class='container'>
+
+  <div id="menu-secondary" class="menu-container menu-secondary" role="navigation">
+    <button id="toggle-secondary-navigation" class="toggle-secondary-navigation"><i class="fa fa-plus"></i></button>
+
+    <div class="menu">
+
+      <ul id="menu-secondary-items" class="menu-secondary-items">
+        
+        <li id="menu-item" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item">
+          <a href="/categories/computer-science">computer science</a>
+        </li>
+        
+        <li id="menu-item" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item">
+          <a href="/categories/game-theory">game theory</a>
+        </li>
+        
+        <li id="menu-item" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item">
+          <a href="/categories/mathematics">mathematics</a>
+        </li>
+        
+        <li id="menu-item" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item">
+          <a href="/categories/programming">programming</a>
+        </li>
+        
+
+      </ul>
+
+    </div>
+
+  </div>
+
+
+  <ul class="social-media-icons">
+
+
+    
+    <li>
+      <a href="https://www.facebook.com/paul.hankin" data-animate-hover="pulse" class="facebook" target="_blank">
+        <i class="fa fa-facebook-square" title="facebook"></i>
+        <span class="screen-reader-text">facebook</span>
+      </a>
+    </li>
+    
+
+    
+
+    
+
+    
+
+    
+    <li>
+      <a href="mailto:paul.hankin@pobox.com" data-animate-hover="pulse" class="email">
+        <i class="fa fa-envelope" title="email"></i>
+        <span class="screen-reader-text">email</span>
+      </a>
+    </li>
+    
+
+    
+
+    
+    <li>
+      <a href="https://stackoverflow.com/users/1400793/paul-hankin" data-animate-hover="pulse" class="stackoverflow" target="_blank">
+        <i class="fa fa-stack-overflow" title="stackoverflow"></i>
+        <span class="screen-reader-text">stackoverflow</span>
+      </a>
+    </li>
+    
+
+
+    
+    <li>
+      <a href="https://github.com/paulhankin" data-animate-hover="pulse" class="github" target="_blank">
+        <i class="fa fa-github" title="github"></i>
+        <span class="screen-reader-text">github</span>
+      </a>
+    </li>
+    
+
+
+    
+
+
+  </ul></div>
+
+      </div>
+
+      <div class="container">
+        <div id="title-info" class="title-info">
+  <div id='site-title' class='site-title'>
+    
+    <a href="/"> Paul&#39;s blog </a>
+    </div>
+  </div>
+  <button id="toggle-navigation" class="toggle-navigation">
+    <i class="fa fa-bars"></i>
+  </button>
+
+  <div id="menu-primary-tracks" class="menu-primary-tracks"></div>
+  <div id="menu-primary" class="menu-container menu-primary" role="navigation">
+    
+    <p class="site-description">Tasty brain snacks</p>
+    
+
+    <div class="menu">
+      <ul id="menu-primary-items" class="menu-primary-items">
+        
+        
+        <li id="menu-item" class='menu-item menu-item-type-custom menu-item-object-custom '>
+          <a href="https://paulhankin.github.io/">Home</a>
+        </li>
+        
+        <li id="menu-item" class='menu-item menu-item-type-post_type menu-item-object-page '>
+          <a href="https://paulhankin.github.io/about/">About</a>
+        </li>
+        
+        <li id="menu-item" class='menu-item menu-item-type-post_type menu-item-object-page '>
+          <a href="https://paulhankin.github.io/post/index.xml">RSS</a>
+        </li>
+        
+      </ul>
+    </div>
+
+  </div>
+
+      </div>
+    </header>
+
+    <div id="main" class="main" role="main">
+
+      
+  <div id="loop-container" class="loop-container">
+    
+
+      <div class="post type-post status-publish format-standard hentry category-standard category-travel entry full-without-featured odd excerpt-1">
+
+        
+        <div class="entry-meta">
+          <span class="date">6 May 2015</span>	<span> / </span>
+
+          <span class="author">
+            
+            Paul Hankin
+            
+          </span>
+
+
+          
+          <span class="category">
+            <span> / </span>
+
+            <a href="/categories/computer%20science">computer science</a>
+          </span>
+          
+
+
+        </div>
+        <div class='entry-header'>
+          <h1 class='entry-title'> Everything you know about complexity is wrong</h1>
+        </div>
+        <div class="entry-container">
+          <div class="entry-content">
+            <article>
+              <p>Who would disagree that the run-time of mergesort is <span  class="math">\(O(n\mathrm{log}\,n)\)</span> and it's asymptotically optimal?
+Not many programmers I reckon, except perhaps to question whether it's talking about
+a model of computation that's not sufficiently close to a real computer, for example a quantum
+computer or one that performs arbitrary operations in parallel (possibly
+involving <a href="http://en.wikipedia.org/wiki/Spaghetti_sort">sticks of spaghetti</a>).</p>
+
+<p>However, if you try to understand how to formalize what it means for a sort
+to run in <span  class="math">\(O(n\mathrm{log}\,n)\)</span> and for it to be optimal,
+it's surprisingly difficult to find a suitable computational model, that is,
+an abstraction of a computer which elides all but the important
+details of the computer: the operations it can perform, and how the memory
+works.</p>
+
+<p>In this post, I'll look at some of
+the most common computational models used in both practice and theory, and
+find out that they're all flawed in one way or another, and in fact in all
+of them either mergesort doesn't run in <span  class="math">\(O(n\mathrm{log}\,n)\)</span> or there's
+asymptotically faster sorts.</p>
+
+<p></p>
+
+<h2 id="model-1-ram-is-fixedsized-words">Model 1: RAM is fixed-sized words</h2>
+
+<p>First up is a pragmatic model. Here, every item is assumed to fit into a 64-bit
+word of RAM.</p>
+
+<p>This has an immediate problem: in a model where every item must fit into a 64-bit
+word, there's only <span  class="math">\(2^{64}\)</span> unique items, so
+an array of <span  class="math">\(n\)</span> items can contain at most <span  class="math">\(2^{64}\)</span> unique items.
+This makes sorting possible in <span  class="math">\(O(n)\)</span> time using a bucket sort with <span  class="math">\(2^{64}\)</span> buckets.</p>
+
+<p>Another, more subtle, problem here is that the registers of our machine must also be 64-bit. That means
+that there's a finite (albeit huge) range of memory available to programs, which means that
+we can't even represent large arrays.</p>
+
+<p>This model isn't abstract enough, and the constraint that everything fits in a single word
+is too restrictive. Since what we'd do in practice is to span large data across multiple
+words, let's consider a model that's like that.</p>
+
+<h2 id="model-2-data-spans-multiple-fixedsized-words">Model 2: Data spans multiple fixed-sized words.</h2>
+
+<p>Here, we allow data to be stored across multiple fixed-sized words, just like a real computer. In this model,
+to have an array of <span  class="math">\(n\)</span> items, we'll need each item to have <span  class="math">\(O(\mathrm{log}\, n)\)</span> bits. If we try
+to use fewer bits, we'll have too many of them the same, and like in the first model, we'll be able to
+sort in linear time.</p>
+
+<p>Now, when we try mergesort we get that each comparison takes <span  class="math">\(O(\mathrm{log}\,n)\)</span> time,
+which means that even if every other detail works out, we're going to have at best
+an <span  class="math">\(O(n(\mathrm{log}\,n)^2)\)</span> run-time.</p>
+
+<p>Again like the fixed-sized word model, we have the additional subtlety about how registers work.
+They need to be able to store arbitrarily large integers, and it's not obvious how to design the machine
+so that adding <span  class="math">\(n\)</span> to a register is <span  class="math">\(O(1)\)</span> (which is necessary for random access into an array), whilst
+avoiding adding a computational backdoor that allows programs to use registers instead of RAM, giving our
+machine the power of the next couple of models.</p>
+
+<h2 id="model-3-ram-is-variablesized-words">Model 3: RAM is variable-sized words.</h2>
+
+<p>This model (a common one in the study of algorithmic complexity, and is also called the transdichotomous
+model) models memory as words each of
+<span  class="math">\(w\)</span> bits. However, unlike the &quot;RAM is fixed sized words&quot; model, this <span  class="math">\(w\)</span> depends on the
+size of the input to a problem, and
+in fact for a problem of size <span  class="math">\(n\)</span>, <span  class="math">\(w = O(\mathrm{log}\, n)\)</span>.</p>
+
+<p>This model starts well: merge sort runs in <span  class="math">\(O(n\mathrm{log}\,n)\)</span> time.
+Unfortunately though, it can be exploited to do an unreasonable amount of computation with the
+wide memory locations. A paper by Fredman,
+<a href="http://www.sciencedirect.com/science/article/pii/0022000093900404">&quot;Surpassing the information-theoretic bound with fusion trees&quot; (1993)</a>,
+shows that in this model there exists <span  class="math">\(O(n\mathrm{log}\,n/\mathrm{log\,log}\,n)\)</span> time sorts,
+using the idea of a <a href="http://en.wikipedia.org/wiki/Fusion_tree">Fusion Tree</a>.</p>
+
+<h2 id="model-4-ram-is-arbitrary-integers">Model 4: RAM is arbitrary integers.</h2>
+
+<p>This model allows each memory cell to contain an arbirarily large integer.
+It's already obvious that this model isn't going to satisfy us since it's strictly
+more powerful than model 3. However, even though this model has diverged
+from what we think of as a computer, it's surprising how powerful this model
+is.</p>
+
+<p>A paper by Arnold Schönhage <a href="http://link.springer.com/chapter/10.1007%2F3-540-09510-1_42">&quot;On the power of random access machines&quot; (2005)</a>
+shows that in this model, any PSPACE problem can be solved in polynomial time.
+Since PSPACE includes all of NP, this is quite a feat. While in no way
+comparable to the paper, a hint to how to use arbitrary integer arithmetic
+to perform parallel computation is my
+<a href="http://paulhankin.github.io/Fibonacci/">blog post on computing Fibonacci numbers</a>.</p>
+
+<p>We could try to adjust the costs of arithmetic to be proportional to the number of bits used (called
+the &quot;bit cost&quot; model). That fixes the PSPACE <span  class="math">\(=\)</span> P problem, but like the
+&quot;data spans multiple words&quot; model, we can't use merge-sort to sort <span  class="math">\(n\)</span> things in <span  class="math">\(O(n\mathrm{log}\,n)\)</span> time.</p>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>Every one of our models we've looked at has either failed to allow merge sort
+to work in <span  class="math">\(O(n\mathrm{log}\,n)\)</span>, or has enabled faster algorithms.
+That's not a proof that there's no good model, but it's
+certainly suggestive.</p>
+
+<p>Even though the gap between complexity theory and its application to programming is
+wider than it looks, it'd be silly to write off complexity theory as useless.
+In practice it works well and has good predictive
+power, perhaps because the calculations that
+we do to compute complexity approximate a more bounded notion, where &quot;this algorithm is
+<span  class="math">\(O(n^2)\)</span>&quot; means &quot;until <span  class="math">\(n\)</span> gets unreasonably large, and maybe excluding a handful of
+small edge-cases, the run-time is approximately some smallish
+constant times <span  class="math">\(n^2\)</span>.&quot; Because that's much more like what we care about.</p>
+            </article>
+          </div>
+          
+      <div class='entry-meta-bottom'>
+        
+
+  <div class="entry-categories"><p><span>Categories</span>
+    
+    <a href="/categories/computer-science" title="View all posts in computer science">computer science</a>
+  </p>
+</div>
+
+
+
+<div class="entry-tags"><p><span>Tags</span>
+  
+  <a href="/tags/compsci" title="View all posts tagged compsci">compsci</a>
+  
+  <a href="/tags/complexity" title="View all posts tagged complexity">complexity</a>
+  
+  <a href="/tags/sorting" title="View all posts tagged sorting">sorting</a>
+  
+  <a href="/tags/advanced" title="View all posts tagged advanced">advanced</a>
+  
+
+</p></div>	</div>
+
+<div class="author-meta">
+
+  <div class="author">
+    <img alt='Paul Hankin' src="https://www.gravatar.com/avatar/490378f9f77af08b82d797c6ebbd71d1?s=100&d=identicon" class='avatar avatar-72 photo' height='72' width='72'>
+
+    <span>
+      Written by:<a href="https://paulhankin.github.io/" title="Posts by Paul Hankin" rel="author">Paul Hankin</a>        </span>
+    </div>
+    <div class="bio">
+      
+      <p>Programming since 1981, professionally since 2000. I’ve a PhD in programming language semantics but these days I prefer programming in Go, C, and Python. I’ve worked mostly on games and large-scale server software.</p>
+      
+
+
+      
+      <a class="facebook" target="_blank"
+      href="https://www.facebook.com/paul.hankin">
+      <i class="fa fa-facebook"
+      title="facebook icon"></i>
+    </a>
+    
+
+    
+
+
+  
+
+
+
+<a class="email" target="_blank"
+href="mailto:paul.hankin@pobox.com">
+<i class="fa fa-envelope"
+title="email icon"></i>
+</a>
+
+
+
+
+
+<a class="stackoverflow" target="_blank"
+href="https://stackoverflow.com/users/1400793/paul-hankin">
+<i class="fa fa-stack-overflow"
+title="stackoverflow icon"></i>
+</a>
+
+
+
+<a class="github" target="_blank"
+href="https://github.com/paulhankin">
+<i class="fa fa-github"
+title="github icon"></i>
+</a>
+
+
+
+
+
+
+
+</div>
+</div>
+
+</div>
+</div>
+
+<section id="comments" class="comments">
+  
+
+  
+
+
+
+
+</section>
+</div>
+
+ 
+
+
+
+    </div>
+
+    <footer id="site-footer" class="site-footer" role="contentinfo">
+
+	<h1>
+    
+    <a href=""> Paul&#39;s blog </a>
+    
+	</h1>
+
+			
+			<p class="site-description">Tasty brain snacks</p>
+			
+
+		<div id="menu-footer" class="menu-container menu-footer" role="navigation">
+		<div class="menu">
+
+      <ul id="menu-footer-items" class="menu-footer-items">
+        
+</ul>
+
+</div>	</div>
+
+<ul class="social-media-icons">
+
+        
+				<li>
+					<a class="facebook" target="_blank"
+					   href="https://www.facebook.com/paul.hankin" >
+						<i class="fa fa-facebook" title="facebook"></i>
+						<span class="screen-reader-text">facebook</span>
+					</a>
+				</li>
+        
+
+        
+
+
+        
+
+        
+
+        
+        <li>
+        <a href="mailto:paul.hankin@pobox.com"  class="email">
+            <i class="fa fa-envelope" title="email"></i>
+            <span class="screen-reader-text">email</span>
+        </a>
+        </li>
+        
+
+        
+
+        
+        <li>
+        <a href="https://stackoverflow.com/users/1400793/paul-hankin"  class="stackoverflow" target="_blank">
+            <i class="fa fa-stack-overflow" title="stackoverflow"></i>
+            <span class="screen-reader-text">stackoverflow</span>
+        </a>
+        </li>
+        
+
+
+        
+        <li>
+        <a href="https://github.com/paulhankin"  class="github" target="_blank">
+            <i class="fa fa-github" title="github"></i>
+            <span class="screen-reader-text">github</span>
+        </a>
+        </li>
+        
+
+
+        
+
+				</ul>	<div class="design-credit">
+		
+		<p>&copy; 2015 &mdash; 2018 Paul Hankin</p>
+		
+		<p>Nederburg Hugo Theme by <a href="https://appernetic.io">Appernetic</a>.</p>
+		
+		<p>A port of Tracks by Compete Themes.</p>
+		
+	</div>
+</footer>
+
+  </div>
+  <script src="https://paulhankin.github.io/js/jquery.min.js"></script>
+<script src="https://paulhankin.github.io/js/jquerymigrate.js"></script>
+<script src="https://paulhankin.github.io/js/production.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.6.0/katex.min.css">
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+</body>
+</html>

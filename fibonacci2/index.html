@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<script type="application/ld+json">
+    {
+        "@context" : "http://schema.org",
+        "@type" : "BlogPosting",
+        "mainEntityOfPage": {
+             "@type": "WebPage",
+             "@id": "https://paulhankin.github.io/"
+        },
+        "articleSection" : "post",
+        "name" : "A novel and efficient way to compute Fibonacci numbers",
+        "headline" : "A novel and efficient way to compute Fibonacci numbers",
+        "description" : "<p><a href="/fibonacci/">An earlier post</a> described how to compute Fibonacci numbers in a single arithmetic expression.</p>
+
+<p>Faré Rideau, the author of a <a href="http://fare.tunes.org/files/fun/fibonacci.lisp">page of Fibonacci computations in Lisp</a>, suggested in a private
+email a simple and efficient variant, that I believe is novel.</p>
+
+<p>For <span  class="math">\(X\)</span> large enough, <span  class="math">\(\mathrm{Fib}_n = (X^{n+1}\ \mathrm{mod}\ (X^2-X-1))\ \mathrm{mod}\ X\)</span>.</p>
+
+<p>This blog post describes how this method works, gives a few ways to think about it, easily infers the fast Fibonacci doubling formulas, provides a nice alternative to Binet's formula relating the golden ratio and Fibonacci numbers, and expands the method to generalized Fibonacci recurrences, including a near one-line solution to the problem of counting how many ways to reach the end-square of a 100-square game using a single six-sided dice.
+</p>",
+        "inLanguage" : "en-US",
+        "author" : "",
+        "creator" : "",
+        "publisher": "",
+        "accountablePerson" : "",
+        "copyrightHolder" : "",
+        "copyrightYear" : "2018",
+        "datePublished": "2018-05-14 00:00:00 &#43;0000 UTC",
+        "dateModified" : "2018-05-14 00:00:00 &#43;0000 UTC",
+        "url" : "https://paulhankin.github.io/fibonacci2/",
+        "wordCount" : "1216",
+        "image" : https://paulhankin.github.io/%!s(&lt;nil&gt;)",
+        "keywords" : [ "Blog" ]   
+    }
+    </script>
+
+ <title>A novel and efficient way to compute Fibonacci numbers </title>
+
+
+<meta name="description" content="Programming, Computer Science, Games and Other Things" />
+
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="all,follow">
+<meta name="googlebot" content="index,follow,snippet,archive">
+<link rel="stylesheet" id="ct-tracks-google-fonts-css" href="//fonts.googleapis.com/css?family=Raleway%3A400%2C700&amp;subset=latin%2Clatin-ext&amp;ver=4.7.2" type="text/css" media="all">
+<link rel="stylesheet" href="https://paulhankin.github.io/css/font-awesome.min.css" type='text/css' media='all'>
+
+<link href="https://paulhankin.github.io/css/style.css" rel="stylesheet" id="theme-stylesheet" type='text/css' media='all'>
+
+<link href="https://paulhankin.github.io/css/custom.css" rel="stylesheet" type='text/css' media='all'>
+<link rel="shortcut icon" href="https://paulhankin.github.io/img/favicon.ico" type="image/x-icon">
+<link rel="icon" href="https://paulhankin.github.io/img/favicon.ico" type="image/x-icon">
+
+
+</head>
+
+
+<body class="post-template-default single single-post single-format-standard ct-body singular singular-post not-front standard">
+  
+  <div id="overflow-container" class="overflow-container">
+    <a class="skip-content" href="#main">Skip to content</a>
+    <header id="site-header" class="site-header" role="banner">
+      <div class='top-navigation'>
+        <div class='container'>
+
+  <div id="menu-secondary" class="menu-container menu-secondary" role="navigation">
+    <button id="toggle-secondary-navigation" class="toggle-secondary-navigation"><i class="fa fa-plus"></i></button>
+
+    <div class="menu">
+
+      <ul id="menu-secondary-items" class="menu-secondary-items">
+        
+        <li id="menu-item" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item">
+          <a href="/categories/computer-science">computer science</a>
+        </li>
+        
+        <li id="menu-item" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item">
+          <a href="/categories/game-theory">game theory</a>
+        </li>
+        
+        <li id="menu-item" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item">
+          <a href="/categories/mathematics">mathematics</a>
+        </li>
+        
+        <li id="menu-item" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item">
+          <a href="/categories/programming">programming</a>
+        </li>
+        
+
+      </ul>
+
+    </div>
+
+  </div>
+
+
+  <ul class="social-media-icons">
+
+
+    
+    <li>
+      <a href="https://www.facebook.com/paul.hankin" data-animate-hover="pulse" class="facebook" target="_blank">
+        <i class="fa fa-facebook-square" title="facebook"></i>
+        <span class="screen-reader-text">facebook</span>
+      </a>
+    </li>
+    
+
+    
+
+    
+
+    
+
+    
+    <li>
+      <a href="mailto:paul.hankin@pobox.com" data-animate-hover="pulse" class="email">
+        <i class="fa fa-envelope" title="email"></i>
+        <span class="screen-reader-text">email</span>
+      </a>
+    </li>
+    
+
+    
+
+    
+    <li>
+      <a href="https://stackoverflow.com/users/1400793/paul-hankin" data-animate-hover="pulse" class="stackoverflow" target="_blank">
+        <i class="fa fa-stack-overflow" title="stackoverflow"></i>
+        <span class="screen-reader-text">stackoverflow</span>
+      </a>
+    </li>
+    
+
+
+    
+    <li>
+      <a href="https://github.com/paulhankin" data-animate-hover="pulse" class="github" target="_blank">
+        <i class="fa fa-github" title="github"></i>
+        <span class="screen-reader-text">github</span>
+      </a>
+    </li>
+    
+
+
+    
+
+
+  </ul></div>
+
+      </div>
+
+      <div class="container">
+        <div id="title-info" class="title-info">
+  <div id='site-title' class='site-title'>
+    
+    <a href="/"> Paul&#39;s blog </a>
+    </div>
+  </div>
+  <button id="toggle-navigation" class="toggle-navigation">
+    <i class="fa fa-bars"></i>
+  </button>
+
+  <div id="menu-primary-tracks" class="menu-primary-tracks"></div>
+  <div id="menu-primary" class="menu-container menu-primary" role="navigation">
+    
+    <p class="site-description">Tasty brain snacks</p>
+    
+
+    <div class="menu">
+      <ul id="menu-primary-items" class="menu-primary-items">
+        
+        
+        <li id="menu-item" class='menu-item menu-item-type-custom menu-item-object-custom '>
+          <a href="https://paulhankin.github.io/">Home</a>
+        </li>
+        
+        <li id="menu-item" class='menu-item menu-item-type-post_type menu-item-object-page '>
+          <a href="https://paulhankin.github.io/about/">About</a>
+        </li>
+        
+        <li id="menu-item" class='menu-item menu-item-type-post_type menu-item-object-page '>
+          <a href="https://paulhankin.github.io/post/index.xml">RSS</a>
+        </li>
+        
+      </ul>
+    </div>
+
+  </div>
+
+      </div>
+    </header>
+
+    <div id="main" class="main" role="main">
+
+      
+  <div id="loop-container" class="loop-container">
+    
+
+      <div class="post type-post status-publish format-standard hentry category-standard category-travel entry full-without-featured odd excerpt-1">
+
+        
+        <div class="entry-meta">
+          <span class="date">14 May 2018</span>	<span> / </span>
+
+          <span class="author">
+            
+            Paul Hankin
+            
+          </span>
+
+
+          
+          <span class="category">
+            <span> / </span>
+
+            <a href="/categories/computer%20science">computer science</a>
+          </span>
+          
+          <span class="category">
+            <span> / </span>
+
+            <a href="/categories/mathematics">mathematics</a>
+          </span>
+          
+
+
+        </div>
+        <div class='entry-header'>
+          <h1 class='entry-title'> A novel and efficient way to compute Fibonacci numbers</h1>
+        </div>
+        <div class="entry-container">
+          <div class="entry-content">
+            <article>
+              <p><a href="/fibonacci/">An earlier post</a> described how to compute Fibonacci numbers in a single arithmetic expression.</p>
+
+<p>Faré Rideau, the author of a <a href="http://fare.tunes.org/files/fun/fibonacci.lisp">page of Fibonacci computations in Lisp</a>, suggested in a private
+email a simple and efficient variant, that I believe is novel.</p>
+
+<p>For <span  class="math">\(X\)</span> large enough, <span  class="math">\(\mathrm{Fib}_n = (X^{n+1}\ \mathrm{mod}\ (X^2-X-1))\ \mathrm{mod}\ X\)</span>.</p>
+
+<p>This blog post describes how this method works, gives a few ways to think about it, easily infers the fast Fibonacci doubling formulas, provides a nice alternative to Binet's formula relating the golden ratio and Fibonacci numbers, and expands the method to generalized Fibonacci recurrences, including a near one-line solution to the problem of counting how many ways to reach the end-square of a 100-square game using a single six-sided dice.
+</p>
+
+<h3 id="computing-with-integers">Computing with integers</h3>
+
+<p>First, if you've not read <a href="/fibonacci/">my earlier Fibonacci article</a> then
+go ahead and read it now, especially the overview which covers the
+common ways to generate Fibonacci numbers.</p>
+
+<p>To see how Faré's formula works, let's see what happens if we calculate <span  class="math">\((aX + b)X\)</span> modulo <span  class="math">\(X^2-X-1\)</span>. Modulo <span  class="math">\(X^2-X-1\)</span>, <span  class="math">\(X^2 = X+1\)</span>, so we can replace any <span  class="math">\(X^2\)</span> that appear by <span  class="math">\(X+1\)</span>:</p>
+
+<p><span  class="math">\[ (aX + b)X = aX^2 + bX = a(X+1) + bX = (a+b)X + a \]</span></p>
+
+<p>If <span  class="math">\(a\)</span> and <span  class="math">\(b\)</span> are small relative to <span  class="math">\(X\)</span> -- specifically if <span  class="math">\((a+b)X + b < X^2 - X - 1\)</span> -- then we've reproduced one step of the standard iterative method for computing Fibonacci: <span  class="math">\(a, b \rightarrow a+b, a\)</span>. (If <span  class="math">\(a\)</span> and <span  class="math">\(b\)</span> get too large relative to <span  class="math">\(X\)</span>, then the equations still hold, but some of the <span  class="math">\((a+b)X\)</span> term will overflow, wrapping around into the <span  class="math">\(a\)</span> term).</p>
+
+<p>If we set <span  class="math">\(a=\mathrm{Fib}_1=1, b=\mathrm{Fib}_0=0\)</span>, so that <span  class="math">\(aX+b = X\)</span> we can apply our calculation above <span  class="math">\(n\)</span> times to get <span  class="math">\(X^n = \mathrm{Fib}_nX + \mathrm{Fib}_{n-1}\ \mathrm{mod}\ X^2-X-1\)</span>.</p>
+
+<p>As a worked example of this method, let's see how it looks with <span  class="math">\(X=100\)</span>. Then <span  class="math">\(X^2-X-1 = 9899\)</span>. Tabulating powers of <span  class="math">\(100\)</span> and reducing modulo <span  class="math">\(9899\)</span>:</p>
+
+<table>
+<thead>
+<tr>
+<th><span  class="math">\(n\ \ \ \ \)</span></th>
+<th align="left"><span  class="math">\(100^n\ \ \ \)</span></th>
+<th align="left"><span  class="math">\(100^n\ \mathrm{mod}\ 9899\)</span></th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><span  class="math">\(1\)</span></td>
+<td align="left"><span  class="math">\(10^2\)</span></td>
+<td align="left"><span  class="math">\(100\)</span></td>
+</tr>
+
+<tr>
+<td><span  class="math">\(2\)</span></td>
+<td align="left"><span  class="math">\(10^4\)</span></td>
+<td align="left"><span  class="math">\(101\)</span></td>
+</tr>
+
+<tr>
+<td><span  class="math">\(3\)</span></td>
+<td align="left"><span  class="math">\(10^6\)</span></td>
+<td align="left"><span  class="math">\(201\)</span></td>
+</tr>
+
+<tr>
+<td><span  class="math">\(4\)</span></td>
+<td align="left"><span  class="math">\(10^8\)</span></td>
+<td align="left"><span  class="math">\(302\)</span></td>
+</tr>
+
+<tr>
+<td><span  class="math">\(5\)</span></td>
+<td align="left"><span  class="math">\(10^{10}\)</span></td>
+<td align="left"><span  class="math">\(503\)</span></td>
+</tr>
+
+<tr>
+<td><span  class="math">\(6\)</span></td>
+<td align="left"><span  class="math">\(10^{12}\)</span></td>
+<td align="left"><span  class="math">\(805\)</span></td>
+</tr>
+
+<tr>
+<td>...</td>
+<td align="left">...</td>
+<td align="left">...</td>
+</tr>
+
+<tr>
+<td><span  class="math">\(10\)</span></td>
+<td align="left"><span  class="math">\(10^{20}\)</span></td>
+<td align="left"><span  class="math">\(5534\)</span></td>
+</tr>
+</tbody>
+</table>
+
+<p>We can see in the final column that <span  class="math">\(\mathrm{Fib}_{n-1}\)</span> appears in the lower two digits (0, 1, 1, 2, 3, 5, ..., 34), and <span  class="math">\(\mathrm{Fib}_n\)</span> appears in the upper two digits (1, 1, 2, 3, 5, 8, ..., 55).</p>
+
+<p>So, If we want to compute <span  class="math">\(\mathrm{Fib}_n\)</span>, we need to pick <span  class="math">\(X\)</span> large enough (so that <span  class="math">\(\mathrm{Fib}_nX +\ \mathrm{Fib}_{n-1} < X^2-X-1\)</span>, compute <span  class="math">\(X^{n+1}\ \mathrm{mod}\ X^2-X-1\)</span>, and take the result modulo <span  class="math">\(X\)</span>. Faré uses a tight bound for <span  class="math">\(X\)</span>, but <span  class="math">\(X=2^{n+2}\)</span> is easier (at the cost of a little efficiency), and that's what I'll use here.</p>
+
+<p>In Python:</p>
+
+<pre><code>def fib(n):
+    X = 1&lt;&lt;(n+2)
+    return pow(X, n+1, X*X-X-1) % X
+
+for i in range(1, 21):
+    print(i, fib(i))        
+</code></pre>
+
+<p>This code uses Python's built-in ternary <code>pow(a, b, m)</code> function that efficiently computes the result of <code>a</code> to the power of <code>b</code> modulo <code>m</code> in exact integer arithmetic, using exponentiation by squaring.</p>
+
+<p>Computation here is done using approximately <span  class="math">\(2n\)</span> bits, which is reasonable since Fibonacci numbers grow exponentially, so the number of bits grows linearly.</p>
+
+<p>I find this code quite beautiful. Not only is it efficient and relatively simple to read (if not to understand), it allows one to compute Fibonacci numbers with no (explicit) iteration or recursion.</p>
+
+<h3 id="computing-in-polynomials">Computing in polynomials</h3>
+
+<p>We can also compute the result using this method symbolically, treating <span  class="math">\(X\)</span> as an unknown. Then our &quot;numbers&quot; are linear polynomials of the form <span  class="math">\(a + bX\)</span>, and multiplication is polynomial multiplication modulo <span  class="math">\(X^2-X-1\)</span>. If you're more mathematically sophisticated, this corresponds to the quotient ring <span  class="math">\(\mathbb{Z}[X] / (X^2-X-1)\)</span>.</p>
+
+<p>We can calculate what multiplication looks like here: <span  class="math">\((a_0 + a_1X)(b_0+b_1X) = a_0b_0 + (a_1b_0+a_0b_1)X + a_1b_1X^2\)</span>. As before, using that <span  class="math">\(X^2=X+1\)</span>, this equals <span  class="math">\((a_0b_0+a_1b_1) + (a_1b_0+a_0b_1+a_1b_1)X\)</span>.</p>
+
+<p>We can write some code that implements this multiplication, and performs exponentiation by squaring using it.</p>
+
+<pre><code>def mul(a, b):
+    return a[0]*b[0]+a[1]*b[1], a[1]*b[0]+a[0]*b[1]+a[1]*b[1]
+
+def ppow(a, n):
+    r = (1, 0)
+    while n:
+        if n &amp; 1: r = mul(r, a)
+        a = mul(a, a)
+        n &gt;&gt;= 1
+    return r
+
+for i in range(1, 21):
+    print(i, ppow((0, 1), i+1)[0])
+</code></pre>
+
+<p>This code is very like the matrix-power method for computing Fibonacci numbers, and it's interesting to think of how the two correspond.</p>
+
+<p>We can also reproduce the fast doubling formulas, which are another good method for computing Fibonacci numbers. The fast doubling formulas are:</p>
+
+<p><span  class="math">\[ \begin{align*}
+& \mathrm{Fib}_{2n} = \mathrm{Fib}_n(2\mathrm{Fib}_{n+1} - \mathrm{Fib}_n) \\
+& \mathrm{Fib}_{2n+1} = \mathrm{Fib}_{n+1}^2 + \mathrm{Fib}_n^2\end{align*}\]</span></p>
+
+<p>These drop out straightforwardly from calculation using our polynomial method. With all calculations being performed modulo <span  class="math">\(X^2-X-1\)</span> we have: <span  class="math">\(\mathrm{Fib}_{2n}X + \mathrm{Fib}_{2n-1} = X^{2n} = X^nX^n = (\mathrm{Fib}_nX + \mathrm{Fib}_{n-1})^2\)</span>. Expanding out this last term and reducing it modulo <span  class="math">\(X^2-X-1\)</span> gives us something that's easily massaged into the doubling formulas.</p>
+
+<h3 id="computing-with-the-golden-ratio">Computing with the golden ratio</h3>
+
+<p>Another (less practical) way to think of this method is to consider numbers of the form <span  class="math">\(a + b\phi\)</span>, where <span  class="math">\(\phi\)</span> is the golden ratio <span  class="math">\(\frac{1+\sqrt{5}}{2}\)</span>. Since <span  class="math">\(\phi^2 = \phi + 1\)</span>, multiplications in this system works out identically to how it did in the linearly polynomial case, simply replacing <span  class="math">\(X\)</span> with <span  class="math">\(\phi\)</span>. For the more mathematically sophisticated, that's noting that <span  class="math">\(\mathbb{Q}[X] / (X^2-X-1) \simeq \mathbb{Q}[\phi]\)</span>.</p>
+
+<p>A nice alternative to Binet's formula that directly relates the golden ratio with Fibonacci numbers that comes from this is <span  class="math">\(\phi^n = \mathrm{Fib}_n\phi + \mathrm{Fib}_{n-1}\)</span>.</p>
+
+<h3 id="generalizing-to-nacci-numbers">Generalizing to <span  class="math">\(n\)</span>-acci numbers</h3>
+
+<p>These methods can be straightforwardly generalized to higher-order Fibonacci numbers.</p>
+
+<p>For example, suppose we want to calculate the number of ways to get from the start to (exactly) square 100 of a snakes-and-ladders game (with no snakes or ladders) using a single dice, we have the recurrences:</p>
+
+<pre><code>R(n) = 0 (n&lt;0)
+R(0) = 1
+R(n) = R(n-1) + R(n-2) + R(n-3) + R(n-4) + R(n-5) + R(n-6) for n &gt; 1
+</code></pre>
+
+<p>These are the hideously named Hexanacci numbers (although they're usually defined as a sequence starting 0, 0, 0, 0, 0, 1, which is offset from 5 from <code>R</code>). See <a href="https://en.wikipedia.org/wiki/Generalizations_of_Fibonacci_numbers#Higher_orders">the Wikipedia article on higher order Fibonacci numbers</a> and <a href="https://oeis.org/A001592">sequence AA01592 on OEIS</a>.</p>
+
+<p>We can use the same tricks as before to calculate this sequence in very little code, and quite efficiently, using <span  class="math">\(log(n)\)</span> multiplications of numbers with approximately <span  class="math">\(6n\)</span> bits. Again, we can't expect much better than this, since the results grow exponentially.</p>
+
+<pre><code>def hexa(n):
+    X = 1&lt;&lt;(n+1)
+    return pow(X, n+6, X**6-X**5-X**4-X**3-X**2-X-1) % X
+
+for i in range(1, 21):
+    print(i, hexa(i))
+</code></pre>
+
+<p>Computing <code>hexa(100)</code> with this function gives 290078479914610587823630044098.</p>
+
+<p>If we wanted, we could easily turn this computation into a single line program.</p>
+
+<h3 id="further-thinking-required">Further thinking required</h3>
+
+<p>Here's some (as far as I know open) and interesting questions.</p>
+
+<ul>
+<li>How general is this approach? What other recurrences can be computed like this?</li>
+<li>How does one compute Fibonacci-like numbers with different starting values? Can you write down a formula for the <span  class="math">\(n\)</span>-acci numbers starting with an arbitrary <span  class="math">\(n\)</span> values <span  class="math">\(a_0, a_1, ..., a_n\)</span>?</li>
+<li>The fast doubling formulas for the Fibonacci numbers drop out of the polynomial power method. Can you write down fast doubling formulas for <span  class="math">\(n\)</span>-acci numbers?</li>
+<li>How do you efficiently compute the polynomial multiplications for the <span  class="math">\(n\)</span>-acci numbers?</li>
+<li>Compare the cost (in the bit-cost model) of the matrix power method, integer power method, and polynomial power method for computing <span  class="math">\(n\)</span>-acci numbers. Which is the most efficient?</li>
+</ul>
+            </article>
+          </div>
+          
+      <div class='entry-meta-bottom'>
+        
+
+  <div class="entry-categories"><p><span>Categories</span>
+    
+    <a href="/categories/computer-science" title="View all posts in computer science">computer science</a>
+    <a href="/categories/mathematics" title="View all posts in mathematics">mathematics</a>
+  </p>
+</div>
+
+
+
+<div class="entry-tags"><p><span>Tags</span>
+  
+
+</p></div>	</div>
+
+<div class="author-meta">
+
+  <div class="author">
+    <img alt='Paul Hankin' src="https://www.gravatar.com/avatar/490378f9f77af08b82d797c6ebbd71d1?s=100&d=identicon" class='avatar avatar-72 photo' height='72' width='72'>
+
+    <span>
+      Written by:<a href="https://paulhankin.github.io/" title="Posts by Paul Hankin" rel="author">Paul Hankin</a>        </span>
+    </div>
+    <div class="bio">
+      
+      <p>Programming since 1981, professionally since 2000. I’ve a PhD in programming language semantics but these days I prefer programming in Go, C, and Python. I’ve worked mostly on games and large-scale server software.</p>
+      
+
+
+      
+      <a class="facebook" target="_blank"
+      href="https://www.facebook.com/paul.hankin">
+      <i class="fa fa-facebook"
+      title="facebook icon"></i>
+    </a>
+    
+
+    
+
+
+  
+
+
+
+<a class="email" target="_blank"
+href="mailto:paul.hankin@pobox.com">
+<i class="fa fa-envelope"
+title="email icon"></i>
+</a>
+
+
+
+
+
+<a class="stackoverflow" target="_blank"
+href="https://stackoverflow.com/users/1400793/paul-hankin">
+<i class="fa fa-stack-overflow"
+title="stackoverflow icon"></i>
+</a>
+
+
+
+<a class="github" target="_blank"
+href="https://github.com/paulhankin">
+<i class="fa fa-github"
+title="github icon"></i>
+</a>
+
+
+
+
+
+
+
+</div>
+</div>
+
+</div>
+</div>
+
+<section id="comments" class="comments">
+  
+
+  
+
+
+
+
+</section>
+</div>
+
+ 
+
+
+
+    </div>
+
+    <footer id="site-footer" class="site-footer" role="contentinfo">
+
+	<h1>
+    
+    <a href=""> Paul&#39;s blog </a>
+    
+	</h1>
+
+			
+			<p class="site-description">Tasty brain snacks</p>
+			
+
+		<div id="menu-footer" class="menu-container menu-footer" role="navigation">
+		<div class="menu">
+
+      <ul id="menu-footer-items" class="menu-footer-items">
+        
+</ul>
+
+</div>	</div>
+
+<ul class="social-media-icons">
+
+        
+				<li>
+					<a class="facebook" target="_blank"
+					   href="https://www.facebook.com/paul.hankin" >
+						<i class="fa fa-facebook" title="facebook"></i>
+						<span class="screen-reader-text">facebook</span>
+					</a>
+				</li>
+        
+
+        
+
+
+        
+
+        
+
+        
+        <li>
+        <a href="mailto:paul.hankin@pobox.com"  class="email">
+            <i class="fa fa-envelope" title="email"></i>
+            <span class="screen-reader-text">email</span>
+        </a>
+        </li>
+        
+
+        
+
+        
+        <li>
+        <a href="https://stackoverflow.com/users/1400793/paul-hankin"  class="stackoverflow" target="_blank">
+            <i class="fa fa-stack-overflow" title="stackoverflow"></i>
+            <span class="screen-reader-text">stackoverflow</span>
+        </a>
+        </li>
+        
+
+
+        
+        <li>
+        <a href="https://github.com/paulhankin"  class="github" target="_blank">
+            <i class="fa fa-github" title="github"></i>
+            <span class="screen-reader-text">github</span>
+        </a>
+        </li>
+        
+
+
+        
+
+				</ul>	<div class="design-credit">
+		
+		<p>&copy; 2015 &mdash; 2018 Paul Hankin</p>
+		
+		<p>Nederburg Hugo Theme by <a href="https://appernetic.io">Appernetic</a>.</p>
+		
+		<p>A port of Tracks by Compete Themes.</p>
+		
+	</div>
+</footer>
+
+  </div>
+  <script src="https://paulhankin.github.io/js/jquery.min.js"></script>
+<script src="https://paulhankin.github.io/js/jquerymigrate.js"></script>
+<script src="https://paulhankin.github.io/js/production.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.6.0/katex.min.css">
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+</body>
+</html>

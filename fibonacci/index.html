@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<script type="application/ld+json">
+    {
+        "@context" : "http://schema.org",
+        "@type" : "BlogPosting",
+        "mainEntityOfPage": {
+             "@type": "WebPage",
+             "@id": "https://paulhankin.github.io/"
+        },
+        "articleSection" : "post",
+        "name" : "An integer formula for Fibonacci numbers",
+        "headline" : "An integer formula for Fibonacci numbers",
+        "description" : "<p>This code, somewhat surprisingly, generates Fibonacci numbers.</p>
+
+<pre><code>def fib(n):
+    return (4 &lt;&lt; n*(3+n)) // ((4 &lt;&lt; 2*n) - (2 &lt;&lt; n) - 1) &amp; ((2 &lt;&lt; n) - 1)
+</code></pre>
+
+<p>In this blog post, I'll explain where it comes from and how it works.
+</p>",
+        "inLanguage" : "en-US",
+        "author" : "",
+        "creator" : "",
+        "publisher": "",
+        "accountablePerson" : "",
+        "copyrightHolder" : "",
+        "copyrightYear" : "2015",
+        "datePublished": "2015-04-27 00:00:00 &#43;0000 UTC",
+        "dateModified" : "2015-04-27 00:00:00 &#43;0000 UTC",
+        "url" : "https://paulhankin.github.io/fibonacci/",
+        "wordCount" : "1169",
+        "image" : https://paulhankin.github.io/%!s(&lt;nil&gt;)",
+        "keywords" : [ "maths","compsci","fibonacci","python","Blog" ]   
+    }
+    </script>
+
+ <title>An integer formula for Fibonacci numbers </title>
+
+
+<meta name="description" content="Programming, Computer Science, Games and Other Things" />
+
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="all,follow">
+<meta name="googlebot" content="index,follow,snippet,archive">
+<link rel="stylesheet" id="ct-tracks-google-fonts-css" href="//fonts.googleapis.com/css?family=Raleway%3A400%2C700&amp;subset=latin%2Clatin-ext&amp;ver=4.7.2" type="text/css" media="all">
+<link rel="stylesheet" href="https://paulhankin.github.io/css/font-awesome.min.css" type='text/css' media='all'>
+
+<link href="https://paulhankin.github.io/css/style.css" rel="stylesheet" id="theme-stylesheet" type='text/css' media='all'>
+
+<link href="https://paulhankin.github.io/css/custom.css" rel="stylesheet" type='text/css' media='all'>
+<link rel="shortcut icon" href="https://paulhankin.github.io/img/favicon.ico" type="image/x-icon">
+<link rel="icon" href="https://paulhankin.github.io/img/favicon.ico" type="image/x-icon">
+
+
+</head>
+
+
+<body class="post-template-default single single-post single-format-standard ct-body singular singular-post not-front standard">
+  
+  <div id="overflow-container" class="overflow-container">
+    <a class="skip-content" href="#main">Skip to content</a>
+    <header id="site-header" class="site-header" role="banner">
+      <div class='top-navigation'>
+        <div class='container'>
+
+  <div id="menu-secondary" class="menu-container menu-secondary" role="navigation">
+    <button id="toggle-secondary-navigation" class="toggle-secondary-navigation"><i class="fa fa-plus"></i></button>
+
+    <div class="menu">
+
+      <ul id="menu-secondary-items" class="menu-secondary-items">
+        
+        <li id="menu-item" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item">
+          <a href="/categories/computer-science">computer science</a>
+        </li>
+        
+        <li id="menu-item" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item">
+          <a href="/categories/game-theory">game theory</a>
+        </li>
+        
+        <li id="menu-item" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item">
+          <a href="/categories/mathematics">mathematics</a>
+        </li>
+        
+        <li id="menu-item" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item">
+          <a href="/categories/programming">programming</a>
+        </li>
+        
+
+      </ul>
+
+    </div>
+
+  </div>
+
+
+  <ul class="social-media-icons">
+
+
+    
+    <li>
+      <a href="https://www.facebook.com/paul.hankin" data-animate-hover="pulse" class="facebook" target="_blank">
+        <i class="fa fa-facebook-square" title="facebook"></i>
+        <span class="screen-reader-text">facebook</span>
+      </a>
+    </li>
+    
+
+    
+
+    
+
+    
+
+    
+    <li>
+      <a href="mailto:paul.hankin@pobox.com" data-animate-hover="pulse" class="email">
+        <i class="fa fa-envelope" title="email"></i>
+        <span class="screen-reader-text">email</span>
+      </a>
+    </li>
+    
+
+    
+
+    
+    <li>
+      <a href="https://stackoverflow.com/users/1400793/paul-hankin" data-animate-hover="pulse" class="stackoverflow" target="_blank">
+        <i class="fa fa-stack-overflow" title="stackoverflow"></i>
+        <span class="screen-reader-text">stackoverflow</span>
+      </a>
+    </li>
+    
+
+
+    
+    <li>
+      <a href="https://github.com/paulhankin" data-animate-hover="pulse" class="github" target="_blank">
+        <i class="fa fa-github" title="github"></i>
+        <span class="screen-reader-text">github</span>
+      </a>
+    </li>
+    
+
+
+    
+
+
+  </ul></div>
+
+      </div>
+
+      <div class="container">
+        <div id="title-info" class="title-info">
+  <div id='site-title' class='site-title'>
+    
+    <a href="/"> Paul&#39;s blog </a>
+    </div>
+  </div>
+  <button id="toggle-navigation" class="toggle-navigation">
+    <i class="fa fa-bars"></i>
+  </button>
+
+  <div id="menu-primary-tracks" class="menu-primary-tracks"></div>
+  <div id="menu-primary" class="menu-container menu-primary" role="navigation">
+    
+    <p class="site-description">Tasty brain snacks</p>
+    
+
+    <div class="menu">
+      <ul id="menu-primary-items" class="menu-primary-items">
+        
+        
+        <li id="menu-item" class='menu-item menu-item-type-custom menu-item-object-custom '>
+          <a href="https://paulhankin.github.io/">Home</a>
+        </li>
+        
+        <li id="menu-item" class='menu-item menu-item-type-post_type menu-item-object-page '>
+          <a href="https://paulhankin.github.io/about/">About</a>
+        </li>
+        
+        <li id="menu-item" class='menu-item menu-item-type-post_type menu-item-object-page '>
+          <a href="https://paulhankin.github.io/post/index.xml">RSS</a>
+        </li>
+        
+      </ul>
+    </div>
+
+  </div>
+
+      </div>
+    </header>
+
+    <div id="main" class="main" role="main">
+
+      
+  <div id="loop-container" class="loop-container">
+    
+
+      <div class="post type-post status-publish format-standard hentry category-standard category-travel entry full-without-featured odd excerpt-1">
+
+        
+        <div class="entry-meta">
+          <span class="date">27 April 2015</span>	<span> / </span>
+
+          <span class="author">
+            
+            Paul Hankin
+            
+          </span>
+
+
+          
+          <span class="category">
+            <span> / </span>
+
+            <a href="/categories/mathematics">mathematics</a>
+          </span>
+          
+          <span class="category">
+            <span> / </span>
+
+            <a href="/categories/computer%20science">computer science</a>
+          </span>
+          
+
+
+        </div>
+        <div class='entry-header'>
+          <h1 class='entry-title'> An integer formula for Fibonacci numbers</h1>
+        </div>
+        <div class="entry-container">
+          <div class="entry-content">
+            <article>
+              <p>This code, somewhat surprisingly, generates Fibonacci numbers.</p>
+
+<pre><code>def fib(n):
+    return (4 &lt;&lt; n*(3+n)) // ((4 &lt;&lt; 2*n) - (2 &lt;&lt; n) - 1) &amp; ((2 &lt;&lt; n) - 1)
+</code></pre>
+
+<p>In this blog post, I'll explain where it comes from and how it works.
+</p>
+
+<p>Before getting to explaining, I'll give a whirlwind background overview of
+Fibonacci numbers and how to compute them. If you're already a maths whiz, you can skip
+most of the introduction, quickly
+skim the section &quot;Generating functions&quot; and then read &quot;An integer formula&quot;.</p>
+
+<h2 id="overview">Overview</h2>
+
+<p>The Fibonacci numbers are a well-known sequence of numbers:</p>
+
+<p><span  class="math">\[1, 1, 2, 3, 5, 8, 13, 21, 34, 55, \ldots\]</span></p>
+
+<p>The <span  class="math">\(n\)</span>th number in the sequence is defined to be the sum of the previous two, or formally
+by this recurrence relation:</p>
+
+<p><span  class="math">\[\begin{eqnarray}
+\mathrm{Fib}(0) &=& 1 \\
+\mathrm{Fib}(1) &=& 1 \\
+\mathrm{Fib}(n) &=& \mathrm{Fib}(n - 1) + \mathrm{Fib}(n - 2)
+\end{eqnarray}\]</span></p>
+
+<p>I've chosen to start the sequence at index 0 rather than the more usual 1.</p>
+
+<h3 id="computing-fibonacci-numbers">Computing Fibonacci numbers</h3>
+
+<p>There's a few different reasonably well-known ways of computing the sequence. The obvious recursive implementation is slow:</p>
+
+<pre><code>def fib_recursive(n):
+    if n &lt; 2: return 1
+    return fib_recursive(n - 1) + fib_recursive(n - 2)
+</code></pre>
+
+<p>An iterative implementation works in <span  class="math">\(O(n)\)</span> operations:</p>
+
+<pre><code>def fib_iter(n):
+    a, b = 1, 1
+    for _ in xrange(n):
+        a, b = a + b, a
+    return b
+</code></pre>
+
+<p>And a slightly less well-known matrix power implementation works in <span  class="math">\(O(\mathrm{log}\ n)\)</span> operations.</p>
+
+<pre><code>def fib_matpow(n):
+    m = numpy.matrix('1 1 ; 1 0') ** n
+    return m.item(0)
+</code></pre>
+
+<p>The last method works by considering the <code>a</code> and <code>b</code> in <code>fib_iter</code>
+as sequences, and noting that</p>
+
+<p><span  class="math">\[
+\left(\begin{matrix}
+a_{n+1} \\
+b_{n+1} \\
+\end{matrix}\right) =
+\left(\begin{matrix}
+1 & 1 \\
+1 & 0 \\
+\end{matrix}\right)
+\left(\begin{matrix}
+a_n \\
+b_n \\
+\end{matrix}\right)
+\]</span></p>
+
+<p>From which follows</p>
+
+<p><span  class="math">\[
+\left( \begin{array}{c}
+a_{n} \\
+b_{n} \end{array} \right) =
+\left( \begin{array}{cc}
+1 & 1 \\
+1 & 0 \end{array} \right) ^ n
+\left( \begin{array}{c}
+1 \\
+1 \end{array} \right)
+\]</span></p>
+
+<p>and so if
+<span  class="math">\(m = \left(\begin{matrix}
+1 & 1 \\
+1 & 0 \end{matrix} \right)^n\)</span> then <span  class="math">\(b_n = m_{11}\)</span> (noting that unlike Python, matrix indexes are usually 1-based).</p>
+
+<p>It's <span  class="math">\(O(\mathrm{log}\ n)\)</span> based on the assumption that numpy's matrix power does something like exponentation by squaring.</p>
+
+<p>Another method is to find a closed form for the solution of the recurrence relation. This leads to the real-valued formula: <span  class="math">\(\mathrm{Fib}(n) = (\phi^{n+1} - \psi^{n+1}) / \sqrt{5})\)</span> where <span  class="math">\(\phi = (1 + \sqrt{5}) / 2\)</span> and <span  class="math">\(\psi = (1 - \sqrt{5}) / 2\)</span>. The practical flaw in this method is that it requires arbitrary precision real-valued arithmetic, but it works for small <span  class="math">\(n\)</span>.</p>
+
+<pre><code>def fib_phi(n):
+    phi = (1 + math.sqrt(5)) / 2.0
+    psi = (1 - math.sqrt(5)) / 2.0
+    return int((phi ** (n+1) - psi ** (n+1)) / math.sqrt(5))
+</code></pre>
+
+<h3 id="generating-functions">Generating Functions</h3>
+
+<p>A generating function for an arbitrary sequence <span  class="math">\(a_n\)</span> is the infinite sum <span  class="math">\(\Sigma_n a_nx^n\)</span>.
+In the specific case of the Fibonacci numbers, that means <span  class="math">\(\Sigma_n \mathrm{Fib}(n)x^n\)</span>.
+In words, it's an infinite power series, with the coefficient of <span  class="math">\(x^n\)</span> being the <span  class="math">\(n\)</span>th
+Fibonacci number.</p>
+
+<p>Now,</p>
+
+<p><span  class="math">\[\mathrm{Fib}(n+2) = \mathrm{Fib}(n+1) + \mathrm{Fib}(n)\]</span></p>
+
+<p>Multiplying by <span  class="math">\(x^{n+2}\)</span> and summing over all <span  class="math">\(n\)</span>, we get:</p>
+
+<p><span  class="math">\[\Sigma_n\mathrm{Fib}(n+2)x^{n+2} = \Sigma_n\mathrm{Fib}(n+1)x^{n+2} + \Sigma_n\mathrm{Fib}(n)x^{n+2}\]</span></p>
+
+<p>If we let <span  class="math">\(F(x)\)</span> to be the generating function of <span  class="math">\(\mathrm{Fib}\)</span>, which is defined to be <span  class="math">\(\Sigma_n\mathrm{Fib}(n)x^n\)</span> then this
+equation can be simplified:</p>
+
+<p><span  class="math">\[F(x) - x - 1 = x(F(x) - 1) + x^2F(x)\]</span></p>
+
+<p>and simplifying,</p>
+
+<p><span  class="math">\[F(x) = xF(x) + x^2F(x) + 1\]</span></p>
+
+<p>We can solve this equation for <span  class="math">\(F\)</span> to get</p>
+
+<p><span  class="math">\[F(x) = \frac{1}{1 - x - x^2}\]</span></p>
+
+<p>It's surprising that we've managed to find a small and simple formula which captures all of the Fibonacci numbers,
+but it's not yet obvious how we can use it. We'll get to that in the next section.</p>
+
+<p>A technical aside is that we're going to want to evaluate <span  class="math">\(F\)</span> at some values of <span  class="math">\(x\)</span>, and we'd like the power series
+to converge. We know the Fibonacci numbers grow like <span  class="math">\(\phi^n\)</span> and that geometric
+series <span  class="math">\(\Sigma_n a^n\)</span> converge if <span  class="math">\(|a|<1\)</span>, so we know that if <span  class="math">\(|x| < 1/\phi \simeq 0.618\)</span> then the power series
+converges.</p>
+
+<h3 id="an-integer-formula">An integer formula</h3>
+
+<p>Now we're ready to start understanding the Python code.</p>
+
+<p>To get the intuition behind the formula, we'll evaluate the generating function <span  class="math">\(F\)</span> at <span  class="math">\(10^{-3}\)</span>.</p>
+
+<p><span  class="math">\[ \begin{align*}
+& F(x) = \frac{1}{1 - x - x^2} \\
+& F(10^{-3})  = \frac{1}{1 - 10^{-3} - 10^{-6}} \\
+& = 1.001\,002\,003\,005\,008\,013\,021\,034\,055\,089\,144\,233\,377\,610\,988\,599\,588\,187\,\ldots \end{align*}\]</span></p>
+
+<p>Interestingly, we can see some Fibonacci numbers in this decimal expansion: <span  class="math">\(1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89\)</span>. That seems magical and surprising, but it's because <span  class="math">\(F(10^{-3}) = \mathrm{Fib}(0) + \mathrm{Fib}(1)/10^3 + \mathrm{Fib}(2)/10^6 + \mathrm{Fib}(3)/10^9 + \ldots\)</span>.</p>
+
+<p>In this example, the Fibonacci numbers are spaced out at multiples of <span  class="math">\(1/1000\)</span>, which means once they start getting bigger that 1000 they'll
+start interfering with their neighbours. We can see that starting at 988 in the computation of <span  class="math">\(F(10^{-3})\)</span> above: the correct Fibonacci number is 987, but there's a 1 overflowed from the next number in the sequence causing an off-by-one error. This breaks the pattern from then on.</p>
+
+<p>But, for any value of <span  class="math">\(n\)</span>, we can arrange for the negative power of 10 to be large enough that overflows don't disturb
+the <span  class="math">\(n\)</span>th Fibonacci. For now, we'll just assume that there's some <span  class="math">\(k\)</span> which makes <span  class="math">\(10^{-k}\)</span> sufficient, and we'll come back to picking it later.</p>
+
+<p>Also, since we'd like to use integer maths (because it's easier to code), let's multiply by <span  class="math">\(10^{kn}\)</span>, which also puts the <span  class="math">\(n\)</span>th Fibonacci
+number just to the left of the decimal point, and simplify the equation.</p>
+
+<p><span  class="math">\[ 10^{kn} F(10^{-k}) = \frac{10^{kn}}{1 - 10^{-k} - 10^{-2k}} = \frac{10^{kn+2k}}{10^{2k} - 10^{k} - 1} \]</span></p>
+
+<p>If we take this result modulo <span  class="math">\(10^k\)</span>, we'll get the <span  class="math">\(n\)</span>th Fibonacci number (again, assuming we've picked <span  class="math">\(k\)</span> large enough).</p>
+
+<p>Before proceeding, let's switch to base 2 rather than base 10, which changes nothing but will make it easier to program.</p>
+
+<p><span  class="math">\[ 2^{kn} F(2^{-k}) = \frac{2^{k(n+2)}}{2^{2k} - 2^{k} - 1} \]</span></p>
+
+<p>Now all that's left is to pick a value of <span  class="math">\(k\)</span> large enough so that <span  class="math">\(\mathrm{Fib}(n+1) < 2^k\)</span>. We know that the Fibonacci numbers
+grow like <span  class="math">\(\phi^n\)</span>, and <span  class="math">\(\phi < 2\)</span>, so <span  class="math">\(k = n+1\)</span> is safe.</p>
+
+<p>So! Putting that together:</p>
+
+<p><span  class="math">\[ \begin{align*}
+\mathrm{Fib}(n) & \equiv 2^{(n+1)n}F(2^{-(n+1)})\ \mathrm{mod}\ 2^{n+1}\\
+& \equiv \frac{2^{(n+1)(n+2)}}{(2^{n+1})^2 - 2^{n+1} - 1}\ \mathrm{mod}\ 2^{n+1} \\
+& \equiv \frac{2^{(n+1)(n+2)}}{2^{2n+2} - 2^{n+1} - 1}\ \mathrm{mod}\ 2^{n+1} \end{align*} \]</span></p>
+
+<p>If we use left-shift notation that's available in python, where <span  class="math">\(a << k = a \cdot 2^k\)</span> then we can write this as:</p>
+
+<p><span  class="math">\[ \mathrm{Fib}(n)  \equiv \frac{4 << n(3+n)}{(4 << 2n) - (2 << n) - 1} \mathrm{mod}\ (2 << n)  \]</span></p>
+
+<p>Observing that <span  class="math">\(\mathrm{mod}\ (2 << n)\)</span> can be expressed as the bitwise and (<code>&amp;</code>) of <span  class="math">\((2 << n) - 1\)</span>, we reconstruct our original Python program:</p>
+
+<pre><code>def fib(n):
+    return (4 &lt;&lt; n*(3+n)) // ((4 &lt;&lt; 2*n) - (2 &lt;&lt; n) - 1) &amp; ((2 &lt;&lt; n) - 1)
+</code></pre>
+
+<p>Although it's curious to find a non-iterative, closed-form solution, this isn't a practical method at all. We're doing integer arithmetic with integers of size <span  class="math">\(O(n^2)\)</span> bits, and in fact, before performing the final bit-wise and, we've got an integer that is the first <span  class="math">\(n\)</span> Fibonacci numbers concatenated together!</p>
+            </article>
+          </div>
+          
+      <div class='entry-meta-bottom'>
+        
+
+  <div class="entry-categories"><p><span>Categories</span>
+    
+    <a href="/categories/mathematics" title="View all posts in mathematics">mathematics</a>
+    <a href="/categories/computer-science" title="View all posts in computer science">computer science</a>
+  </p>
+</div>
+
+
+
+<div class="entry-tags"><p><span>Tags</span>
+  
+  <a href="/tags/maths" title="View all posts tagged maths">maths</a>
+  
+  <a href="/tags/compsci" title="View all posts tagged compsci">compsci</a>
+  
+  <a href="/tags/fibonacci" title="View all posts tagged fibonacci">fibonacci</a>
+  
+  <a href="/tags/python" title="View all posts tagged python">python</a>
+  
+
+</p></div>	</div>
+
+<div class="author-meta">
+
+  <div class="author">
+    <img alt='Paul Hankin' src="https://www.gravatar.com/avatar/490378f9f77af08b82d797c6ebbd71d1?s=100&d=identicon" class='avatar avatar-72 photo' height='72' width='72'>
+
+    <span>
+      Written by:<a href="https://paulhankin.github.io/" title="Posts by Paul Hankin" rel="author">Paul Hankin</a>        </span>
+    </div>
+    <div class="bio">
+      
+      <p>Programming since 1981, professionally since 2000. I’ve a PhD in programming language semantics but these days I prefer programming in Go, C, and Python. I’ve worked mostly on games and large-scale server software.</p>
+      
+
+
+      
+      <a class="facebook" target="_blank"
+      href="https://www.facebook.com/paul.hankin">
+      <i class="fa fa-facebook"
+      title="facebook icon"></i>
+    </a>
+    
+
+    
+
+
+  
+
+
+
+<a class="email" target="_blank"
+href="mailto:paul.hankin@pobox.com">
+<i class="fa fa-envelope"
+title="email icon"></i>
+</a>
+
+
+
+
+
+<a class="stackoverflow" target="_blank"
+href="https://stackoverflow.com/users/1400793/paul-hankin">
+<i class="fa fa-stack-overflow"
+title="stackoverflow icon"></i>
+</a>
+
+
+
+<a class="github" target="_blank"
+href="https://github.com/paulhankin">
+<i class="fa fa-github"
+title="github icon"></i>
+</a>
+
+
+
+
+
+
+
+</div>
+</div>
+
+</div>
+</div>
+
+<section id="comments" class="comments">
+  
+
+  
+
+
+
+
+</section>
+</div>
+
+ 
+
+
+
+    </div>
+
+    <footer id="site-footer" class="site-footer" role="contentinfo">
+
+	<h1>
+    
+    <a href=""> Paul&#39;s blog </a>
+    
+	</h1>
+
+			
+			<p class="site-description">Tasty brain snacks</p>
+			
+
+		<div id="menu-footer" class="menu-container menu-footer" role="navigation">
+		<div class="menu">
+
+      <ul id="menu-footer-items" class="menu-footer-items">
+        
+</ul>
+
+</div>	</div>
+
+<ul class="social-media-icons">
+
+        
+				<li>
+					<a class="facebook" target="_blank"
+					   href="https://www.facebook.com/paul.hankin" >
+						<i class="fa fa-facebook" title="facebook"></i>
+						<span class="screen-reader-text">facebook</span>
+					</a>
+				</li>
+        
+
+        
+
+
+        
+
+        
+
+        
+        <li>
+        <a href="mailto:paul.hankin@pobox.com"  class="email">
+            <i class="fa fa-envelope" title="email"></i>
+            <span class="screen-reader-text">email</span>
+        </a>
+        </li>
+        
+
+        
+
+        
+        <li>
+        <a href="https://stackoverflow.com/users/1400793/paul-hankin"  class="stackoverflow" target="_blank">
+            <i class="fa fa-stack-overflow" title="stackoverflow"></i>
+            <span class="screen-reader-text">stackoverflow</span>
+        </a>
+        </li>
+        
+
+
+        
+        <li>
+        <a href="https://github.com/paulhankin"  class="github" target="_blank">
+            <i class="fa fa-github" title="github"></i>
+            <span class="screen-reader-text">github</span>
+        </a>
+        </li>
+        
+
+
+        
+
+				</ul>	<div class="design-credit">
+		
+		<p>&copy; 2015 &mdash; 2018 Paul Hankin</p>
+		
+		<p>Nederburg Hugo Theme by <a href="https://appernetic.io">Appernetic</a>.</p>
+		
+		<p>A port of Tracks by Compete Themes.</p>
+		
+	</div>
+</footer>
+
+  </div>
+  <script src="https://paulhankin.github.io/js/jquery.min.js"></script>
+<script src="https://paulhankin.github.io/js/jquerymigrate.js"></script>
+<script src="https://paulhankin.github.io/js/production.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.6.0/katex.min.css">
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+</body>
+</html>

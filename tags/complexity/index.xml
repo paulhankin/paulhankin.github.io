@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Complexity on Paul&#39;s blog</title>
+    <link>https://paulhankin.github.io/tags/complexity/</link>
+    <description>Recent content in Complexity on Paul&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 06 May 2015 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://paulhankin.github.io/tags/complexity/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Everything you know about complexity is wrong</title>
+      <link>https://paulhankin.github.io/complexity-rant/</link>
+      <pubDate>Wed, 06 May 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://paulhankin.github.io/complexity-rant/</guid>
+      <description>&lt;p&gt;Who would disagree that the run-time of mergesort is &lt;span  class=&#34;math&#34;&gt;\(O(n\mathrm{log}\,n)\)&lt;/span&gt; and it&#39;s asymptotically optimal?
+Not many programmers I reckon, except perhaps to question whether it&#39;s talking about
+a model of computation that&#39;s not sufficiently close to a real computer, for example a quantum
+computer or one that performs arbitrary operations in parallel (possibly
+involving &lt;a href=&#34;http://en.wikipedia.org/wiki/Spaghetti_sort&#34;&gt;sticks of spaghetti&lt;/a&gt;).&lt;/p&gt;
+
+&lt;p&gt;However, if you try to understand how to formalize what it means for a sort
+to run in &lt;span  class=&#34;math&#34;&gt;\(O(n\mathrm{log}\,n)\)&lt;/span&gt; and for it to be optimal,
+it&#39;s surprisingly difficult to find a suitable computational model, that is,
+an abstraction of a computer which elides all but the important
+details of the computer: the operations it can perform, and how the memory
+works.&lt;/p&gt;
+
+&lt;p&gt;In this post, I&#39;ll look at some of
+the most common computational models used in both practice and theory, and
+find out that they&#39;re all flawed in one way or another, and in fact in all
+of them either mergesort doesn&#39;t run in &lt;span  class=&#34;math&#34;&gt;\(O(n\mathrm{log}\,n)\)&lt;/span&gt; or there&#39;s
+asymptotically faster sorts.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

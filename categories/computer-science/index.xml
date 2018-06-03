@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Computer science on Paul&#39;s blog</title>
+    <link>https://paulhankin.github.io/categories/computer-science/</link>
+    <description>Recent content in Computer science on Paul&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 14 May 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://paulhankin.github.io/categories/computer-science/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>A novel and efficient way to compute Fibonacci numbers</title>
+      <link>https://paulhankin.github.io/fibonacci2/</link>
+      <pubDate>Mon, 14 May 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://paulhankin.github.io/fibonacci2/</guid>
+      <description>&lt;p&gt;&lt;a href=&#34;https://paulhankin.github.io/fibonacci/&#34;&gt;An earlier post&lt;/a&gt; described how to compute Fibonacci numbers in a single arithmetic expression.&lt;/p&gt;
+
+&lt;p&gt;Faré Rideau, the author of a &lt;a href=&#34;http://fare.tunes.org/files/fun/fibonacci.lisp&#34;&gt;page of Fibonacci computations in Lisp&lt;/a&gt;, suggested in a private
+email a simple and efficient variant, that I believe is novel.&lt;/p&gt;
+
+&lt;p&gt;For &lt;span  class=&#34;math&#34;&gt;\(X\)&lt;/span&gt; large enough, &lt;span  class=&#34;math&#34;&gt;\(\mathrm{Fib}_n = (X^{n+1}\ \mathrm{mod}\ (X^2-X-1))\ \mathrm{mod}\ X\)&lt;/span&gt;.&lt;/p&gt;
+
+&lt;p&gt;This blog post describes how this method works, gives a few ways to think about it, easily infers the fast Fibonacci doubling formulas, provides a nice alternative to Binet&#39;s formula relating the golden ratio and Fibonacci numbers, and expands the method to generalized Fibonacci recurrences, including a near one-line solution to the problem of counting how many ways to reach the end-square of a 100-square game using a single six-sided dice.
+&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Near-optimal closed-hand Chinese Poker.</title>
+      <link>https://paulhankin.github.io/chinesepoker/</link>
+      <pubDate>Thu, 21 May 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://paulhankin.github.io/chinesepoker/</guid>
+      <description>&lt;p&gt;This blog post looks at closed-hand Chinese Poker, and describes
+a near-optimal strategy for it which is readily implementable
+on a computer.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Everything you know about complexity is wrong</title>
+      <link>https://paulhankin.github.io/complexity-rant/</link>
+      <pubDate>Wed, 06 May 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://paulhankin.github.io/complexity-rant/</guid>
+      <description>&lt;p&gt;Who would disagree that the run-time of mergesort is &lt;span  class=&#34;math&#34;&gt;\(O(n\mathrm{log}\,n)\)&lt;/span&gt; and it&#39;s asymptotically optimal?
+Not many programmers I reckon, except perhaps to question whether it&#39;s talking about
+a model of computation that&#39;s not sufficiently close to a real computer, for example a quantum
+computer or one that performs arbitrary operations in parallel (possibly
+involving &lt;a href=&#34;http://en.wikipedia.org/wiki/Spaghetti_sort&#34;&gt;sticks of spaghetti&lt;/a&gt;).&lt;/p&gt;
+
+&lt;p&gt;However, if you try to understand how to formalize what it means for a sort
+to run in &lt;span  class=&#34;math&#34;&gt;\(O(n\mathrm{log}\,n)\)&lt;/span&gt; and for it to be optimal,
+it&#39;s surprisingly difficult to find a suitable computational model, that is,
+an abstraction of a computer which elides all but the important
+details of the computer: the operations it can perform, and how the memory
+works.&lt;/p&gt;
+
+&lt;p&gt;In this post, I&#39;ll look at some of
+the most common computational models used in both practice and theory, and
+find out that they&#39;re all flawed in one way or another, and in fact in all
+of them either mergesort doesn&#39;t run in &lt;span  class=&#34;math&#34;&gt;\(O(n\mathrm{log}\,n)\)&lt;/span&gt; or there&#39;s
+asymptotically faster sorts.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>An integer formula for Fibonacci numbers</title>
+      <link>https://paulhankin.github.io/fibonacci/</link>
+      <pubDate>Mon, 27 Apr 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://paulhankin.github.io/fibonacci/</guid>
+      <description>&lt;p&gt;This code, somewhat surprisingly, generates Fibonacci numbers.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;def fib(n):
+    return (4 &amp;lt;&amp;lt; n*(3+n)) // ((4 &amp;lt;&amp;lt; 2*n) - (2 &amp;lt;&amp;lt; n) - 1) &amp;amp; ((2 &amp;lt;&amp;lt; n) - 1)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;In this blog post, I&#39;ll explain where it comes from and how it works.
+&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

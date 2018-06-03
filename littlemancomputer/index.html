@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<script type="application/ld+json">
+    {
+        "@context" : "http://schema.org",
+        "@type" : "BlogPosting",
+        "mainEntityOfPage": {
+             "@type": "WebPage",
+             "@id": "https://paulhankin.github.io/"
+        },
+        "articleSection" : "post",
+        "name" : "Little Man Computer",
+        "headline" : "Little Man Computer",
+        "description" : "<p>I had never seen this mini-assembler-based educational computer before. <a href="https://en.wikipedia.org/wiki/Little_man_computer">wikipedia.org/Little_man_computer</a>.</p>
+
+<p>I couldn't find a good online emulator, so I wrote one: <a href="/lmc/lmc.html">Little Man Computer Emulator</a>.</p>
+
+<p>Enter the program on the left, click &quot;Assemble&quot;, enter some inputs if your program needs them, and then step
+through the execution.</p>
+
+<p>It's probably got some bugs since it was a quick hack, but it worked on the examples I tried it on.</p>
+
+<p></p>",
+        "inLanguage" : "en-US",
+        "author" : "",
+        "creator" : "",
+        "publisher": "",
+        "accountablePerson" : "",
+        "copyrightHolder" : "",
+        "copyrightYear" : "2016",
+        "datePublished": "2016-04-20 00:00:00 &#43;0000 UTC",
+        "dateModified" : "2016-04-20 00:00:00 &#43;0000 UTC",
+        "url" : "https://paulhankin.github.io/littlemancomputer/",
+        "wordCount" : "227",
+        "image" : https://paulhankin.github.io/%!s(&lt;nil&gt;)",
+        "keywords" : [ "littlemancomputer","education","assembler","Blog" ]   
+    }
+    </script>
+
+ <title>Little Man Computer </title>
+
+
+<meta name="description" content="Programming, Computer Science, Games and Other Things" />
+
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="all,follow">
+<meta name="googlebot" content="index,follow,snippet,archive">
+<link rel="stylesheet" id="ct-tracks-google-fonts-css" href="//fonts.googleapis.com/css?family=Raleway%3A400%2C700&amp;subset=latin%2Clatin-ext&amp;ver=4.7.2" type="text/css" media="all">
+<link rel="stylesheet" href="https://paulhankin.github.io/css/font-awesome.min.css" type='text/css' media='all'>
+
+<link href="https://paulhankin.github.io/css/style.css" rel="stylesheet" id="theme-stylesheet" type='text/css' media='all'>
+
+<link href="https://paulhankin.github.io/css/custom.css" rel="stylesheet" type='text/css' media='all'>
+<link rel="shortcut icon" href="https://paulhankin.github.io/img/favicon.ico" type="image/x-icon">
+<link rel="icon" href="https://paulhankin.github.io/img/favicon.ico" type="image/x-icon">
+
+
+</head>
+
+
+<body class="post-template-default single single-post single-format-standard ct-body singular singular-post not-front standard">
+  
+  <div id="overflow-container" class="overflow-container">
+    <a class="skip-content" href="#main">Skip to content</a>
+    <header id="site-header" class="site-header" role="banner">
+      <div class='top-navigation'>
+        <div class='container'>
+
+  <div id="menu-secondary" class="menu-container menu-secondary" role="navigation">
+    <button id="toggle-secondary-navigation" class="toggle-secondary-navigation"><i class="fa fa-plus"></i></button>
+
+    <div class="menu">
+
+      <ul id="menu-secondary-items" class="menu-secondary-items">
+        
+        <li id="menu-item" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item">
+          <a href="/categories/computer-science">computer science</a>
+        </li>
+        
+        <li id="menu-item" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item">
+          <a href="/categories/game-theory">game theory</a>
+        </li>
+        
+        <li id="menu-item" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item">
+          <a href="/categories/mathematics">mathematics</a>
+        </li>
+        
+        <li id="menu-item" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item">
+          <a href="/categories/programming">programming</a>
+        </li>
+        
+
+      </ul>
+
+    </div>
+
+  </div>
+
+
+  <ul class="social-media-icons">
+
+
+    
+    <li>
+      <a href="https://www.facebook.com/paul.hankin" data-animate-hover="pulse" class="facebook" target="_blank">
+        <i class="fa fa-facebook-square" title="facebook"></i>
+        <span class="screen-reader-text">facebook</span>
+      </a>
+    </li>
+    
+
+    
+
+    
+
+    
+
+    
+    <li>
+      <a href="mailto:paul.hankin@pobox.com" data-animate-hover="pulse" class="email">
+        <i class="fa fa-envelope" title="email"></i>
+        <span class="screen-reader-text">email</span>
+      </a>
+    </li>
+    
+
+    
+
+    
+    <li>
+      <a href="https://stackoverflow.com/users/1400793/paul-hankin" data-animate-hover="pulse" class="stackoverflow" target="_blank">
+        <i class="fa fa-stack-overflow" title="stackoverflow"></i>
+        <span class="screen-reader-text">stackoverflow</span>
+      </a>
+    </li>
+    
+
+
+    
+    <li>
+      <a href="https://github.com/paulhankin" data-animate-hover="pulse" class="github" target="_blank">
+        <i class="fa fa-github" title="github"></i>
+        <span class="screen-reader-text">github</span>
+      </a>
+    </li>
+    
+
+
+    
+
+
+  </ul></div>
+
+      </div>
+
+      <div class="container">
+        <div id="title-info" class="title-info">
+  <div id='site-title' class='site-title'>
+    
+    <a href="/"> Paul&#39;s blog </a>
+    </div>
+  </div>
+  <button id="toggle-navigation" class="toggle-navigation">
+    <i class="fa fa-bars"></i>
+  </button>
+
+  <div id="menu-primary-tracks" class="menu-primary-tracks"></div>
+  <div id="menu-primary" class="menu-container menu-primary" role="navigation">
+    
+    <p class="site-description">Tasty brain snacks</p>
+    
+
+    <div class="menu">
+      <ul id="menu-primary-items" class="menu-primary-items">
+        
+        
+        <li id="menu-item" class='menu-item menu-item-type-custom menu-item-object-custom '>
+          <a href="https://paulhankin.github.io/">Home</a>
+        </li>
+        
+        <li id="menu-item" class='menu-item menu-item-type-post_type menu-item-object-page '>
+          <a href="https://paulhankin.github.io/about/">About</a>
+        </li>
+        
+        <li id="menu-item" class='menu-item menu-item-type-post_type menu-item-object-page '>
+          <a href="https://paulhankin.github.io/post/index.xml">RSS</a>
+        </li>
+        
+      </ul>
+    </div>
+
+  </div>
+
+      </div>
+    </header>
+
+    <div id="main" class="main" role="main">
+
+      
+  <div id="loop-container" class="loop-container">
+    
+
+      <div class="post type-post status-publish format-standard hentry category-standard category-travel entry full-without-featured odd excerpt-1">
+
+        
+        <div class="entry-meta">
+          <span class="date">20 April 2016</span>	<span> / </span>
+
+          <span class="author">
+            
+            Paul Hankin
+            
+          </span>
+
+
+          
+          <span class="category">
+            <span> / </span>
+
+            <a href="/categories/programming">programming</a>
+          </span>
+          
+
+
+        </div>
+        <div class='entry-header'>
+          <h1 class='entry-title'> Little Man Computer</h1>
+        </div>
+        <div class="entry-container">
+          <div class="entry-content">
+            <article>
+              <p>I had never seen this mini-assembler-based educational computer before. <a href="https://en.wikipedia.org/wiki/Little_man_computer">wikipedia.org/Little_man_computer</a>.</p>
+
+<p>I couldn't find a good online emulator, so I wrote one: <a href="/lmc/lmc.html">Little Man Computer Emulator</a>.</p>
+
+<p>Enter the program on the left, click &quot;Assemble&quot;, enter some inputs if your program needs them, and then step
+through the execution.</p>
+
+<p>It's probably got some bugs since it was a quick hack, but it worked on the examples I tried it on.</p>
+
+<p></p>
+
+<p>Here's some example programs.</p>
+
+<ul>
+<li><a href="/lmc/lmc.html?program=ICAgIElOUAogICAgU1RBIE0wCiAgICBJTlAKICAgIFNUQSBNMQogICAgSU5QCiAgICBTVEEgTTIKCiAgICBTVUIgTTEKICAgIEJSUCBKMQogICAgTERBIE0xCiAgICBTVEEgTTIKSjEgIExEQSBNMgogICAgU1VCIE0wCiAgICBCUlAgSjIKICAgIExEQSBNMAogICAgU1RBIE0yCkoyICBMREEgTTIKICAgIE9VVAogICAgSExUCk0wICBEQVQKTTEgIERBVApNMiAgREFU&amp;input=MjEzCjk4Nwo4OAo=">Max of 3 numbers</a></li>
+<li><a href="/lmc/lmc.html?program=ICAgICBJTlAKICAgICBTVEEgUjAKICAgICBJTlAKICAgICBTVEEgUjEKCkxPT1AgTERBIFIxCiAgICAgQlJaIEVORAogICAgIFNVQiBPTkUKICAgICBTVEEgUjEKICAgICBMREEgUkVTCiAgICAgQUREIFIwCiAgICAgU1RBIFJFUwogICAgIEJSQSBMT09QCgpFTkQgIExEQSBSRVMKICAgICBPVVQKCiAgICAgLy8gVGVtcG9yYXJ5IHN0b3JhZ2UKUjEgICBEQVQKUjAgICBEQVQKUkVTICBEQVQKCiAgICAgLy8gQ29uc3RhbnRzCk9ORSAgREFUIDE=&amp;input=NAo1">Multiply 2 numbers</a></li>
+<li><a href="http://paulhankin.github.io/lmc/lmc.html?program=ICAgICBJTlAKICAgICBTVEEgUjAKICAgICBJTlAKICAgICBTVEEgUjEKTE9PUCBMREEgUjEKICAgICBCUlogRU5ECiAgICAgU1VCIE9ORQogICAgIFNUQSBSMQogICAgIExEQSBSMAogICAgIEFERCBSMAogICAgIFNUQSBSMAogICAgIEJSQSBMT09QCkVORCAgTERBIFIwCiAgICAgT1VUCgpSMSAgIERBVApSMCAgIERBVApPTkUgIERBVCAx&amp;input=MTQKMw==">Shift left</a></li>
+<li><a href="/lmc/lmc.html?program=ICAgICBJTlAKICAgICBTVEEgQwpMICAgIExEQSBDCiAgICAgQlJaIEMKICAgICBTVUIgT05FCiAgICAgU1RBIEMKICAgICBMREEgVAogICAgIEFERCBPTkUKICAgICBTVEEgVAogICAgIEFERCBTVEFPUAogICAgIFNUQSBTVEFJCiAgICAgSU5QClNUQUkgREFUCiAgICAgQlJBIEwKCkMgICAgREFUCk9ORSAgREFUIDEKU1RBT1AgREFUIDMwMApUICAgIERBVCA0OQo=&amp;input=NQoxMAoxMDEKMTQKOTk4CjgK">Copy N inputs to an array</a></li>
+<li><a href="/lmc/lmc.html?program=TE9PUCBMREEgQwogQUREIE9ORQogU1RBIEMKIFNVQiBWNjkKIEJSUCBFTkQKIExEQSBDCiBBREQgTERJTlMKIFNUQSBSRUFESU5TCiBSRUFESU5TIERBVAogQlJaIFBSSU1FCiBCUkEgTE9PUApQUklNRQogTERBIEMKIE9VVAogU1RBIFIKV1JJVEVMT09QCiBMREEgUgogU1VCIFY2OQogQlJQIExPT1AKIExEQSBSCiBBREQgU1RJTlMKIFNUQSBXUklOUwogTERBIEMgLy8gZG9lc24ndCBtYXR0ZXIKV1JJTlMgREFUCiBMREEgUgogQUREIEMKIFNUQSBSCiBCUkEgV1JJVEVMT09QCkVORCBITFQKClY2OSBEQVQgNjkKTERJTlMgREFUIDUzMQpTVElOUyBEQVQgMzMxCkMgREFUIDEKT05FIERBVCAxClIgREFU&amp;input=IA%3D%3D">Sieve of Erastothenes</a></li>
+</ul>
+
+<p>The last two are the most interesting: LMC doesn't have indirect addressing -- the only load/store instructions are <code>LDA xx</code> and <code>STA xx</code> where <code>xx</code> is a fixed address. To work around that, the code modifies itself, writing the appropriate <code>LDA</code> or <code>STA</code> instruction.</p>
+
+<p>And here's code that sorts input. It reads N, then a sequence of N numbers from the input and sorts them.</p>
+
+<p><a href="/lmc/lmc.html?program=Ly8gUmVhZCBOLCB0aGVuIE4gbnVtYmVycwogICAgIElOUAogICAgIFNUQSBOCkxPT1AgU1RBIFIwCiAgICAgQlJaIFNPUlQKCSBJTlAKU0lOMCBTVEEgTVRPUAogICAgIExEQSBTSU4wCiAgICAgQUREIGsxCiAgICAgU1RBIFNJTjAKCSBMREEgUjAKCSBTVUIgazEKICAgICBCUkEgTE9PUAoKU09SVCBMREEgTgogICAgIFNVQiBrMQogICAgIEFERCBPVVQwCiAgICAgU1RBIE9VVDAKICAgICBMREEgTgogICAgIApTMCAgIFNUQSBOCiAgICAgQlJaIEVORAoKU0xQMCBTVUIgazEKICAgICBTVEEgUjAKICAgICBCUlogRU5EMApMREEwdjEgTERBIE1UT1AKU1VCMXYwIFNVQiBNVE9QX1BMVVNfT05FCiAgICAgICBCUlAgTk9TV0FQCkxEQTB2MiBMREEgTVRPUAogICAgICAgU1RBIFRNUApMREExdjAgTERBIE1UT1BfUExVU19PTkUKU1RBMHYwIFNUQSBNVE9QCiAgICAgICBMREEgVE1QClNUQTF2MCBTVEEgTVRPUF9QTFVTX09ORQpOT1NXQVAKICAgICBMREEgazEgCiAgICAgU1RBIEFERFJJTkNWQUwKICAgICBMREEga1JFVDAKICAgICBBREQgazYwMAogICAgIFNUQSBBRERSSU5DUkVUCiAgICAgQlJBIEFERFJJTkMKUkVUMCBMREEgUjAKICAgICBCUkEgU0xQMApFTkQwCiAgICAgTERBIGsxCiAgICAgU1VCIE4KICAgICBTVEEgQUREUklOQ1ZBTAogICAgIExEQSBrUkVUMQogICAgIEFERCBrNjAwCiAgICAgU1RBIEFERFJJTkNSRVQKICAgICBCUkEgQUREUklOQwpSRVQxCk9VVDAgTERBIE1UT1AgLy8gdXBkYXRlZAogICAgIE9VVAogICAgIExEQSBPVVQwCiAgICAgU1VCIGsxCiAgICAgU1RBIE9VVDAKICAgICBMREEgTgogICAgIFNVQiBrMQogICAgIEJSQSBTMApFTkQgIEhMVAoKQUREUklOQwoJIExEQSBMREEwdjEKCSBBREQgQUREUklOQ1ZBTAoJIFNUQSBMREEwdjEKCgkgTERBIFNVQjF2MAoJIEFERCBBRERSSU5DVkFMCgkgU1RBIFNVQjF2MAoKCSBMREEgTERBMHYyCgkgQUREIEFERFJJTkNWQUwKCSBTVEEgTERBMHYyCgoJIExEQSBMREExdjAKCSBBREQgQUREUklOQ1ZBTAoJIFNUQSBMREExdjAKCgkgTERBIFNUQTB2MAoJIEFERCBBRERSSU5DVkFMCgkgU1RBIFNUQTB2MAoKCSBMREEgU1RBMXYwCgkgQUREIEFERFJJTkNWQUwKCSBTVEEgU1RBMXYwCkFERFJJTkNSRVQgQlJBIEFERFJJTkNSRVQgLy8gb3ZlcndyaXRlIGJlZm9yZSBjYWxsaW5nCgpOICAgIERBVApSMCAgIERBVApUTVAgIERBVAprMSAgIERBVCAxCms1MDAgREFUIDUwMAprNjAwIERBVCA2MDAKa1JFVDAgREFUIFJFVDAKa1JFVDEgREFUIFJFVDEKQUREUklOQ1ZBTCBEQVQKCk1UT1AgREFUCk1UT1BfUExVU19PTkUgREFUCgo=&amp;input=Nwo5OTkKMTI0CjEyNgoxMjUKNDIKOTk4CjY0">Sort input</a>.</p>
+
+<p>This code has a subroutine, which requires the branch instruction of the subroutine to be overwritten with a branch instruction to the correct return address before calling.
+The code depends on integer addition wrapping modulo 1000 -- my implementation of the LMC does this, but this code may need adapting to work on other versions of the machine, as the spec leaves the overflow behavior of addition and subtraction unspecified.</p>
+            </article>
+          </div>
+          
+      <div class='entry-meta-bottom'>
+        
+
+  <div class="entry-categories"><p><span>Categories</span>
+    
+    <a href="/categories/programming" title="View all posts in programming">programming</a>
+  </p>
+</div>
+
+
+
+<div class="entry-tags"><p><span>Tags</span>
+  
+  <a href="/tags/littlemancomputer" title="View all posts tagged littlemancomputer">littlemancomputer</a>
+  
+  <a href="/tags/education" title="View all posts tagged education">education</a>
+  
+  <a href="/tags/assembler" title="View all posts tagged assembler">assembler</a>
+  
+
+</p></div>	</div>
+
+<div class="author-meta">
+
+  <div class="author">
+    <img alt='Paul Hankin' src="https://www.gravatar.com/avatar/490378f9f77af08b82d797c6ebbd71d1?s=100&d=identicon" class='avatar avatar-72 photo' height='72' width='72'>
+
+    <span>
+      Written by:<a href="https://paulhankin.github.io/" title="Posts by Paul Hankin" rel="author">Paul Hankin</a>        </span>
+    </div>
+    <div class="bio">
+      
+      <p>Programming since 1981, professionally since 2000. I’ve a PhD in programming language semantics but these days I prefer programming in Go, C, and Python. I’ve worked mostly on games and large-scale server software.</p>
+      
+
+
+      
+      <a class="facebook" target="_blank"
+      href="https://www.facebook.com/paul.hankin">
+      <i class="fa fa-facebook"
+      title="facebook icon"></i>
+    </a>
+    
+
+    
+
+
+  
+
+
+
+<a class="email" target="_blank"
+href="mailto:paul.hankin@pobox.com">
+<i class="fa fa-envelope"
+title="email icon"></i>
+</a>
+
+
+
+
+
+<a class="stackoverflow" target="_blank"
+href="https://stackoverflow.com/users/1400793/paul-hankin">
+<i class="fa fa-stack-overflow"
+title="stackoverflow icon"></i>
+</a>
+
+
+
+<a class="github" target="_blank"
+href="https://github.com/paulhankin">
+<i class="fa fa-github"
+title="github icon"></i>
+</a>
+
+
+
+
+
+
+
+</div>
+</div>
+
+</div>
+</div>
+
+<section id="comments" class="comments">
+  
+
+  
+
+
+
+
+</section>
+</div>
+
+ 
+
+
+
+    </div>
+
+    <footer id="site-footer" class="site-footer" role="contentinfo">
+
+	<h1>
+    
+    <a href=""> Paul&#39;s blog </a>
+    
+	</h1>
+
+			
+			<p class="site-description">Tasty brain snacks</p>
+			
+
+		<div id="menu-footer" class="menu-container menu-footer" role="navigation">
+		<div class="menu">
+
+      <ul id="menu-footer-items" class="menu-footer-items">
+        
+</ul>
+
+</div>	</div>
+
+<ul class="social-media-icons">
+
+        
+				<li>
+					<a class="facebook" target="_blank"
+					   href="https://www.facebook.com/paul.hankin" >
+						<i class="fa fa-facebook" title="facebook"></i>
+						<span class="screen-reader-text">facebook</span>
+					</a>
+				</li>
+        
+
+        
+
+
+        
+
+        
+
+        
+        <li>
+        <a href="mailto:paul.hankin@pobox.com"  class="email">
+            <i class="fa fa-envelope" title="email"></i>
+            <span class="screen-reader-text">email</span>
+        </a>
+        </li>
+        
+
+        
+
+        
+        <li>
+        <a href="https://stackoverflow.com/users/1400793/paul-hankin"  class="stackoverflow" target="_blank">
+            <i class="fa fa-stack-overflow" title="stackoverflow"></i>
+            <span class="screen-reader-text">stackoverflow</span>
+        </a>
+        </li>
+        
+
+
+        
+        <li>
+        <a href="https://github.com/paulhankin"  class="github" target="_blank">
+            <i class="fa fa-github" title="github"></i>
+            <span class="screen-reader-text">github</span>
+        </a>
+        </li>
+        
+
+
+        
+
+				</ul>	<div class="design-credit">
+		
+		<p>&copy; 2015 &mdash; 2018 Paul Hankin</p>
+		
+		<p>Nederburg Hugo Theme by <a href="https://appernetic.io">Appernetic</a>.</p>
+		
+		<p>A port of Tracks by Compete Themes.</p>
+		
+	</div>
+</footer>
+
+  </div>
+  <script src="https://paulhankin.github.io/js/jquery.min.js"></script>
+<script src="https://paulhankin.github.io/js/jquerymigrate.js"></script>
+<script src="https://paulhankin.github.io/js/production.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.6.0/katex.min.css">
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+</body>
+</html>
