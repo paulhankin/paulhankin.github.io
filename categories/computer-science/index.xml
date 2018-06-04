@@ -2,22 +2,22 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Computer science on Paul&#39;s blog</title>
-    <link>//paulhankin.github.io/categories/computer-science/</link>
+    <link>//blog.paulhankin.net/categories/computer-science/</link>
     <description>Recent content in Computer science on Paul&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 14 May 2018 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="//paulhankin.github.io/categories/computer-science/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="//blog.paulhankin.net/categories/computer-science/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>A novel and efficient way to compute Fibonacci numbers</title>
-      <link>//paulhankin.github.io/fibonacci2/</link>
+      <link>//blog.paulhankin.net/fibonacci2/</link>
       <pubDate>Mon, 14 May 2018 00:00:00 +0000</pubDate>
       
-      <guid>//paulhankin.github.io/fibonacci2/</guid>
-      <description>&lt;p&gt;&lt;a href=&#34;//paulhankin.github.io/fibonacci/&#34;&gt;An earlier post&lt;/a&gt; described how to compute Fibonacci numbers in a single arithmetic expression.&lt;/p&gt;
+      <guid>//blog.paulhankin.net/fibonacci2/</guid>
+      <description>&lt;p&gt;&lt;a href=&#34;//blog.paulhankin.net/fibonacci/&#34;&gt;An earlier post&lt;/a&gt; described how to compute Fibonacci numbers in a single arithmetic expression.&lt;/p&gt;
 
 &lt;p&gt;Faré Rideau, the author of a &lt;a href=&#34;http://fare.tunes.org/files/fun/fibonacci.lisp&#34;&gt;page of Fibonacci computations in Lisp&lt;/a&gt;, suggested in a private
 email a simple and efficient variant, that I believe is novel.&lt;/p&gt;
@@ -30,10 +30,10 @@ email a simple and efficient variant, that I believe is novel.&lt;/p&gt;
     
     <item>
       <title>Near-optimal closed-hand Chinese Poker.</title>
-      <link>//paulhankin.github.io/chinesepoker/</link>
+      <link>//blog.paulhankin.net/chinesepoker/</link>
       <pubDate>Thu, 21 May 2015 00:00:00 +0000</pubDate>
       
-      <guid>//paulhankin.github.io/chinesepoker/</guid>
+      <guid>//blog.paulhankin.net/chinesepoker/</guid>
       <description>&lt;p&gt;This blog post looks at closed-hand Chinese Poker, and describes
 a near-optimal strategy for it which is readily implementable
 on a computer.&lt;/p&gt;
@@ -43,10 +43,10 @@ on a computer.&lt;/p&gt;
     
     <item>
       <title>Everything you know about complexity is wrong</title>
-      <link>//paulhankin.github.io/complexity-rant/</link>
+      <link>//blog.paulhankin.net/complexity-rant/</link>
       <pubDate>Wed, 06 May 2015 00:00:00 +0000</pubDate>
       
-      <guid>//paulhankin.github.io/complexity-rant/</guid>
+      <guid>//blog.paulhankin.net/complexity-rant/</guid>
       <description>&lt;p&gt;Who would disagree that the run-time of mergesort is &lt;span  class=&#34;math&#34;&gt;\(O(n\mathrm{log}\,n)\)&lt;/span&gt; and it&#39;s asymptotically optimal?
 Not many programmers I reckon, except perhaps to question whether it&#39;s talking about
 a model of computation that&#39;s not sufficiently close to a real computer, for example a quantum
@@ -71,10 +71,10 @@ asymptotically faster sorts.&lt;/p&gt;
     
     <item>
       <title>An integer formula for Fibonacci numbers</title>
-      <link>//paulhankin.github.io/fibonacci/</link>
+      <link>//blog.paulhankin.net/fibonacci/</link>
       <pubDate>Mon, 27 Apr 2015 00:00:00 +0000</pubDate>
       
-      <guid>//paulhankin.github.io/fibonacci/</guid>
+      <guid>//blog.paulhankin.net/fibonacci/</guid>
       <description>&lt;p&gt;This code, somewhat surprisingly, generates Fibonacci numbers.&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;def fib(n):

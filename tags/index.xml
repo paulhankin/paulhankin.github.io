@@ -2,138 +2,138 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on Paul&#39;s blog</title>
-    <link>//paulhankin.github.io/tags/</link>
+    <link>//blog.paulhankin.net/tags/</link>
     <description>Recent content in Tags on Paul&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Wed, 06 May 2015 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="//paulhankin.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="//blog.paulhankin.net/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Advanced</title>
-      <link>//paulhankin.github.io/tags/advanced/</link>
+      <link>//blog.paulhankin.net/tags/advanced/</link>
       <pubDate>Wed, 06 May 2015 00:00:00 +0000</pubDate>
       
-      <guid>//paulhankin.github.io/tags/advanced/</guid>
+      <guid>//blog.paulhankin.net/tags/advanced/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Assembler</title>
-      <link>//paulhankin.github.io/tags/assembler/</link>
+      <link>//blog.paulhankin.net/tags/assembler/</link>
       <pubDate>Wed, 20 Apr 2016 00:00:00 +0000</pubDate>
       
-      <guid>//paulhankin.github.io/tags/assembler/</guid>
+      <guid>//blog.paulhankin.net/tags/assembler/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Complexity</title>
-      <link>//paulhankin.github.io/tags/complexity/</link>
+      <link>//blog.paulhankin.net/tags/complexity/</link>
       <pubDate>Wed, 06 May 2015 00:00:00 +0000</pubDate>
       
-      <guid>//paulhankin.github.io/tags/complexity/</guid>
+      <guid>//blog.paulhankin.net/tags/complexity/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Compsci</title>
-      <link>//paulhankin.github.io/tags/compsci/</link>
+      <link>//blog.paulhankin.net/tags/compsci/</link>
       <pubDate>Wed, 06 May 2015 00:00:00 +0000</pubDate>
       
-      <guid>//paulhankin.github.io/tags/compsci/</guid>
+      <guid>//blog.paulhankin.net/tags/compsci/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Education</title>
-      <link>//paulhankin.github.io/tags/education/</link>
+      <link>//blog.paulhankin.net/tags/education/</link>
       <pubDate>Wed, 20 Apr 2016 00:00:00 +0000</pubDate>
       
-      <guid>//paulhankin.github.io/tags/education/</guid>
+      <guid>//blog.paulhankin.net/tags/education/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Fibonacci</title>
-      <link>//paulhankin.github.io/tags/fibonacci/</link>
+      <link>//blog.paulhankin.net/tags/fibonacci/</link>
       <pubDate>Mon, 27 Apr 2015 00:00:00 +0000</pubDate>
       
-      <guid>//paulhankin.github.io/tags/fibonacci/</guid>
+      <guid>//blog.paulhankin.net/tags/fibonacci/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Gametheory</title>
-      <link>//paulhankin.github.io/tags/gametheory/</link>
+      <link>//blog.paulhankin.net/tags/gametheory/</link>
       <pubDate>Thu, 21 May 2015 00:00:00 +0000</pubDate>
       
-      <guid>//paulhankin.github.io/tags/gametheory/</guid>
+      <guid>//blog.paulhankin.net/tags/gametheory/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Go code</title>
-      <link>//paulhankin.github.io/tags/go-code/</link>
+      <link>//blog.paulhankin.net/tags/go-code/</link>
       <pubDate>Thu, 21 May 2015 00:00:00 +0000</pubDate>
       
-      <guid>//paulhankin.github.io/tags/go-code/</guid>
+      <guid>//blog.paulhankin.net/tags/go-code/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Littlemancomputer</title>
-      <link>//paulhankin.github.io/tags/littlemancomputer/</link>
+      <link>//blog.paulhankin.net/tags/littlemancomputer/</link>
       <pubDate>Wed, 20 Apr 2016 00:00:00 +0000</pubDate>
       
-      <guid>//paulhankin.github.io/tags/littlemancomputer/</guid>
+      <guid>//blog.paulhankin.net/tags/littlemancomputer/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Mathematics</title>
-      <link>//paulhankin.github.io/tags/mathematics/</link>
+      <link>//blog.paulhankin.net/tags/mathematics/</link>
       <pubDate>Thu, 21 May 2015 00:00:00 +0000</pubDate>
       
-      <guid>//paulhankin.github.io/tags/mathematics/</guid>
+      <guid>//blog.paulhankin.net/tags/mathematics/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Maths</title>
-      <link>//paulhankin.github.io/tags/maths/</link>
+      <link>//blog.paulhankin.net/tags/maths/</link>
       <pubDate>Mon, 27 Apr 2015 00:00:00 +0000</pubDate>
       
-      <guid>//paulhankin.github.io/tags/maths/</guid>
+      <guid>//blog.paulhankin.net/tags/maths/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Poker</title>
-      <link>//paulhankin.github.io/tags/poker/</link>
+      <link>//blog.paulhankin.net/tags/poker/</link>
       <pubDate>Thu, 21 May 2015 00:00:00 +0000</pubDate>
       
-      <guid>//paulhankin.github.io/tags/poker/</guid>
+      <guid>//blog.paulhankin.net/tags/poker/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Python</title>
-      <link>//paulhankin.github.io/tags/python/</link>
+      <link>//blog.paulhankin.net/tags/python/</link>
       <pubDate>Mon, 27 Apr 2015 00:00:00 +0000</pubDate>
       
-      <guid>//paulhankin.github.io/tags/python/</guid>
+      <guid>//blog.paulhankin.net/tags/python/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Sorting</title>
-      <link>//paulhankin.github.io/tags/sorting/</link>
+      <link>//blog.paulhankin.net/tags/sorting/</link>
       <pubDate>Wed, 06 May 2015 00:00:00 +0000</pubDate>
       
-      <guid>//paulhankin.github.io/tags/sorting/</guid>
+      <guid>//blog.paulhankin.net/tags/sorting/</guid>
       <description></description>
     </item>
     
