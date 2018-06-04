@@ -24,6 +24,13 @@ email a simple and efficient variant, that I believe is novel.&lt;/p&gt;
 
 &lt;p&gt;For &lt;span  class=&#34;math&#34;&gt;\(X\)&lt;/span&gt; large enough, &lt;span  class=&#34;math&#34;&gt;\(\mathrm{Fib}_n = (X^{n+1}\ \mathrm{mod}\ (X^2-X-1))\ \mathrm{mod}\ X\)&lt;/span&gt;.&lt;/p&gt;
 
+&lt;p&gt;That means you can compute Fibonacci numbers efficiently with a simple program:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;for n in range(1, 21):
+    X = 1&amp;lt;&amp;lt;(n+2)
+    print(pow(X, n+1, X*X-X-1) % X)
+&lt;/code&gt;&lt;/pre&gt;
+
 &lt;p&gt;This blog post describes how this method works, gives a few ways to think about it, easily infers the fast Fibonacci doubling formulas, provides a nice alternative to Binet&#39;s formula relating the golden ratio and Fibonacci numbers, and expands the method to generalized Fibonacci recurrences, including a near one-line solution to the problem of counting how many ways to reach the end-square of a 100-square game using a single six-sided dice.
 &lt;/p&gt;</description>
     </item>
