@@ -28,7 +28,7 @@ on a computer.</p>
         "datePublished": "2015-05-21 00:00:00 &#43;0000 UTC",
         "dateModified" : "2015-05-21 00:00:00 &#43;0000 UTC",
         "url" : "//blog.paulhankin.net/chinesepoker/",
-        "wordCount" : "2756",
+        "wordCount" : "2654",
         "image" : //blog.paulhankin.net/img/post/cards_scattered.png",
         "keywords" : [ "poker","mathematics","go code","gametheory","Blog" ]   
     }
@@ -272,68 +272,20 @@ majority).</p>
 
 <p>To give an example, let's suppose Alice and Bob are playing for $10 per point.</p>
 
-<p>Alice gets dealt: <b>&spades;AKQJ653 <font color="red">&hearts;Q92 &diams;J</font> &clubs;83</b></p>
+<p>Alice gets dealt: <figure><img src="/img/post/chipoker/alicedealt.png" alt="SAKQJ653 HQ92 DJ C83"></figure></p>
 
-<p>Bob gets dealt: <b>&spades;97 <font color="red">&hearts;T &diams;K6543</font> &clubs;KQ654</b></p>
+<p>Bob gets dealt: <figure><img src="/img/post/chipoker/bobdealt.png" alt="S97 HT DK6543 CKQ654"></figure></p>
 
 <p>Without seeing each other's hands, Alice and Bob arrange their cards into
 back, middle and front hands.</p>
 
 <p>Alice arranges her hand like this:</p>
 
-<table>
-<thead>
-<tr>
-<th align="left">hand position</th>
-<th>cards</th>
-</tr>
-</thead>
-
-<tbody>
-<tr>
-<td align="left">back</td>
-<td><b>&spades;A &spades;K &spades;6 &spades;5 &spades;3</b></td>
-</tr>
-
-<tr>
-<td align="left">middle&nbsp;</td>
-<td><b><font color="red">&hearts;Q</font> &spades;Q &clubs;8 &clubs;3 <font color="red">&hearts;2</font></b></td>
-</tr>
-
-<tr>
-<td align="left">front</td>
-<td><b>&spades;J <font color="red">&diams;J &hearts;9</font></td>
-</tr>
-</tbody>
-</table>
+<p><figure><img src="/img/post/chipoker/aliceplay.png" alt="back: SA SK S6 S5 S3 - middle: HQ SQ C8 C3 H2 - front: SJ DJ H9"></figure></p>
 
 <p>Bob arranges his hand like this:</p>
 
-<table>
-<thead>
-<tr>
-<th align="left">hand position</th>
-<th>cards</th>
-</tr>
-</thead>
-
-<tbody>
-<tr>
-<td align="left">back</td>
-<td><b>&clubs;K &clubs;Q&clubs; 6 &clubs;5 &clubs;4</b></td>
-</tr>
-
-<tr>
-<td align="left">middle</td>
-<td><b><font color="red">&diams;K &diams;6 &diams;5 &diams;4 &diams;3</font></b></td>
-</tr>
-
-<tr>
-<td align="left">front</td>
-<td><b><font color="red">&hearts;T</font> &spades;9 &spades;7</b></td>
-</tr>
-</tbody>
-</table>
+<p><figure><img src="/img/post/chipoker/bobplay.png" alt="back: CK CQ C6 C5 C4 - middle: DK D6 D5 D4 D3 - front: HT S9 S7"></figure></p>
 
 <p>Alice beats Bob in the back hand (Ace-high flush beats King-high flush), loses to Bob in the middle hand (a pair
 of Queens loses to a King-high flush), and beats Bob in the front hand (a pair of Jacks beats Ten-high).</p>
@@ -853,31 +805,7 @@ high cards really matter.</p>
 
 <p>Going back to the hand Alice played in the introduction:</p>
 
-<table>
-<thead>
-<tr>
-<th align="left">hand position</th>
-<th>cards</th>
-</tr>
-</thead>
-
-<tbody>
-<tr>
-<td align="left">back</td>
-<td><b>&spades;A &spades;K &spades;6 &spades;5 &spades;3</b></td>
-</tr>
-
-<tr>
-<td align="left">middle&nbsp;</td>
-<td><b><font color="red">&hearts;Q </font>&spades;Q &clubs;8 &clubs;3<font color="red"> &hearts;2</font></b></td>
-</tr>
-
-<tr>
-<td align="left">front</td>
-<td><b>&spades;J <font color="red">&diams;J &hearts;9</font></b></td>
-</tr>
-</tbody>
-</table>
+<p><figure><img src="/img/post/chipoker/aliceplay.png" alt="back: SA SK S6 S5 S3 - middle: HQ SQ C8 C3 H2 - front: SJ DJ H9"></figure></p>
 
 <p>We can use the tables here to rate the back hand as having between 60 and 66 percent chance of
 winning, the middle hand between 16 and 21 percent, and the front as between 72 and 78 percent.
@@ -908,59 +836,11 @@ they played significantly differently:</p>
 
 <p>The trained strategy played:</p>
 
-<table>
-<thead>
-<tr>
-<th align="left">hand position</th>
-<th>cards</th>
-</tr>
-</thead>
-
-<tbody>
-<tr>
-<td align="left">back</td>
-<td><b>&spades;K &spades;Q &spades;8 &spades;7 &spades;6</b></td>
-</tr>
-
-<tr>
-<td align="left">middle&nbsp;</td>
-<td><b>&spades;T &clubs;9 <font color="red">&diams;8 &hearts;7 &hearts;6</font></b></td>
-</tr>
-
-<tr>
-<td align="left">front</td>
-<td><b><font color="red">&diams;J &diams;9 &hearts;3</font></b></td>
-</tr>
-</tbody>
-</table>
+<p><figure><img src="/img/post/chipoker/trainedplay.png" alt="back: SK SQ S8 S7 S6 - middle: ST C9 D8 H7 H6 - front: DJ D9 H3"></figure></p>
 
 <p>In duplicate, the counter-strategy played the same hand this way:</p>
 
-<table>
-<thead>
-<tr>
-<th align="left">hand position</th>
-<th>cards</th>
-</tr>
-</thead>
-
-<tbody>
-<tr>
-<td align="left">back</td>
-<td><b>&spades;K &spades;Q <font color="red">&diams;J</font> &spades;T &clubs;9</b></td>
-</tr>
-
-<tr>
-<td align="left">middle&nbsp;</td>
-<td><b><font color="red">&hearts;7</font> &spades;7 &spades;6 <font color="red">&hearts;6 &hearts;3</font></b></td>
-</tr>
-
-<tr>
-<td align="left">front</td>
-<td><b>&spades;8 <font color="red">&diams;8 &diams;9</font></b></td>
-</tr>
-</tbody>
-</table>
+<p><figure><img src="/img/post/chipoker/counterplay.png" alt="back: SK SQ DJ ST C9 - middle: H7 S7 S6 H6 H3 - front: S8 D8 D9"></figure></p>
 
 <p>In this case, the difference made no difference in score:
 the opposing hand both times contained an Ace-high flush in the back,
