@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>//blog.paulhankin.net/kellycriterion/</loc>
+    <lastmod>2018-06-10T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>//blog.paulhankin.net/about/</loc>
     <lastmod>2018-06-03T00:00:00+00:00</lastmod>
   </url>
@@ -85,8 +90,14 @@
   </url>
   
   <url>
+    <loc>//blog.paulhankin.net/tags/finance/</loc>
+    <lastmod>2018-06-10T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>//blog.paulhankin.net/categories/game-theory/</loc>
-    <lastmod>2015-05-21T00:00:00+00:00</lastmod>
+    <lastmod>2018-06-10T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -99,6 +110,18 @@
   <url>
     <loc>//blog.paulhankin.net/tags/go-code/</loc>
     <lastmod>2015-05-21T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>//blog.paulhankin.net/tags/insurance/</loc>
+    <lastmod>2018-06-10T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>//blog.paulhankin.net/tags/kelly/</loc>
+    <lastmod>2018-06-10T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -116,7 +139,7 @@
   
   <url>
     <loc>//blog.paulhankin.net/categories/mathematics/</loc>
-    <lastmod>2018-05-14T00:00:00+00:00</lastmod>
+    <lastmod>2018-06-10T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -128,7 +151,7 @@
   
   <url>
     <loc>//blog.paulhankin.net/</loc>
-    <lastmod>2018-06-03T00:00:00+00:00</lastmod>
+    <lastmod>2018-06-10T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -140,7 +163,13 @@
   
   <url>
     <loc>//blog.paulhankin.net/post/</loc>
-    <lastmod>2018-05-14T00:00:00+00:00</lastmod>
+    <lastmod>2018-06-10T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>//blog.paulhankin.net/tags/probability/</loc>
+    <lastmod>2018-06-10T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   

@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<script type="application/ld+json">
+    {
+        "@context" : "http://schema.org",
+        "@type" : "BlogPosting",
+        "mainEntityOfPage": {
+             "@type": "WebPage",
+             "@id": "//blog.paulhankin.net/"
+        },
+        "articleSection" : "post",
+        "name" : "Insurance and the Kelly criterion",
+        "headline" : "Insurance and the Kelly criterion",
+        "description" : "<p>This article describes how to use the Kelly criterion to make rational
+choices when confronted with a risky financial decision, and suggests
+a way to estimate the most you should be willing to pay for any
+particular sort of insurance.</p>
+
+<p>The Kelly criterion (which at its core is the idea that the logarithm
+of your wealth is a better measure of money's value to you than its absolute
+value) is well understood by the informed gambling community, and
+should be more widely known.</p>
+
+<p>If you decide to apply the knowledge in this post, also consult with a financial
+professional (which as we'll see later doesn't include most finance or economics
+students, and most young financial professionals), and read the disclaimer at the end.
+</p>",
+        "inLanguage" : "en-US",
+        "author" : "",
+        "creator" : "",
+        "publisher": "",
+        "accountablePerson" : "",
+        "copyrightHolder" : "",
+        "copyrightYear" : "2018",
+        "datePublished": "2018-06-10 00:00:00 &#43;0000 UTC",
+        "dateModified" : "2018-06-10 00:00:00 &#43;0000 UTC",
+        "url" : "//blog.paulhankin.net/kellycriterion/",
+        "wordCount" : "2217",
+        "image" : //blog.paulhankin.net//img/post/kelly.png",
+        "keywords" : [ "insurance","kelly","probability","finance","Blog" ]   
+    }
+    </script>
+
+ <title>Insurance and the Kelly criterion </title>
+
+
+<meta name="description" content="Programming, Computer Science, Games and Other Things" />
+
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="all,follow">
+<meta name="googlebot" content="index,follow,snippet,archive">
+<link rel="stylesheet" id="ct-tracks-google-fonts-css" href="//fonts.googleapis.com/css?family=Raleway%3A400%2C700&amp;subset=latin%2Clatin-ext&amp;ver=4.7.2" type="text/css" media="all">
+<link rel="stylesheet" href="//blog.paulhankin.net/css/font-awesome.min.css" type='text/css' media='all'>
+
+<link href="//blog.paulhankin.net/css/style.css" rel="stylesheet" id="theme-stylesheet" type='text/css' media='all'>
+
+<link href="//blog.paulhankin.net/css/custom.css" rel="stylesheet" type='text/css' media='all'>
+<link rel="shortcut icon" href="//blog.paulhankin.net/img/favicon.ico" type="image/x-icon">
+<link rel="icon" href="//blog.paulhankin.net/img/favicon.ico" type="image/x-icon">
+
+
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-63206765-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='//www.google-analytics.com/analytics.js'></script>
+
+</head>
+
+
+<body class="post-template-default single single-post single-format-standard ct-body singular singular-post not-front standard">
+  
+  <div id="overflow-container" class="overflow-container">
+    <a class="skip-content" href="#main">Skip to content</a>
+    <header id="site-header" class="site-header" role="banner">
+      <div class='top-navigation'>
+        <div class='container'>
+
+  <div id="menu-secondary" class="menu-container menu-secondary" role="navigation">
+    <button id="toggle-secondary-navigation" class="toggle-secondary-navigation"><i class="fa fa-plus"></i></button>
+
+    <div class="menu">
+
+      <ul id="menu-secondary-items" class="menu-secondary-items">
+        
+        <li id="menu-item" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item">
+          <a href="/categories/computer-science">computer science</a>
+        </li>
+        
+        <li id="menu-item" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item">
+          <a href="/categories/game-theory">game theory</a>
+        </li>
+        
+        <li id="menu-item" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item">
+          <a href="/categories/mathematics">mathematics</a>
+        </li>
+        
+        <li id="menu-item" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item">
+          <a href="/categories/programming">programming</a>
+        </li>
+        
+
+      </ul>
+
+    </div>
+
+  </div>
+
+
+  <ul class="social-media-icons">
+
+
+    
+    <li>
+      <a href="https://www.facebook.com/paul.hankin" data-animate-hover="pulse" class="facebook" target="_blank">
+        <i class="fa fa-facebook-square" title="facebook"></i>
+        <span class="screen-reader-text">facebook</span>
+      </a>
+    </li>
+    
+
+    
+
+    
+
+    
+
+    
+    <li>
+      <a href="mailto:paul.hankin@pobox.com" data-animate-hover="pulse" class="email">
+        <i class="fa fa-envelope" title="email"></i>
+        <span class="screen-reader-text">email</span>
+      </a>
+    </li>
+    
+
+    
+
+    
+    <li>
+      <a href="https://stackoverflow.com/users/1400793/paul-hankin" data-animate-hover="pulse" class="stackoverflow" target="_blank">
+        <i class="fa fa-stack-overflow" title="stackoverflow"></i>
+        <span class="screen-reader-text">stackoverflow</span>
+      </a>
+    </li>
+    
+
+
+    
+    <li>
+      <a href="https://github.com/paulhankin" data-animate-hover="pulse" class="github" target="_blank">
+        <i class="fa fa-github" title="github"></i>
+        <span class="screen-reader-text">github</span>
+      </a>
+    </li>
+    
+
+
+    
+
+
+  </ul></div>
+
+      </div>
+
+      <div class="container">
+        <div id="title-info" class="title-info">
+  <div id='site-title' class='site-title'>
+    
+    <a href="//blog.paulhankin.net/"> Paul&#39;s blog </a>
+    </div>
+  </div>
+  <button id="toggle-navigation" class="toggle-navigation">
+    <i class="fa fa-bars"></i>
+  </button>
+
+  <div id="menu-primary-tracks" class="menu-primary-tracks"></div>
+  <div id="menu-primary" class="menu-container menu-primary" role="navigation">
+    
+    <p class="site-description">Tasty brain snacks</p>
+    
+
+    <div class="menu">
+      <ul id="menu-primary-items" class="menu-primary-items">
+        
+        
+        <li id="menu-item" class='menu-item menu-item-type-custom menu-item-object-custom '>
+          <a href="//blog.paulhankin.net/">Home</a>
+        </li>
+        
+        <li id="menu-item" class='menu-item menu-item-type-post_type menu-item-object-page '>
+          <a href="//blog.paulhankin.net/about/">About</a>
+        </li>
+        
+        <li id="menu-item" class='menu-item menu-item-type-post_type menu-item-object-page '>
+          <a href="//blog.paulhankin.net/post/index.xml">RSS</a>
+        </li>
+        
+      </ul>
+    </div>
+
+  </div>
+
+      </div>
+    </header>
+
+    <div id="main" class="main" role="main">
+
+      
+  <div id="loop-container" class="loop-container">
+    
+    <div class="post type-post status-publish format-standard has-post-thumbnail hentry category-design tag-design tag-standard-2 tag-tagalicious tag-travel entry full-without-featured odd excerpt-1">
+
+      <div class='featured-image lazy lazy-bg-image' data-background="//blog.paulhankin.net/img/post/kelly.png">
+      </div>
+      
+        <div class="entry-meta">
+          <span class="date">10 June 2018</span>	<span> / </span>
+
+          <span class="author">
+            
+            Paul Hankin
+            
+          </span>
+
+
+          
+          <span class="category">
+            <span> / </span>
+
+            <a href="/categories/mathematics">mathematics</a>
+          </span>
+          
+          <span class="category">
+            <span> / </span>
+
+            <a href="/categories/game%20theory">game theory</a>
+          </span>
+          
+
+
+        </div>
+        <div class='entry-header'>
+          <h1 class='entry-title'> Insurance and the Kelly criterion</h1>
+        </div>
+        <div class="entry-container">
+          <div class="entry-content">
+            <article>
+              <p>This article describes how to use the Kelly criterion to make rational
+choices when confronted with a risky financial decision, and suggests
+a way to estimate the most you should be willing to pay for any
+particular sort of insurance.</p>
+
+<p>The Kelly criterion (which at its core is the idea that the logarithm
+of your wealth is a better measure of money's value to you than its absolute
+value) is well understood by the informed gambling community, and
+should be more widely known.</p>
+
+<p>If you decide to apply the knowledge in this post, also consult with a financial
+professional (which as we'll see later doesn't include most finance or economics
+students, and most young financial professionals), and read the disclaimer at the end.
+</p>
+
+<h3 id="how-much-is-my-money-worth">How much is my money worth?</h3>
+
+<p>It's intuitive that the more money you have, the less each additional unit is worth.
+If you have nothing, a small amount of money is worth a lot -- perhaps enabling you to
+pay your rent and feed your family. If you're extremely rich, the same amount of money
+is almost insignificant to you in that you can't do anything with that money that you
+couldn't already do.</p>
+
+<p>The Kelly criterion quantifies this intuition, and suggests that the logarithm of your
+money is more important than its absolute value. There's a theoretical basis for using
+the logarithm that I won't go into here, and instead take it as given that it makes
+sense.</p>
+
+<h3 id="a-simple-gambling-application-of-the-kelly-criterion">A simple gambling application of the Kelly criterion</h3>
+
+<p>The simplest application of the Kelly criterion,
+and perhaps the best known, is betting on the toss of a biased coin.</p>
+
+<p>Let's say that you have <span  class="math">\(S\)</span> units of money and a coin
+that lands heads with probability <span  class="math">\(p>\frac{1}{2}\)</span>. You are given the opportunity to make
+a series of even-money bets. Specificially, on each bet you can wager from zero
+to <span  class="math">\(S\)</span> on the result of the coin-toss, which rationally you should always predict comes
+up heads. If you guess right, you gain the amount you wagered. If you guess wrong, you lose the amount you wagered.</p>
+
+<p>We can use Kelly criterion to figure out how much of our stake <span  class="math">\(S\)</span> to wager. Let's say
+we wager <span  class="math">\(x\)</span>. If we win (with probability <span  class="math">\(p\)</span>,
+assuming we bet on heads) we'll have <span  class="math">\(S+x\)</span>, and if we lose (with probability <span  class="math">\(1-p\)</span>, we'll have <span  class="math">\(S-x\)</span>. Kelly suggests maximizing
+the expected value of the logarithm of our money, so we want to maximize <span  class="math">\(p\mathrm{log}(S+x) + (1-p)\mathrm{log}(S-x)\)</span>.</p>
+
+<p>To maximize, we differentiate with respect to <span  class="math">\(x\)</span>, and set the result to zero. That gives us <span  class="math">\(\frac{p}{S+x} - \frac{1-p}{S-x} = 0\)</span>. That comes out to <span  class="math">\(x=S(1-2p)\)</span>.</p>
+
+<p>So if we're sure to win (<span  class="math">\(p=1\)</span>), we bet everything. If the coin is unbiased (<span  class="math">\(p=1/2\)</span>) we bet nothing, and
+we bet a linearly increasing amount in between. For example, when the coin comes up heads three quarters of the time (<span  class="math">\(p=3/4\)</span>) we bet half our current stake, since three quarters is halfway between one half and one. (Another
+way to say this in gambling jargon is that we bet the fraction of our stake equal to our edge).</p>
+
+<p>It's instructive to compare this to the
+strategy of always making the wager than maximizes EV. If the coin comes up heads three quarters
+of the time, the bet with the maximum EV is to bet the entire stake, <span  class="math">\(S\)</span>. After ten throws, we have
+on average around 57.7 times the original stake. On average, the Kelly strategy gives
+us around 9.3 times the original stake. It looks like the Kelly strategy
+performs poorly, but the EV maximization algorithm leaves us with nothing nearly 95 percent
+of the time, and 1024 times our original stake the remaining 5 percent of the time.
+Whereas the Kelly strategy leaves us with at least our original stake around 78 percent
+of the time, never loses everything, and around a quarter of the time gives us
+over ten times the original stake.</p>
+
+<p>As the number of wagers increases, the probability of losing everything with the
+EV-maximization strategy tends to 1, but the Kelly strategy continues to perform well.</p>
+
+<p>This exercise was done as an experiment with 61 finance and economics students and some young finance professionals:
+they were given a coin that comes up heads 60% of the time (and were told of this bias), an initial stake of $25, and were allowed
+up to three hours to win a maximum of $250. Using a strategy that reduces the risk of losing everything (like the Kelly criterion) makes
+perfect sense here: there's lots of time to grind out the maximum win.</p>
+
+<p>In the experiment, around a third lost everything, most bet on tails at some point, and only
+around one in five won the maximum of $250. Read <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=2856963">the paper here</a>, and <a href="https://www.economist.com/buttonwoods-notebook/2016/11/01/irrational-tossers">coverage in the Economist here</a>.</p>
+
+<h3 id="application-to-deal-or-no-deal">Application to Deal or No Deal</h3>
+
+<p>&quot;Deal or No Deal&quot; is a UK game show with a simple premise. There's fifteen boxes which contain fifteen known amounts of money, ranging from 1 penny to &pound;250,000. The contestant opens up the boxes one at a time, and wins
+whatever's in the last box opened. That would be an uninteresting random choice, so between each round, &quot;the banker&quot;
+rings them up and offers them an amount of money (&quot;the deal&quot;) which they can take and leave the game immediately without opening any more boxes. In the show, there is also some theatrical interest generated
+by the fact that the boxes are held by friends and family of the contestant.</p>
+
+<p>In an actual episode of the show, a contestant had opened 13 of the boxes, leaving two boxes known to contain the minimum 1 penny and the maximum &pound;250,000. The banker offered them a deal of &pound;88,000.</p>
+
+<p>The expected value of this situation is &pound;125,000, which is significantly higher than the banker's offer.</p>
+
+<p>Even though the deal gives up &pound;37,000 in expected value, I think many people would take this
+offer: a sure &pound;88,000 is better than half a chance at &pound;250,000, and
+they'd feel awful if they lost. But under what conditions is this rational?</p>
+
+<p>Again, the Kelly criterion can be used to answer this, based on the total amount of money the person playing the game has. That makes sense,
+because if they have little, then they should prefer to minimize risk and take the sure &pound;88,000. If they have a lot of money already,
+then they should care less about the risk and play on.</p>
+
+<p>Rounding down 1 penny to zero to make the calculations a bit shorter, and let's say they have a total wealth of <span  class="math">\(W\)</span>. We want to
+find <span  class="math">\(W\)</span> such that the expectation of the logarithm of their total wealth is higher if they choose to play on.</p>
+
+<p>If they play on, with probability <span  class="math">\(1/2\)</span> they will win nothing and their total wealth will remain the same, and with probability <span  class="math">\(1/2\)</span> they will gain &pound;250,000. Obviously if they choose the deal, they'll gain &pound;88,000 without any risk.</p>
+
+<p>Upon taking the deal, the expected logarithm of their wealth will be <span  class="math">\(\mathrm{log}(W+88,000)\)</span>. Playing on, the expected logarithm of their wealth will be <span  class="math">\(\mathrm{log}(W)/2 + \mathrm{log}(W+250,000)/2\)</span>. Solving <span  class="math">\(\mathrm{log}(W+88,000) \lt \mathrm{log}(W)/2 + \mathrm{log}(W+250,000)/2 \)</span> gives <span  class="math">\(W \gt 3,872,000/37\)</span>, which is approximately &pound;104648.</p>
+
+<p>That's to say, if the contestant has wealth of 105 thousand pounds or more and wants to make a rational
+decision (according to the Kelly criterion), they should reject the deal and play on. If they have
+less than this, they should accept the &pound;88,000 and go home.</p>
+
+<p>In the actual show, the contestant chose &quot;no deal&quot;, and subsequently won 1 penny. If they were already
+worth more than &pound;105,000 they can console themselves with the fact that they made the
+right choice. If not, they can console themselves with the fact that most finance and economics
+students and finance professionals make equally poor choices. Either way, I suppose they weren't
+so happy with the outcome.</p>
+
+<h3 id="car-insurance">Car insurance</h3>
+
+<p>The previous examples have shown us that the Kelly criterion can be used in probabilistic
+situations where it's rational to give up some expected value in order to lower risk. This can
+also apply to buying insurance.</p>
+
+<p>As a worked example, consider buying first party car insurance for your car. That means
+you'll be insured for damage to your own car, up to the cost of replacing the car. In most places,
+this sort of insurance is optional, whereas third party insurance (damage to other people's
+cars) is mandatory. Let's assume your car is worth $30,000, and the policy costs $500. Most
+car insurance has a deductible, where you have to pay the first $1,000 or so of any claims,
+but let's ignore that for simplicity.</p>
+
+<p>Without actuarial tables or other statistical information, we don't know how likely it is
+we'll claim on the policy at various amounts. But as a gross simplification, let's assume
+the insurance company makes 10% (on average) on the policy, and that claims are either for the
+total value of the car or zero. These assumptions make the best case for us wanting the policy (unless
+we know that the insurance company isn't making a profit), so if the Kelly criterion tells us with
+these assumptions we shouldn't take the insurance, we can be sure it's a bad idea.</p>
+
+<p>From these gross assumptions, we have a probability of (500-10%)/30,000 (or 1.5 percent) of making the claim of $30,000. Like in the Deal or No Deal example, let's figure out how much wealth we need to
+reject the insurance policy.</p>
+
+<p>We want to take the insurance if <span  class="math">\((1-p)\mathrm{log}(W) + p\mathrm{log}(W-30,000) < \mathrm{log}(W-500)\)</span>, where <span  class="math">\(W\)</span> is our wealth, and <span  class="math">\(p\)</span> is our probability of wrecking the car, which we've estimated at 1.5 percent.</p>
+
+<p>In this case, solving for <span  class="math">\(W\)</span> tells us that we should reject the policy if we have more than $153,193 in wealth.</p>
+
+<p>If we want more accurate numbers, we can try to model or estimate the probabilties of various sized claims,
+include deductibles, and perhaps better estimate the average profit of the insurance company. For example,
+if we believe that car insurance is sold at no profit (or even negative profit) to the insurance company, we should buy insurance no matter how much wealth we have.</p>
+
+<h3 id="house-insurance">House insurance</h3>
+
+<p>Moving up to larger sums of money, let's assume we have a house worth $500,000 (ignoring the cost of the land,
+since fire will not destroy that), and a total wealth of $1M. How much should we be willing
+to pay for building fire insurance? As in the car insurance case, let's ignore small claims and assume that
+either we either claim for the total destruction of the house or not at all. Let's also assume this is just
+insurance for the building and not for the contents, which are insured separately.</p>
+
+<p>We know that such fires are rare. I've seen a house burning down, but I know of no one
+to whom it's happened. I'll guess at a probability of one in 50,000 per year, but I suspect that's more likely
+to be an overestimate than an underestimate.</p>
+
+<p>Doing the same Kelly sums as before, we want to buy insurance for a cost of <span  class="math">\(C\)</span> if: <span  class="math">\( \mathrm{log}(1,000,000 - C) > p\mathrm{log}(1,000,000 - 500,000) + (1-p)\mathrm{log}(1,000,000)\)</span> where <span  class="math">\(p\)</span> is our estimated 1/50,000.</p>
+
+<p>This comes out to around $14 (at which price the insurance company makes about $4 on average). This was a surprise to me, as my intuition here was that the cost that one's willing to pay would be much higher, since the value of the house is a significant fraction of the total worth, but the fact that the probabilities are so small make the value of the insurance small.</p>
+
+<h3 id="weaknesses-of-the-kelly-criterion">Weaknesses of the Kelly criterion</h3>
+
+<p>If you try to use the Kelly criterion to quantify risks that could potentially cost everything you have (for example,
+if you want to consider how much to pay for liability insurance), then you discover that the methods described
+in this blog post will say that no price (up to your total wealth) is too much.</p>
+
+<p>That's not a problem of Kelly, but rather of the simplistic measurement of wealth as the total
+amount of money you currently have. In reality, losing everything is not usually infinitely bad:
+if one can work, some money can be regained, and in many places in the world even if you can't
+work, the state will support you in some limited way. That's not to say that losing everything
+isn't bad, since it obviously is, but rather that it's not infinitely bad, as taking
+the logarithm of the total amount of money you have would judge it.</p>
+
+<h3 id="conclusion">Conclusion</h3>
+
+<p>The Kelly criterion is a conservative approach to taking risks, but when you apply
+it to real-world insurance scenarios, mostly you'll find it suggests you shouldn't
+take optional insurance if you can take the cost of a loss, even it would be painful to
+do so.</p>
+
+<p>That makes sense, because people are generally overly risk-averse, and insurance
+companies will price policies at levels the market will withstand, so if you try
+to be optimally risk-averse then you'll find policies are overpriced.</p>
+
+<h3 id="disclaimer">Disclaimer</h3>
+
+<p>This post doesn't contain financial advice, and I don't take responsibility if you
+decide to buy or not buy insurance in any situation and it doesn't work out for
+you.</p>
+            </article>
+          </div>
+          
+      <div class='entry-meta-bottom'>
+        
+
+  <div class="entry-categories"><p><span>Categories</span>
+    
+    <a href="/categories/mathematics" title="View all posts in mathematics">mathematics</a>
+    <a href="/categories/game-theory" title="View all posts in game theory">game theory</a>
+  </p>
+</div>
+
+
+
+<div class="entry-tags"><p><span>Tags</span>
+  
+  <a href="/tags/insurance" title="View all posts tagged insurance">insurance</a>
+  
+  <a href="/tags/kelly" title="View all posts tagged kelly">kelly</a>
+  
+  <a href="/tags/probability" title="View all posts tagged probability">probability</a>
+  
+  <a href="/tags/finance" title="View all posts tagged finance">finance</a>
+  
+
+</p></div>	</div>
+
+<div class="author-meta">
+
+  <div class="author">
+    <img alt='Paul Hankin' src="/img/paulhankin_portrait.png" class='avatar avatar-72 photo' height='72' width='72'>
+
+    <span>
+      Written by:<a href="//blog.paulhankin.net/" title="Posts by Paul Hankin" rel="author">Paul Hankin</a>        </span>
+    </div>
+    <div class="bio">
+      
+      <p>Programming since 1981, professionally since 2000. I’ve a PhD in programming language semantics but these days I prefer programming in Go, C, and Python. I’ve worked mostly on games and large-scale server software.</p>
+      
+
+
+      
+      <a class="facebook" target="_blank"
+      href="https://www.facebook.com/paul.hankin">
+      <i class="fa fa-facebook"
+      title="facebook icon"></i>
+    </a>
+    
+
+    
+
+
+  
+
+
+
+<a class="email" target="_blank"
+href="mailto:paul.hankin@pobox.com">
+<i class="fa fa-envelope"
+title="email icon"></i>
+</a>
+
+
+
+
+
+<a class="stackoverflow" target="_blank"
+href="https://stackoverflow.com/users/1400793/paul-hankin">
+<i class="fa fa-stack-overflow"
+title="stackoverflow icon"></i>
+</a>
+
+
+
+<a class="github" target="_blank"
+href="https://github.com/paulhankin">
+<i class="fa fa-github"
+title="github icon"></i>
+</a>
+
+
+
+
+
+
+
+</div>
+</div>
+
+</div>
+</div>
+
+<section id="comments" class="comments">
+  <div id="disqus_thread"></div>
+<script>
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "blog-paulhankin" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+  
+
+
+
+
+</section>
+</div>
+
+ 
+
+
+
+    </div>
+
+    <footer id="site-footer" class="site-footer" role="contentinfo">
+
+	<h1>
+    
+    <a href=""> Paul&#39;s blog </a>
+    
+	</h1>
+
+			
+			<p class="site-description">Tasty brain snacks</p>
+			
+
+		<div id="menu-footer" class="menu-container menu-footer" role="navigation">
+		<div class="menu">
+
+      <ul id="menu-footer-items" class="menu-footer-items">
+        
+</ul>
+
+</div>	</div>
+
+<ul class="social-media-icons">
+
+        
+				<li>
+					<a class="facebook" target="_blank"
+					   href="https://www.facebook.com/paul.hankin" >
+						<i class="fa fa-facebook" title="facebook"></i>
+						<span class="screen-reader-text">facebook</span>
+					</a>
+				</li>
+        
+
+        
+
+
+        
+
+        
+
+        
+        <li>
+        <a href="mailto:paul.hankin@pobox.com"  class="email">
+            <i class="fa fa-envelope" title="email"></i>
+            <span class="screen-reader-text">email</span>
+        </a>
+        </li>
+        
+
+        
+
+        
+        <li>
+        <a href="https://stackoverflow.com/users/1400793/paul-hankin"  class="stackoverflow" target="_blank">
+            <i class="fa fa-stack-overflow" title="stackoverflow"></i>
+            <span class="screen-reader-text">stackoverflow</span>
+        </a>
+        </li>
+        
+
+
+        
+        <li>
+        <a href="https://github.com/paulhankin"  class="github" target="_blank">
+            <i class="fa fa-github" title="github"></i>
+            <span class="screen-reader-text">github</span>
+        </a>
+        </li>
+        
+
+
+        
+
+				</ul>	<div class="design-credit">
+		
+		<p>&copy; 2015 &mdash; 2018 Paul Hankin</p>
+		
+		<p>Nederburg Hugo Theme by <a href="https://appernetic.io">Appernetic</a>.</p>
+		
+		<p>A port of Tracks by Compete Themes.</p>
+		
+	</div>
+</footer>
+
+  </div>
+  <script src="//blog.paulhankin.net/js/jquery.min.js"></script>
+<script src="//blog.paulhankin.net/js/jquerymigrate.js"></script>
+<script src="//blog.paulhankin.net/js/production.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.6.0/katex.min.css">
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+</body>
+</html>

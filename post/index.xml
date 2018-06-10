@@ -6,10 +6,32 @@
     <description>Recent content in Posts on Paul&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 14 May 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 10 Jun 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="//blog.paulhankin.net/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Insurance and the Kelly criterion</title>
+      <link>//blog.paulhankin.net/kellycriterion/</link>
+      <pubDate>Sun, 10 Jun 2018 00:00:00 +0000</pubDate>
+      
+      <guid>//blog.paulhankin.net/kellycriterion/</guid>
+      <description>&lt;p&gt;This article describes how to use the Kelly criterion to make rational
+choices when confronted with a risky financial decision, and suggests
+a way to estimate the most you should be willing to pay for any
+particular sort of insurance.&lt;/p&gt;
+
+&lt;p&gt;The Kelly criterion (which at its core is the idea that the logarithm
+of your wealth is a better measure of money&#39;s value to you than its absolute
+value) is well understood by the informed gambling community, and
+should be more widely known.&lt;/p&gt;
+
+&lt;p&gt;If you decide to apply the knowledge in this post, also consult with a financial
+professional (which as we&#39;ll see later doesn&#39;t include most finance or economics
+students, and most young financial professionals), and read the disclaimer at the end.
+&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>A novel and efficient way to compute Fibonacci numbers</title>

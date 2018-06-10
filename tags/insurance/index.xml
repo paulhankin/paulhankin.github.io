@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Game theory on Paul&#39;s blog</title>
-    <link>//blog.paulhankin.net/categories/game-theory/</link>
-    <description>Recent content in Game theory on Paul&#39;s blog</description>
+    <title>Insurance on Paul&#39;s blog</title>
+    <link>//blog.paulhankin.net/tags/insurance/</link>
+    <description>Recent content in Insurance on Paul&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sun, 10 Jun 2018 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="//blog.paulhankin.net/categories/game-theory/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="//blog.paulhankin.net/tags/insurance/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -31,19 +31,6 @@ should be more widely known.&lt;/p&gt;
 professional (which as we&#39;ll see later doesn&#39;t include most finance or economics
 students, and most young financial professionals), and read the disclaimer at the end.
 &lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>Near-optimal closed-hand Chinese Poker.</title>
-      <link>//blog.paulhankin.net/chinesepoker/</link>
-      <pubDate>Thu, 21 May 2015 00:00:00 +0000</pubDate>
-      
-      <guid>//blog.paulhankin.net/chinesepoker/</guid>
-      <description>&lt;p&gt;This blog post looks at closed-hand Chinese Poker, and describes
-a near-optimal strategy for it which is readily implementable
-on a computer.&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
     </item>
     
   </channel>
