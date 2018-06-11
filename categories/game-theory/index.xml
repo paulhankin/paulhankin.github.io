@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Game theory on Paul&#39;s blog</title>
-    <link>//blog.paulhankin.net/categories/game-theory/</link>
+    <link>https://blog.paulhankin.net/categories/game-theory/</link>
     <description>Recent content in Game theory on Paul&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sun, 10 Jun 2018 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="//blog.paulhankin.net/categories/game-theory/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://blog.paulhankin.net/categories/game-theory/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Insurance and the Kelly criterion</title>
-      <link>//blog.paulhankin.net/kellycriterion/</link>
+      <link>https://blog.paulhankin.net/kellycriterion/</link>
       <pubDate>Sun, 10 Jun 2018 00:00:00 +0000</pubDate>
       
-      <guid>//blog.paulhankin.net/kellycriterion/</guid>
+      <guid>https://blog.paulhankin.net/kellycriterion/</guid>
       <description>&lt;p&gt;This article describes how to use the Kelly criterion to make rational
 choices when confronted with a risky financial decision, and suggests
 a way to estimate the most you should be willing to pay for any
@@ -35,10 +35,10 @@ students, and most young financial professionals), and read the disclaimer at th
     
     <item>
       <title>Near-optimal closed-hand Chinese Poker.</title>
-      <link>//blog.paulhankin.net/chinesepoker/</link>
+      <link>https://blog.paulhankin.net/chinesepoker/</link>
       <pubDate>Thu, 21 May 2015 00:00:00 +0000</pubDate>
       
-      <guid>//blog.paulhankin.net/chinesepoker/</guid>
+      <guid>https://blog.paulhankin.net/chinesepoker/</guid>
       <description>&lt;p&gt;This blog post looks at closed-hand Chinese Poker, and describes
 a near-optimal strategy for it which is readily implementable
 on a computer.&lt;/p&gt;

@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Mathematics on Paul&#39;s blog</title>
-    <link>//blog.paulhankin.net/categories/mathematics/</link>
+    <link>https://blog.paulhankin.net/categories/mathematics/</link>
     <description>Recent content in Mathematics on Paul&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sun, 10 Jun 2018 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="//blog.paulhankin.net/categories/mathematics/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://blog.paulhankin.net/categories/mathematics/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Insurance and the Kelly criterion</title>
-      <link>//blog.paulhankin.net/kellycriterion/</link>
+      <link>https://blog.paulhankin.net/kellycriterion/</link>
       <pubDate>Sun, 10 Jun 2018 00:00:00 +0000</pubDate>
       
-      <guid>//blog.paulhankin.net/kellycriterion/</guid>
+      <guid>https://blog.paulhankin.net/kellycriterion/</guid>
       <description>&lt;p&gt;This article describes how to use the Kelly criterion to make rational
 choices when confronted with a risky financial decision, and suggests
 a way to estimate the most you should be willing to pay for any
@@ -35,11 +35,11 @@ students, and most young financial professionals), and read the disclaimer at th
     
     <item>
       <title>A novel and efficient way to compute Fibonacci numbers</title>
-      <link>//blog.paulhankin.net/fibonacci2/</link>
+      <link>https://blog.paulhankin.net/fibonacci2/</link>
       <pubDate>Mon, 14 May 2018 00:00:00 +0000</pubDate>
       
-      <guid>//blog.paulhankin.net/fibonacci2/</guid>
-      <description>&lt;p&gt;&lt;a href=&#34;//blog.paulhankin.net/fibonacci/&#34;&gt;An earlier post&lt;/a&gt; described how to compute Fibonacci numbers in a single arithmetic expression.&lt;/p&gt;
+      <guid>https://blog.paulhankin.net/fibonacci2/</guid>
+      <description>&lt;p&gt;&lt;a href=&#34;https://blog.paulhankin.net/fibonacci/&#34;&gt;An earlier post&lt;/a&gt; described how to compute Fibonacci numbers in a single arithmetic expression.&lt;/p&gt;
 
 &lt;p&gt;Faré Rideau, the author of a &lt;a href=&#34;http://fare.tunes.org/files/fun/fibonacci.lisp&#34;&gt;page of Fibonacci computations in Lisp&lt;/a&gt;, suggested in a private
 email a simple and efficient variant, that I believe is novel.&lt;/p&gt;
@@ -59,10 +59,10 @@ email a simple and efficient variant, that I believe is novel.&lt;/p&gt;
     
     <item>
       <title>An integer formula for Fibonacci numbers</title>
-      <link>//blog.paulhankin.net/fibonacci/</link>
+      <link>https://blog.paulhankin.net/fibonacci/</link>
       <pubDate>Mon, 27 Apr 2015 00:00:00 +0000</pubDate>
       
-      <guid>//blog.paulhankin.net/fibonacci/</guid>
+      <guid>https://blog.paulhankin.net/fibonacci/</guid>
       <description>&lt;p&gt;This code, somewhat surprisingly, generates Fibonacci numbers.&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;def fib(n):

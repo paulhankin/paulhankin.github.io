@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Finance on Paul&#39;s blog</title>
-    <link>//blog.paulhankin.net/tags/finance/</link>
+    <link>https://blog.paulhankin.net/tags/finance/</link>
     <description>Recent content in Finance on Paul&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sun, 10 Jun 2018 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="//blog.paulhankin.net/tags/finance/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://blog.paulhankin.net/tags/finance/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Insurance and the Kelly criterion</title>
-      <link>//blog.paulhankin.net/kellycriterion/</link>
+      <link>https://blog.paulhankin.net/kellycriterion/</link>
       <pubDate>Sun, 10 Jun 2018 00:00:00 +0000</pubDate>
       
-      <guid>//blog.paulhankin.net/kellycriterion/</guid>
+      <guid>https://blog.paulhankin.net/kellycriterion/</guid>
       <description>&lt;p&gt;This article describes how to use the Kelly criterion to make rational
 choices when confronted with a risky financial decision, and suggests
 a way to estimate the most you should be willing to pay for any

@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Fibonacci on Paul&#39;s blog</title>
-    <link>//blog.paulhankin.net/tags/fibonacci/</link>
+    <link>https://blog.paulhankin.net/tags/fibonacci/</link>
     <description>Recent content in Fibonacci on Paul&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 27 Apr 2015 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="//blog.paulhankin.net/tags/fibonacci/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://blog.paulhankin.net/tags/fibonacci/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>An integer formula for Fibonacci numbers</title>
-      <link>//blog.paulhankin.net/fibonacci/</link>
+      <link>https://blog.paulhankin.net/fibonacci/</link>
       <pubDate>Mon, 27 Apr 2015 00:00:00 +0000</pubDate>
       
-      <guid>//blog.paulhankin.net/fibonacci/</guid>
+      <guid>https://blog.paulhankin.net/fibonacci/</guid>
       <description>&lt;p&gt;This code, somewhat surprisingly, generates Fibonacci numbers.&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;def fib(n):
