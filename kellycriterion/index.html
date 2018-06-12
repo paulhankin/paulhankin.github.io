@@ -37,7 +37,7 @@ students, and most young financial professionals), and read the disclaimer at th
         "datePublished": "2018-06-10 00:00:00 &#43;0000 UTC",
         "dateModified" : "2018-06-10 00:00:00 &#43;0000 UTC",
         "url" : "https://blog.paulhankin.net/kellycriterion/",
-        "wordCount" : "2230",
+        "wordCount" : "2247",
         "image" : https://blog.paulhankin.net//img/post/kelly.png",
         "keywords" : [ "insurance","kelly","probability","finance","Blog" ]   
     }
@@ -296,10 +296,10 @@ up heads. If you guess right, you gain the amount you wagered. If you guess wron
 
 <p>We can use Kelly criterion to figure out how much of our stake <span  class="math">\(S\)</span> to wager. Let's say
 we wager <span  class="math">\(x\)</span>. If we win (with probability <span  class="math">\(p\)</span>,
-assuming we bet on heads) we'll have <span  class="math">\(S+x\)</span>, and if we lose (with probability <span  class="math">\(1-p\)</span>, we'll have <span  class="math">\(S-x\)</span>. Kelly suggests maximizing
+assuming we bet on heads) we'll have <span  class="math">\(S+x\)</span>, and if we lose (with probability <span  class="math">\(1-p\)</span>), we'll have <span  class="math">\(S-x\)</span>. Kelly suggests maximizing
 the expected value of the logarithm of our money, so we want to maximize <span  class="math">\(p\mathrm{log}(S+x) + (1-p)\mathrm{log}(S-x)\)</span>.</p>
 
-<p>To maximize, we differentiate with respect to <span  class="math">\(x\)</span>, and set the result to zero. That gives us <span  class="math">\(\frac{p}{S+x} - \frac{1-p}{S-x} = 0\)</span>. That comes out to <span  class="math">\(x=S(1-2p)\)</span>.</p>
+<p>To maximize, we differentiate with respect to <span  class="math">\(x\)</span>, and set the result to zero. That gives us <span  class="math">\(\frac{p}{S+x} - \frac{1-p}{S-x} = 0\)</span>. That comes out to <span  class="math">\(x=S(2p-1)\)</span>.</p>
 
 <p>So if we're sure to win (<span  class="math">\(p=1\)</span>), we bet everything. If the coin is unbiased (<span  class="math">\(p=1/2\)</span>) we bet nothing, and
 we bet a linearly increasing amount in between. For example, when the coin comes up heads three quarters of the time (<span  class="math">\(p=3/4\)</span>) we bet half our current stake, since three quarters is halfway between one half and one. (Another
@@ -334,7 +334,8 @@ whatever's in the last box opened. That would be an uninteresting random choice,
 rings them up and offers them an amount of money (&quot;the deal&quot;) which they can take and leave the game immediately without opening any more boxes. In the show, there is also some theatrical interest generated
 by the fact that the boxes are held by friends and family of the contestant.</p>
 
-<p>In an actual episode of the show, a contestant had opened 13 of the boxes, leaving two boxes known to contain the minimum 1 penny and the maximum &pound;250,000. The banker offered them a deal of &pound;88,000.</p>
+<p>In an actual episode of the show, a contestant had opened 20 of the boxes, leaving the last two boxes, which given the contents of the
+previously opened boxes, were known to contain the minimum 1 penny and the maximum &pound;250,000. The banker offered them a deal of &pound;88,000.</p>
 
 <p>The expected value of this situation is &pound;125,000, which is significantly higher than the banker's offer.</p>
 
@@ -342,18 +343,18 @@ by the fact that the boxes are held by friends and family of the contestant.</p>
 offer: a sure &pound;88,000 is better than half a chance at &pound;250,000, and
 they'd feel awful if they lost. But under what conditions is this rational?</p>
 
-<p>Again, the Kelly criterion can be used to answer this, based on the total amount of money the person playing the game has. That makes sense,
-because if they have little, then they should prefer to minimize risk and take the sure &pound;88,000. If they have a lot of money already,
-then they should care less about the risk and play on.</p>
+<p>Again, the Kelly criterion can be used to answer this, based on the total amount of money the person playing the game has. The idea
+of using the total wealth of the player makes sense, because if they have little, then they should prefer to minimize risk
+and take the sure &pound;88,000. If they have a lot of money already, then they should care less about the risk and play on.</p>
 
 <p>Rounding down 1 penny to zero to make the calculations a bit shorter, and let's say they have a total wealth of <span  class="math">\(W\)</span>. We want to
 find <span  class="math">\(W\)</span> such that the expectation of the logarithm of their total wealth is higher if they choose to play on.</p>
 
-<p>If they play on, with probability <span  class="math">\(1/2\)</span> they will win nothing and their total wealth will remain the same, and with probability <span  class="math">\(1/2\)</span> they will gain &pound;250,000. Obviously if they choose the deal, they'll gain &pound;88,000 without any risk.</p>
+<p>If they play on, then with probability <span  class="math">\(1/2\)</span> they will win nothing and their total wealth will remain the same, and with probability <span  class="math">\(1/2\)</span> they will gain &pound;250,000. Obviously if they choose the deal, they'll gain &pound;88,000 without any risk.</p>
 
-<p>Upon taking the deal, the expected logarithm of their wealth will be <span  class="math">\(\mathrm{log}(W+88,000)\)</span>. Playing on, the expected logarithm of their wealth will be <span  class="math">\(\mathrm{log}(W)/2 + \mathrm{log}(W+250,000)/2\)</span>. Solving <span  class="math">\(\mathrm{log}(W+88,000) \lt \mathrm{log}(W)/2 + \mathrm{log}(W+250,000)/2 \)</span> gives <span  class="math">\(W \gt 3,872,000/37\)</span>, which is approximately &pound;104648.</p>
+<p>Upon taking the deal, the expected logarithm of their wealth will be <span  class="math">\(\mathrm{log}(W+88,000)\)</span>. Playing on, the expected logarithm of their wealth will be <span  class="math">\(\mathrm{log}(W)/2 + \mathrm{log}(W+250,000)/2\)</span>. Solving <span  class="math">\(\mathrm{log}(W+88,000) \lt \mathrm{log}(W)/2 + \mathrm{log}(W+250,000)/2 \)</span> gives (approximately) <span  class="math">\(W \gt 104648\)</span>.</p>
 
-<p>That's to say, if the contestant has wealth of 105 thousand pounds or more and wants to make a rational
+<p>That's to say, if the contestant has wealth of &pound;105,000 or more and wants to make a rational
 decision (according to the Kelly criterion), they should reject the deal and play on. If they have
 less than this, they should accept the &pound;88,000 and go home.</p>
 
