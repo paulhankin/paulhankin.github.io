@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Education on Paul&#39;s blog</title>
-    <link>https://blog.paulhankin.net/tags/education/</link>
-    <description>Recent content in Education on Paul&#39;s blog</description>
+    <title>Computer on Paul&#39;s blog</title>
+    <link>https://blog.paulhankin.net/tags/computer/</link>
+    <description>Recent content in Computer on Paul&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sun, 17 Jun 2018 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://blog.paulhankin.net/tags/education/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://blog.paulhankin.net/tags/computer/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -35,24 +35,6 @@ it currently is.&lt;/p&gt;
 &lt;p&gt;This post takes a look at what made home micros effective
 learning environments, and considers what a modern equivalent might look
 like.&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>Little Man Computer</title>
-      <link>https://blog.paulhankin.net/littlemancomputer/</link>
-      <pubDate>Wed, 20 Apr 2016 00:00:00 +0000</pubDate>
-      
-      <guid>https://blog.paulhankin.net/littlemancomputer/</guid>
-      <description>&lt;p&gt;I had never seen this mini-assembler-based educational computer before. &lt;a href=&#34;https://en.wikipedia.org/wiki/Little_man_computer&#34;&gt;wikipedia.org/Little_man_computer&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;I couldn&#39;t find a good online emulator, so I wrote one: &lt;a href=&#34;https://blog.paulhankin.net/lmc/lmc.html&#34;&gt;Little Man Computer Emulator&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;Enter the program on the left, click &amp;quot;Assemble&amp;quot;, enter some inputs if your program needs them, and then step
-through the execution.&lt;/p&gt;
-
-&lt;p&gt;It&#39;s probably got some bugs since it was a quick hack, but it worked on the examples I tried it on.&lt;/p&gt;
 
 &lt;p&gt;&lt;/p&gt;</description>
     </item>

@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<script type="application/ld+json">
+    {
+        "@context" : "http://schema.org",
+        "@type" : "BlogPosting",
+        "mainEntityOfPage": {
+             "@type": "WebPage",
+             "@id": "https://blog.paulhankin.net/"
+        },
+        "articleSection" : "post",
+        "name" : "A gentle introduction to hard programming",
+        "headline" : "A gentle introduction to hard programming",
+        "description" : "<p>As I was growing up in England in the 80s, there was a boom in
+home microcomputers, with the Commodore 64, the ZX Spectrum,
+and the BBC Micro being three popular choices. These
+provided an excellent and approachable introduction to programming,
+with many of my friends learning programming in BASIC and assembler.
+We taught ourselves the fundamentals of computing while we were playing,
+and at a relatively early age.</p>
+
+<p>These days the computing environment is complex, and it's much harder for a
+beginner to get started, or even know how to get started. Mostly
+programming is learnt at university or in other formal education.
+While there is definitely more to learn now than before, it seems like
+the fundamentals of coding should still be easier to pick up than
+it currently is.</p>
+
+<p>This post takes a look at what made home micros effective
+learning environments, and considers what a modern equivalent might look
+like.</p>
+
+<p></p>",
+        "inLanguage" : "en-US",
+        "author" : "",
+        "creator" : "",
+        "publisher": "",
+        "accountablePerson" : "",
+        "copyrightHolder" : "",
+        "copyrightYear" : "2018",
+        "datePublished": "2018-06-17 00:00:00 &#43;0000 UTC",
+        "dateModified" : "2018-06-17 00:00:00 &#43;0000 UTC",
+        "url" : "https://blog.paulhankin.net/learnprogramming/",
+        "wordCount" : "1739",
+        "image" : https://blog.paulhankin.net//img/post/learnprogramming.png",
+        "keywords" : [ "programming","education","computer","Blog" ]   
+    }
+    </script>
+
+ <title>A gentle introduction to hard programming </title>
+
+
+<meta name="description" content="Programming, Computer Science, Games and Other Things" />
+
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="all,follow">
+<meta name="googlebot" content="index,follow,snippet,archive">
+<link rel="stylesheet" id="ct-tracks-google-fonts-css" href="//fonts.googleapis.com/css?family=Raleway%3A400%2C700&amp;subset=latin%2Clatin-ext&amp;ver=4.7.2" type="text/css" media="all">
+<link rel="stylesheet" href="https://blog.paulhankin.net/css/font-awesome.min.css" type='text/css' media='all'>
+
+<link href="https://blog.paulhankin.net/css/style.css" rel="stylesheet" id="theme-stylesheet" type='text/css' media='all'>
+
+<link href="https://blog.paulhankin.net/css/custom.css" rel="stylesheet" type='text/css' media='all'>
+<link rel="shortcut icon" href="https://blog.paulhankin.net/img/favicon.ico" type="image/x-icon">
+<link rel="icon" href="https://blog.paulhankin.net/img/favicon.ico" type="image/x-icon">
+
+
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-63206765-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='//www.google-analytics.com/analytics.js'></script>
+
+</head>
+
+
+<body class="post-template-default single single-post single-format-standard ct-body singular singular-post not-front standard">
+  
+  <div id="overflow-container" class="overflow-container">
+    <a class="skip-content" href="#main">Skip to content</a>
+    <header id="site-header" class="site-header" role="banner">
+      <div class='top-navigation'>
+        <div class='container'>
+
+  <div id="menu-secondary" class="menu-container menu-secondary" role="navigation">
+    <button id="toggle-secondary-navigation" class="toggle-secondary-navigation"><i class="fa fa-plus"></i></button>
+
+    <div class="menu">
+
+      <ul id="menu-secondary-items" class="menu-secondary-items">
+        
+        <li id="menu-item" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item">
+          <a href="/categories/computer-science">computer science</a>
+        </li>
+        
+        <li id="menu-item" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item">
+          <a href="/categories/game-theory">game theory</a>
+        </li>
+        
+        <li id="menu-item" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item">
+          <a href="/categories/mathematics">mathematics</a>
+        </li>
+        
+        <li id="menu-item" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item">
+          <a href="/categories/programming">programming</a>
+        </li>
+        
+
+      </ul>
+
+    </div>
+
+  </div>
+
+
+  <ul class="social-media-icons">
+
+
+    
+    <li>
+      <a href="https://www.facebook.com/paul.hankin" data-animate-hover="pulse" class="facebook" target="_blank">
+        <i class="fa fa-facebook-square" title="facebook"></i>
+        <span class="screen-reader-text">facebook</span>
+      </a>
+    </li>
+    
+
+    
+
+    
+
+    
+
+    
+    <li>
+      <a href="mailto:paul.hankin@pobox.com" data-animate-hover="pulse" class="email">
+        <i class="fa fa-envelope" title="email"></i>
+        <span class="screen-reader-text">email</span>
+      </a>
+    </li>
+    
+
+    
+
+    
+    <li>
+      <a href="https://stackoverflow.com/users/1400793/paul-hankin" data-animate-hover="pulse" class="stackoverflow" target="_blank">
+        <i class="fa fa-stack-overflow" title="stackoverflow"></i>
+        <span class="screen-reader-text">stackoverflow</span>
+      </a>
+    </li>
+    
+
+
+    
+    <li>
+      <a href="https://github.com/paulhankin" data-animate-hover="pulse" class="github" target="_blank">
+        <i class="fa fa-github" title="github"></i>
+        <span class="screen-reader-text">github</span>
+      </a>
+    </li>
+    
+
+
+    
+
+
+  </ul></div>
+
+      </div>
+
+      <div class="container">
+        <div id="title-info" class="title-info">
+  <div id='site-title' class='site-title'>
+    
+    <a href="/"> Paul&#39;s blog </a>
+    </div>
+  </div>
+  <button id="toggle-navigation" class="toggle-navigation">
+    <i class="fa fa-bars"></i>
+  </button>
+
+  <div id="menu-primary-tracks" class="menu-primary-tracks"></div>
+  <div id="menu-primary" class="menu-container menu-primary" role="navigation">
+    
+    <p class="site-description">Tasty brain snacks</p>
+    
+
+    <div class="menu">
+      <ul id="menu-primary-items" class="menu-primary-items">
+        
+        
+        <li id="menu-item" class='menu-item menu-item-type-custom menu-item-object-custom '>
+          <a href="https://blog.paulhankin.net/">Home</a>
+        </li>
+        
+        <li id="menu-item" class='menu-item menu-item-type-post_type menu-item-object-page '>
+          <a href="https://blog.paulhankin.net/about/">About</a>
+        </li>
+        
+        <li id="menu-item" class='menu-item menu-item-type-post_type menu-item-object-page '>
+          <a href="https://blog.paulhankin.net/post/index.xml">RSS</a>
+        </li>
+        
+      </ul>
+    </div>
+
+  </div>
+
+      </div>
+    </header>
+
+    <div id="main" class="main" role="main">
+
+      
+  <div id="loop-container" class="loop-container">
+    
+    <div class="post type-post status-publish format-standard has-post-thumbnail hentry category-design tag-design tag-standard-2 tag-tagalicious tag-travel entry full-without-featured odd excerpt-1">
+
+      <div class='featured-image lazy lazy-bg-image' data-background="https://blog.paulhankin.net/img/post/learnprogramming.png">
+      </div>
+      
+        <div class="entry-meta">
+          <span class="date">17 June 2018</span>	<span> / </span>
+
+          <span class="author">
+            
+            Paul Hankin
+            
+          </span>
+
+
+          
+          <span class="category">
+            <span> / </span>
+
+            <a href="/categories/programming">programming</a>
+          </span>
+          
+
+
+        </div>
+        <div class='entry-header'>
+          <h1 class='entry-title'> A gentle introduction to hard programming</h1>
+        </div>
+        <div class="entry-container">
+          <div class="entry-content">
+            <article>
+              <p>As I was growing up in England in the 80s, there was a boom in
+home microcomputers, with the Commodore 64, the ZX Spectrum,
+and the BBC Micro being three popular choices. These
+provided an excellent and approachable introduction to programming,
+with many of my friends learning programming in BASIC and assembler.
+We taught ourselves the fundamentals of computing while we were playing,
+and at a relatively early age.</p>
+
+<p>These days the computing environment is complex, and it's much harder for a
+beginner to get started, or even know how to get started. Mostly
+programming is learnt at university or in other formal education.
+While there is definitely more to learn now than before, it seems like
+the fundamentals of coding should still be easier to pick up than
+it currently is.</p>
+
+<p>This post takes a look at what made home micros effective
+learning environments, and considers what a modern equivalent might look
+like.</p>
+
+<p></p>
+
+<h3 id="properties-of-80s-home-computers">Properties of 80s home computers</h3>
+
+<p>When a home micro powered on, typically you were dropped into
+a BASIC interactive session. This is significant: programming is how you
+interact with the machine, and there's no obvious choice about which
+language or environment you use to program in. Even if you wish to play
+a game (stored in those days mostly on tape), you've got to type some
+commands in to do so.</p>
+
+<p>BASIC has a bad reputation and was probably never the best choice, but
+the versions of BASIC provided had some good properties for learning that
+modern programming environments lack. First, they weren't designed for
+large-scale software engineering: they had no complex datastructures, no
+modules or packages, no object-orientation, no testing facilities, no
+static typing. These omissions are perfect for an introductory
+environment, where the fundamental skill being learnt is writing
+code that does something rather than writing it to be clean and maintainable.</p>
+
+<p>The machine model was simple and concrete. Display memory
+was available at a fixed location, and could be modified directly.
+There was no memory protection.
+This simple model would be considered anethema today: it has
+security and safety problems, is inflexible, and uses magic numbers
+(pointers to hard-coded addresses) everywhere. Also, modern graphics
+hardware is much faster but more complex, making memory-mapped display memory
+an inefficient choice. But for learning it's
+perfect for understanding memory, pointers, indirection, and data
+layout. The Commodore Amiga (launched later in the 80s) provided
+more complex and advanced choices, but still
+many display and sound features were programmable by setting hardware
+registers, which were mapped at fixed memory locations.</p>
+
+<p>Apart from direct memory access, BASIC provided simple-to-use functions
+that could draw coloured points, lines, circles, and make simple sounds.</p>
+
+<p>Today's computers typically separate consoles from graphics windows, but
+the micros had a single screen on which both appeared. I think this is also
+a good feature for learning: one can either output text or draw graphics
+without having to do any bureaucratic setup. An advantage of separating
+text console from graphics is that it makes it possible to pipe the output
+of one program into the input of another (for example, using a unix pipe),
+but this isn't important for a beginner's programming environment.</p>
+
+<p>Assembler, or machine code, was readily available. Some, like BBC BASIC,
+provided a way to interleave assembler instructions in your BASIC code,
+which would assemble into memory (at <code>P%</code>, an integer BASIC variable)
+when run, and could be executed later. Others required the use of a
+separate assembler to generate the machine code (although assembling the
+code by hand was also popular), and simply provided a way to call
+the code (typically returning the value of one of the registers back
+to the calling code). Today, I don't think this is so valuable for an
+introductory environment: computers are much, much faster, obviating the
+need to use assembler at all, and today's processors are much, much more
+complicated.</p>
+
+<h3 id="the-modern-introductory-programming-machine">The modern introductory programming machine</h3>
+
+<p>Whether this is an actual machine, or running on a regular PC, this is a
+sketch of what I think the experience should be:</p>
+
+<p>You turn the machine on, and you get a blank screen, with a short introductory
+message and a prompt. You can type commands, or enter a built-in editor.
+It can't run anything else.</p>
+
+<p>A program is a single file, which you can load, edit (using the
+built-in editor), save, and run. There's a separate area for loading
+pre-existing code that you can copy from, to paste into your own
+code.</p>
+
+<p>There are hardware registers, a memory-mapped screen, and a programmable
+sound device. There's a mouse pointer, whose state can be read from hardware
+registers, and the pointer image is a memory-mapped sprite. There's a default
+font that provides coverage of most international unicode characters.
+There's a variety of different configurations, providing
+different screen resolutions, sound devices, and other options. Options
+might include sprites, or horizontal/vertical pixel scrolling, the
+Commodore 64 SID chip, or a programmable 16-channel synthesizer. Or the addition
+of games controllers or a touch sensor. Each configuration comes with a description
+of where in memory each device is mapped to, and these addresses and values are
+also made available as named constants to the programming language.</p>
+
+<p>The programming language has types, pointers (including hard-coded values
+to the hardware memory-mapped area), and built-in functions for simple
+interaction with the screen and sound, including graphics and text. It has
+functions, floating-point, sized unsigned and signed integers, a builtin bigint,
+and the standard maths functions. Strings are builtin and are unicode by default. Arrays
+are bounds checked, growable and shrinkable, and passed by reference. There's
+a record type (struct). There's no concurrency. This doesn't specify the language
+entirely, but the philosophy here is to make the language as safe and convenient
+as possible, but erring on the side of making it easy to hack around with, even
+if that sacrifices safety.</p>
+
+<p>Storage appears simple: the machine has its own file system (stored
+on a memory card), with directories and files. Interaction with it
+is primitive: save this block of memory as a file, load this file
+at this memory location, load or save a program, list directory contents.</p>
+
+<h3 id="critique">Critique</h3>
+
+<p>This machine is great for creating interactive playthings: 2D games, digital
+art, or animation. By providing a simple direct interface to the display and
+sound in the programming language, it gives a gentle start, but pushes the
+programmer to learn and use the memory-mapped hardware registers to get more
+advanced features, thus forcing them to learn low-level programming.</p>
+
+<p>It teaches programming, but deliberately avoids teaching software engineering,
+in order to encourage playful experimentation. One concern is that by learning
+bad habits early, one will struggle
+later to develop good ones. I don't think that's a real concern; the beginner
+is not ready for the rigors of good practice, correct abstraction, separation of concerns,
+unit testing, and so on. Perhaps after learning to code on this machine, one is
+in a better position to learn software engineering principles having seen
+the messes they've got themselves into.</p>
+
+<p>The choices of configuration provides flexibility at the cost of increased
+complexity. I think it's a good trade-off: in a teaching environment, a fixed
+simple configuration can be used, and more complex configurations can be introduced
+later. Competitions could be run to create the best experience in very limited
+configurations. More interesting or impressive experiences can be built in
+advanced configurations.</p>
+
+<p>This machine doesn't interact with most of the modern programming world: it's
+not designed for mobile or web (although perhaps programs that you write can
+be run on either, given suitable configurations) and there's no network
+available. I think that's a necessary concession to keep things minimal,
+and it's possible to build interesting things without them.</p>
+
+<h3 id="comparison-with-current-programming-environments">Comparison with current programming environments</h3>
+
+<p>Many attempts at teaching programming using a graphical language have
+been tried, MIT's Scratch being the best example. The idea of graphical
+languages is to minimize the initial barrier to learning computational
+thinking, and to enable learners to produce something interesting
+almost straight away. I think Scratch achieves this ambition, and perhaps
+can serve as a stepping stone to fuller text-based programming.</p>
+
+<p>Processing (and earlier Logo) aim for some of the same things as my
+proposal. Processing makes generating graphics and interactive experience
+easy, and does it well. The design prioritizes generating
+interesting art over learning programming fundamentals, and doesn't
+so easily get the learner over the hump of pointers, memory, and other
+lower-level details. I think one design choice that Processing makes is
+particularly good for beginners: to base the language on a pre-existing language
+(Java), but both cutting features from it, and extending it with more
+builtins. This makes it a very nice stepping stone towards learning
+full-blown Java.</p>
+
+<p>Python is a wonderful language that spans from learning to professional
+use. The Python ecosystem is large, and so makes it harder for a beginner
+to approach. And because it is a very high-level languge, it also has the
+same problems as Processing of teaching low-level fundamentals.</p>
+
+<p>Javascript makes a different set of things easy than Python (for example,
+running Javascript in a browser is easy), and it has similar problems
+to Python.</p>
+
+<p>Modern &quot;industrial&quot; languages: Go, Java, C++ expose more low-level
+details, but are hard to just hack and have fun in because each enforces
+software-engineering good practice, like static typing, object orientation,
+packages, source file layout, and so on. And while it's possible
+in each of these languages, setting up an environment where you can draw graphics
+and make sounds is some work, and there's no clear place for a beginner to start.</p>
+
+<p>PICO-8 is the closest modern equivalent to an 80s computer. It provides
+a tiny 128x128 16-colour display, has chip sounds, and &quot;hardware&quot; sprites.
+One can write programs for it directly in Lua.</p>
+
+<p>Other choices are functional languages (for example, Haskell, Scala, or Ocaml),
+smalltalk variants (for example, Squeak), or logic languages (for example, Prolog).
+I think these are interesting languages, and well-suited for certain domains, but
+I don't think they're ideal to start with, and I don't see a natural path for learners
+from them to mainstream programming. I think it's much better to learn one or two of
+these seriously later.</p>
+
+<h3 id="a-final-note">A final note</h3>
+
+<p>I've been thinking about this for some time, and while I don't think my
+ideas are fully baked, I thought it was time to put them in writing.
+Let me know what you think in the comments section below!</p>
+            </article>
+          </div>
+          
+      <div class='entry-meta-bottom'>
+        
+
+  <div class="entry-categories"><p><span>Categories</span>
+    
+    <a href="/categories/programming" title="View all posts in programming">programming</a>
+  </p>
+</div>
+
+
+
+<div class="entry-tags"><p><span>Tags</span>
+  
+  <a href="/tags/programming" title="View all posts tagged programming">programming</a>
+  
+  <a href="/tags/education" title="View all posts tagged education">education</a>
+  
+  <a href="/tags/computer" title="View all posts tagged computer">computer</a>
+  
+
+</p></div>	</div>
+
+<div class="author-meta">
+
+  <div class="author">
+    <img alt='Paul Hankin' src="/img/paulhankin_portrait.png" class='avatar avatar-72 photo' height='72' width='72'>
+
+    <span>
+      Written by:<a href="https://blog.paulhankin.net/" title="Posts by Paul Hankin" rel="author">Paul Hankin</a>        </span>
+    </div>
+    <div class="bio">
+      
+      <p>Programming since 1981, professionally since 2000. I’ve a PhD in programming language semantics but these days I prefer programming in Go, C, and Python. I’ve worked mostly on games and large-scale server software.</p>
+      
+
+
+      
+      <a class="facebook" target="_blank"
+      href="https://www.facebook.com/paul.hankin">
+      <i class="fa fa-facebook"
+      title="facebook icon"></i>
+    </a>
+    
+
+    
+
+
+  
+
+
+
+<a class="email" target="_blank"
+href="mailto:paul.hankin@pobox.com">
+<i class="fa fa-envelope"
+title="email icon"></i>
+</a>
+
+
+
+
+
+<a class="stackoverflow" target="_blank"
+href="https://stackoverflow.com/users/1400793/paul-hankin">
+<i class="fa fa-stack-overflow"
+title="stackoverflow icon"></i>
+</a>
+
+
+
+<a class="github" target="_blank"
+href="https://github.com/paulhankin">
+<i class="fa fa-github"
+title="github icon"></i>
+</a>
+
+
+
+
+
+
+
+</div>
+</div>
+
+</div>
+</div>
+
+<section id="comments" class="comments">
+  <div id="disqus_thread"></div>
+<script>
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "blog-paulhankin" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+  
+
+
+
+
+</section>
+</div>
+
+ 
+
+
+
+    </div>
+
+    <footer id="site-footer" class="site-footer" role="contentinfo">
+
+	<h1>
+    
+    <a href=""> Paul&#39;s blog </a>
+    
+	</h1>
+
+			
+			<p class="site-description">Tasty brain snacks</p>
+			
+
+		<div id="menu-footer" class="menu-container menu-footer" role="navigation">
+		<div class="menu">
+
+      <ul id="menu-footer-items" class="menu-footer-items">
+        
+</ul>
+
+</div>	</div>
+
+<ul class="social-media-icons">
+
+        
+				<li>
+					<a class="facebook" target="_blank"
+					   href="https://www.facebook.com/paul.hankin" >
+						<i class="fa fa-facebook" title="facebook"></i>
+						<span class="screen-reader-text">facebook</span>
+					</a>
+				</li>
+        
+
+        
+
+
+        
+
+        
+
+        
+        <li>
+        <a href="mailto:paul.hankin@pobox.com"  class="email">
+            <i class="fa fa-envelope" title="email"></i>
+            <span class="screen-reader-text">email</span>
+        </a>
+        </li>
+        
+
+        
+
+        
+        <li>
+        <a href="https://stackoverflow.com/users/1400793/paul-hankin"  class="stackoverflow" target="_blank">
+            <i class="fa fa-stack-overflow" title="stackoverflow"></i>
+            <span class="screen-reader-text">stackoverflow</span>
+        </a>
+        </li>
+        
+
+
+        
+        <li>
+        <a href="https://github.com/paulhankin"  class="github" target="_blank">
+            <i class="fa fa-github" title="github"></i>
+            <span class="screen-reader-text">github</span>
+        </a>
+        </li>
+        
+
+
+        
+
+				</ul>	<div class="design-credit">
+		
+		<p>&copy; 2015 &mdash; 2018 Paul Hankin</p>
+		
+		<p>Nederburg Hugo Theme by <a href="https://appernetic.io">Appernetic</a>.</p>
+		
+		<p>A port of Tracks by Compete Themes.</p>
+		
+	</div>
+</footer>
+
+  </div>
+  <script src="https://blog.paulhankin.net/js/jquery.min.js"></script>
+<script src="https://blog.paulhankin.net/js/jquerymigrate.js"></script>
+<script src="https://blog.paulhankin.net/js/production.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.6.0/katex.min.css">
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+</body>
+</html>
