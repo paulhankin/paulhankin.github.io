@@ -6,10 +6,25 @@
     <description>Recent content in Programming on Paul&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 17 Jun 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 14 Jun 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://blog.paulhankin.net/categories/programming/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Generating random Latin squares</title>
+      <link>https://blog.paulhankin.net/latinsquares/</link>
+      <pubDate>Fri, 14 Jun 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.paulhankin.net/latinsquares/</guid>
+      <description>&lt;p&gt;Generation of random Latin Squares (such that each latin square of a given size is equally
+likely) is a deceptively difficult problem.&lt;/p&gt;
+
+&lt;p&gt;This post describes my own implementation, loosely based on the &lt;a href=&#34;https://www.researchgate.net/publication/308517970_Generation_of_Random_Latin_Squares_Step_By_Step_and_Graphically&#34;&gt;Java implementation described by Ignacio Gallego Sagastume&lt;/a&gt; which
+implements the rather ingenious method of &lt;a href=&#34;https://onlinelibrary.wiley.com/doi/abs/10.1002/%28SICI%291520-6610%281996%294%3A6%3C405%3A%3AAID-JCD3%3E3.0.CO%3B2-J&#34;&gt;Jacobson and Matthews&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>A gentle introduction to hard programming</title>

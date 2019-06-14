@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<script type="application/ld+json">
+    {
+        "@context" : "http://schema.org",
+        "@type" : "BlogPosting",
+        "mainEntityOfPage": {
+             "@type": "WebPage",
+             "@id": "https://blog.paulhankin.net/"
+        },
+        "articleSection" : "post",
+        "name" : "Generating random Latin squares",
+        "headline" : "Generating random Latin squares",
+        "description" : "<p>Generation of random Latin Squares (such that each latin square of a given size is equally
+likely) is a deceptively difficult problem.</p>
+
+<p>This post describes my own implementation, loosely based on the <a href="https://www.researchgate.net/publication/308517970_Generation_of_Random_Latin_Squares_Step_By_Step_and_Graphically">Java implementation described by Ignacio Gallego Sagastume</a> which
+implements the rather ingenious method of <a href="https://onlinelibrary.wiley.com/doi/abs/10.1002/%28SICI%291520-6610%281996%294%3A6%3C405%3A%3AAID-JCD3%3E3.0.CO%3B2-J">Jacobson and Matthews</a></p>
+
+<p></p>",
+        "inLanguage" : "en-US",
+        "author" : "",
+        "creator" : "",
+        "publisher": "",
+        "accountablePerson" : "",
+        "copyrightHolder" : "",
+        "copyrightYear" : "2019",
+        "datePublished": "2019-06-14 00:00:00 &#43;0000 UTC",
+        "dateModified" : "2019-06-14 00:00:00 &#43;0000 UTC",
+        "url" : "https://blog.paulhankin.net/latinsquares/",
+        "wordCount" : "0",
+        "image" : https://blog.paulhankin.net//img/post/latinsquares.png",
+        "keywords" : [ "programming","mathematics","golang","Blog" ]   
+    }
+    </script>
+
+ <title>Generating random Latin squares </title>
+
+
+<meta name="description" content="Programming, Computer Science, Games and Other Things" />
+
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="all,follow">
+<meta name="googlebot" content="index,follow,snippet,archive">
+<link rel="stylesheet" id="ct-tracks-google-fonts-css" href="//fonts.googleapis.com/css?family=Raleway%3A400%2C700&amp;subset=latin%2Clatin-ext&amp;ver=4.7.2" type="text/css" media="all">
+<link rel="stylesheet" href="https://blog.paulhankin.net/css/font-awesome.min.css" type='text/css' media='all'>
+
+<link href="https://blog.paulhankin.net/css/style.css" rel="stylesheet" id="theme-stylesheet" type='text/css' media='all'>
+
+<link href="https://blog.paulhankin.net/css/custom.css" rel="stylesheet" type='text/css' media='all'>
+<link rel="shortcut icon" href="https://blog.paulhankin.net/img/favicon.ico" type="image/x-icon">
+<link rel="icon" href="https://blog.paulhankin.net/img/favicon.ico" type="image/x-icon">
+
+
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-63206765-1', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='//www.google-analytics.com/analytics.js'></script>
+
+</head>
+
+
+<body class="post-template-default single single-post single-format-standard ct-body singular singular-post not-front standard">
+  
+  <div id="overflow-container" class="overflow-container">
+    <a class="skip-content" href="#main">Skip to content</a>
+    <header id="site-header" class="site-header" role="banner">
+      <div class='top-navigation'>
+        <div class='container'>
+
+  <div id="menu-secondary" class="menu-container menu-secondary" role="navigation">
+    <button id="toggle-secondary-navigation" class="toggle-secondary-navigation"><i class="fa fa-plus"></i></button>
+
+    <div class="menu">
+
+      <ul id="menu-secondary-items" class="menu-secondary-items">
+        
+        <li id="menu-item" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item">
+          <a href="/categories/computer-science">computer science</a>
+        </li>
+        
+        <li id="menu-item" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item">
+          <a href="/categories/game-theory">game theory</a>
+        </li>
+        
+        <li id="menu-item" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item">
+          <a href="/categories/mathematics">mathematics</a>
+        </li>
+        
+        <li id="menu-item" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item">
+          <a href="/categories/programming">programming</a>
+        </li>
+        
+
+      </ul>
+
+    </div>
+
+  </div>
+
+
+  <ul class="social-media-icons">
+
+
+    
+    <li>
+      <a href="https://www.facebook.com/paul.hankin" data-animate-hover="pulse" class="facebook" target="_blank">
+        <i class="fa fa-facebook-square" title="facebook"></i>
+        <span class="screen-reader-text">facebook</span>
+      </a>
+    </li>
+    
+
+    
+
+    
+
+    
+
+    
+    <li>
+      <a href="mailto:paul.hankin@pobox.com" data-animate-hover="pulse" class="email">
+        <i class="fa fa-envelope" title="email"></i>
+        <span class="screen-reader-text">email</span>
+      </a>
+    </li>
+    
+
+    
+
+    
+    <li>
+      <a href="https://stackoverflow.com/users/1400793/paul-hankin" data-animate-hover="pulse" class="stackoverflow" target="_blank">
+        <i class="fa fa-stack-overflow" title="stackoverflow"></i>
+        <span class="screen-reader-text">stackoverflow</span>
+      </a>
+    </li>
+    
+
+
+    
+    <li>
+      <a href="https://github.com/paulhankin" data-animate-hover="pulse" class="github" target="_blank">
+        <i class="fa fa-github" title="github"></i>
+        <span class="screen-reader-text">github</span>
+      </a>
+    </li>
+    
+
+
+    
+
+
+  </ul></div>
+
+      </div>
+
+      <div class="container">
+        <div id="title-info" class="title-info">
+  <div id='site-title' class='site-title'>
+    
+    <a href="/"> Paul&#39;s blog </a>
+    </div>
+  </div>
+  <button id="toggle-navigation" class="toggle-navigation">
+    <i class="fa fa-bars"></i>
+  </button>
+
+  <div id="menu-primary-tracks" class="menu-primary-tracks"></div>
+  <div id="menu-primary" class="menu-container menu-primary" role="navigation">
+    
+    <p class="site-description">Tasty brain snacks</p>
+    
+
+    <div class="menu">
+      <ul id="menu-primary-items" class="menu-primary-items">
+        
+        
+        <li id="menu-item" class='menu-item menu-item-type-custom menu-item-object-custom '>
+          <a href="https://blog.paulhankin.net/">Home</a>
+        </li>
+        
+        <li id="menu-item" class='menu-item menu-item-type-post_type menu-item-object-page '>
+          <a href="https://blog.paulhankin.net/about/">About</a>
+        </li>
+        
+        <li id="menu-item" class='menu-item menu-item-type-post_type menu-item-object-page '>
+          <a href="https://blog.paulhankin.net/post/index.xml">RSS</a>
+        </li>
+        
+      </ul>
+    </div>
+
+  </div>
+
+      </div>
+    </header>
+
+    <div id="main" class="main" role="main">
+
+      
+  <div id="loop-container" class="loop-container">
+    
+    <div class="post type-post status-publish format-standard has-post-thumbnail hentry category-design tag-design tag-standard-2 tag-tagalicious tag-travel entry full-without-featured odd excerpt-1">
+
+      <div class='featured-image lazy lazy-bg-image' data-background="https://blog.paulhankin.net/img/post/latinsquares.png">
+      </div>
+      
+        <div class="entry-meta">
+          <span class="date">14 June 2019</span>	<span> / </span>
+
+          <span class="author">
+            
+            Paul Hankin
+            
+          </span>
+
+
+          
+          <span class="category">
+            <span> / </span>
+
+            <a href="/categories/programming">programming</a>
+          </span>
+          
+
+
+        </div>
+        <div class='entry-header'>
+          <h1 class='entry-title'> Generating random Latin squares</h1>
+        </div>
+        <div class="entry-container">
+          <div class="entry-content">
+            <article>
+              <p>Generation of random Latin Squares (such that each latin square of a given size is equally
+likely) is a deceptively difficult problem.</p>
+
+<p>This post describes my own implementation, loosely based on the <a href="https://www.researchgate.net/publication/308517970_Generation_of_Random_Latin_Squares_Step_By_Step_and_Graphically">Java implementation described by Ignacio Gallego Sagastume</a> which
+implements the rather ingenious method of <a href="https://onlinelibrary.wiley.com/doi/abs/10.1002/%28SICI%291520-6610%281996%294%3A6%3C405%3A%3AAID-JCD3%3E3.0.CO%3B2-J">Jacobson and Matthews</a></p>
+
+<p></p>
+
+<h1 id="basics">Basics</h1>
+
+<p>A Latin square is an <span  class="math">\(n\)</span> by <span  class="math">\(n\)</span> grid containing <span  class="math">\(n\)</span> different symbols, arranged such that each row and each column of the grid contains exactly one of each symbol.</p>
+
+<p>Here's an example, containing the numbers 1 to 5.</p>
+
+<table class="latin-square">
+<tr><td>2</td><td>1</td><td>4</td><td>3</td><td>5</td></tr>
+<tr><td>4</td><td>2</td><td>1</td><td>5</td><td>3</td></tr>
+<tr><td>5</td><td>4</td><td>3</td><td>2</td><td>1</td></tr>
+<tr><td>1</td><td>3</td><td>5</td><td>4</td><td>2</td></tr>
+<tr><td>3</td><td>5</td><td>2</td><td>1</td><td>4</td></tr>
+</table>
+
+<p>It's easy to quickly verify that each of the numbers 1 to 5 appear exactly once in each row and column.</p>
+
+<p>Other example Latin squares appear in the graphical header of this post.</p>
+
+<h2 id="jacobson-and-matthews">Jacobson and Matthews</h2>
+
+<p>In their paper, Jacobson and Matthews present an algorithm for generating random Latin squares.
+Their work relies on two main insights. First, that a latin square is equivalent to an incidence matrix.
+That's an <span  class="math">\(n\)</span> by <span  class="math">\(n\)</span> by <span  class="math">\(n\)</span> array of 0's and 1's such that if you cut a line of <span  class="math">\(n\)</span> elements
+out of the array, in any of the 3 dimensions (that is, left-to-right, down-to-up, front-to-back), you have
+exactly one 1 entry.</p>
+
+<p>These incidence matrices correspond to latin squares: if you start with an incidence matrix and fix two dimensions (I choose <span  class="math">\(x\)</span> and <span  class="math">\(y\)</span>), then for each <span  class="math">\(i\)</span> and <span  class="math">\(j\)</span>, there's an unique <span  class="math">\(k\)</span> such that <span  class="math">\(M_{i,j,k}\)</span> is 1. This <span  class="math">\(k\)</span> is the value of the corresponding latin square at position <span  class="math">\(i,j\)</span>.</p>
+
+<p>Their ingenious step is to generalize this idea of incidence matrix. They frame the &quot;exactly one element in each line is 1&quot; to &quot;if you fix <span  class="math">\(i,j\)</span>, then <span  class="math">\(\Sigma_{k=1}^nM_{i,j,k} = 1\)</span>, with similar equations for fixing <span  class="math">\(i,k\)</span> and fixing <span  class="math">\(j,k\)</span>. Then they allow a single element of the incidence matrix to be -1. Although these almost-incidence-matrices no longer correspond to Latin squares, this loosening of the definitions allows them to define a random transition from any incidence matrix or almost-incidence-matrix to some other. They prove that these random transitions allow one to eventually get from any incidence matrix to any other, and that the stationary distribution is uniform. That means if you apply enough of these random transitions and have landed on a proper incidence matrix, you're almost equally likely to be at any possible incidence matrix.</p>
+
+<h3 id="the-transition-step">The transition step</h3>
+
+<p>Jacobson and Matthews define the transition step based on whether you've currently got a perfect incidence matrix (that is, one with no -1 entry), or an imperfect one (that is, one with a single -1 entry).</p>
+
+<p>In the perfect case, the pick <span  class="math">\(i,j,k\)</span>, a 0 entry of the incidence matrix. In the imperfect case, they choose <span  class="math">\(i,j,k\)</span> to be the -1 entry of the imperfect incidence matrix.</p>
+
+<p>Next, they choose <span  class="math">\(i', j', k'\)</span> such that each of <span  class="math">\(M_{i,j,k'}\)</span>, <span  class="math">\(M_{i,j',k}\)</span>, <span  class="math">\(M_{i',j,k}\)</span> are all 1. In the perfect case, this choice is fixed (since each line contains exactly one 1), but in the imperfect case, there's a choice of two 1's in the three lines, and they pick from the choices randomly.</p>
+
+<p>Now, <span  class="math">\(i,j,k\)</span> and <span  class="math">\(i',j',k'\)</span> are considered to define a cube, with the eight corners of the cube being <span  class="math">\(\{i,i'\}\times\{j,j'\}\times\{k,k'\}\)</span>. We've constructed this cube such that <span  class="math">\(i,j,k'\)</span>, <span  class="math">\(i,j',k\)</span> and <span  class="math">\(i',j,k\)</span> are all 1. Because of the definition of the incidence matrix, the corners <span  class="math">\(i',j',k\)</span>, <span  class="math">\(i',j,j'\)</span> and <span  class="math">\(i,j',k'\)</span> are all 1. We know that <span  class="math">\(i,j,k\)</span> is either 0 or -1 depending on whether we started with a perfect or imperfect incidence matrix. That just leaves <span  class="math">\(i',j',k'\)</span> which may be 0 or 1.</p>
+
+<p>The transition step is to add 1 to the element at <span  class="math">\(i,j,k\)</span>, subtract one from the element at <span  class="math">\(i',j',k'\)</span>, and toggle the remaining entries. With a little thought, one can see that this leaves us with a perfect incidence matrix if the entry at <span  class="math">\(i',j',k'\)</span> was 1, and an imperfect incidence matrix if not.</p>
+
+<h1 id="implementation">Implementation</h1>
+
+<p>To implement the algorithm efficiently, we'd like the transition function to take O(1) time. The slow part, with a naive implementation, will be finding the 1 elements in the (perfect or imperfect) incidence matrix.</p>
+
+<p>I take a similar, but slightly more efficient, approach to Sagastume.</p>
+
+<p>The matrix <span  class="math">\(M\)</span> is represented like this:</p>
+
+<pre><code class="language-go">xy [n][n]int // an array of n by n integers
+yz [n][n]int
+xz [n][n]int
+perfect bool
+m [3]int
+mxy, myz, mxz int
+</code></pre>
+
+<p>(as a pedantic side note, the <code>xy</code>, <code>yz</code> and <code>xz</code> arrays are actually slices in go to allow for <code>n</code> to be varied at runtime).</p>
+
+<p>The correspondence to the <span  class="math">\(M\)</span> matrix is as follows:</p>
+
+<ul>
+<li><code>xy[i][j]==k</code> implies <span  class="math">\(M_{i,j,k}=1\)</span></li>
+<li><code>yz[j][k]==i</code> implies <span  class="math">\(M_{i,j,k}=1\)</span></li>
+<li><code>xz[i][k]==j</code> implies <span  class="math">\(M_{i,j,k}=1\)</span></li>
+<li><code>perfect</code> describes whether <span  class="math">\(M\)</span> is perfect.</li>
+<li>if <span  class="math">\(M\)</span> isn't perfect, then <code>m</code> contains the coordinates of the -1 entry ...</li>
+<li>... and the entries <code>m[0],m[1],mxy</code>, <code>m[0],mxz,m[2]</code>, <code>myz,m[1],m[2]</code> of <span  class="math">\(M\)</span> are also 1.</li>
+</ul>
+
+<p>This representation makes finding 1's in the incidence matrix efficient, and has
+the property that <code>xy</code>, <code>yz</code> and <code>xz</code> each correspond to a Latin square representation
+of the incidence matrix when the incidence matrix is proper.</p>
+
+<p>The full go source code is here, and is set up to output a random 25x25 Latin square when run.
+The code is small and fast enough to run on the go playground, which you
+can find here <a href="https://play.golang.org/p/7Ycmxh5T5EP">by clicking here</a>. The playground
+version has a <code>Seed</code> and <code>N</code> parameter that you can change to get different Latin squares.</p>
+
+<pre><code class="language-go">package main
+
+import (
+	&quot;fmt&quot;
+	&quot;math/rand&quot;
+	&quot;time&quot;
+)
+
+func rand2(a, b int) (int, int) {
+	if rand.Intn(2) == 0 {
+		return a, b
+	}
+	return b, a
+}
+
+func Latin(n int) [][]int {
+	xy := make([][]int, n)
+	xz := make([][]int, n)
+	yz := make([][]int, n)
+	for i := 0; i &lt; n; i++ {
+		xy[i] = make([]int, n)
+		yz[i] = make([]int, n)
+		xz[i] = make([]int, n)
+	}
+	for i := 0; i &lt; n; i++ {
+		for j := 0; j &lt; n; j++ {
+			k := (i + j) % n
+			xy[i][j] = k
+			xz[i][k] = j
+			yz[j][k] = i
+		}
+	}
+
+	var mxy, mxz, myz int
+	var m [3]int
+	proper := true
+	minIter := n * n * n
+	for iter := 0; iter &lt; minIter || !proper; iter++ {
+		var i, j, k, i2, j2, k2 int
+		var i2_, j2_, k2_ int
+
+		if proper {
+			// Pick a random 0 in the array
+			i, j, k = rand.Intn(n), rand.Intn(n), rand.Intn(n)
+			for xy[i][j] == k {
+				i, j, k = rand.Intn(n), rand.Intn(n), rand.Intn(n)
+			}
+			// find i2 such that [i2, j, k] is 1. same for j2, k2
+			i2 = yz[j][k]
+			j2 = xz[i][k]
+			k2 = xy[i][j]
+			i2_, j2_, k2_ = i, j, k
+		} else {
+			i, j, k = m[0], m[1], m[2]
+			// find one such that [i2, j, k] is 1, same for j2, k2.
+			// each is either the value stored in the corresponding
+			// slice, or one of our three temporary &quot;extra&quot; 1s.
+			// That's because (i, j, k) is -1.
+			i2, i2_ = rand2(yz[j][k], myz)
+			j2, j2_ = rand2(xz[i][k], mxz)
+			k2, k2_ = rand2(xy[i][j], mxy)
+		}
+
+		proper = xy[i2][j2] == k2
+		if !proper {
+			m = [3]int{i2, j2, k2}
+			mxy = xy[i2][j2]
+			myz = yz[j2][k2]
+			mxz = xz[i2][k2]
+		}
+
+		xy[i][j] = k2_
+		xy[i][j2] = k2
+		xy[i2][j] = k2
+		xy[i2][j2] = k
+
+		yz[j][k] = i2_
+		yz[j][k2] = i2
+		yz[j2][k] = i2
+		yz[j2][k2] = i
+
+		xz[i][k] = j2_
+		xz[i][k2] = j2
+		xz[i2][k] = j2
+		xz[i2][k2] = j
+	}
+	return xy
+}
+
+func main() {
+	rand.Seed(time.Now().UnixNano())
+	const N = 25
+	for _, row := range Latin(N) {
+		for _, c := range row {
+			fmt.Printf(&quot;%3d &quot;, c+1)
+		}
+		fmt.Printf(&quot;\n&quot;)
+	}
+}
+</code></pre>
+            </article>
+          </div>
+          
+      <div class='entry-meta-bottom'>
+        
+
+  <div class="entry-categories"><p><span>Categories</span>
+    
+    <a href="/categories/programming" title="View all posts in programming">programming</a>
+  </p>
+</div>
+
+
+
+<div class="entry-tags"><p><span>Tags</span>
+  
+  <a href="/tags/programming" title="View all posts tagged programming">programming</a>
+  
+  <a href="/tags/mathematics" title="View all posts tagged mathematics">mathematics</a>
+  
+  <a href="/tags/golang" title="View all posts tagged golang">golang</a>
+  
+
+</p></div>	</div>
+
+<div class="author-meta">
+
+  <div class="author">
+    <img alt='Paul Hankin' src="/img/paulhankin_portrait.png" class='avatar avatar-72 photo' height='72' width='72'>
+
+    <span>
+      Written by:<a href="https://blog.paulhankin.net/" title="Posts by Paul Hankin" rel="author">Paul Hankin</a>        </span>
+    </div>
+    <div class="bio">
+      
+      <p>Programming since 1981, professionally since 2000. I’ve a PhD in programming language semantics but these days I prefer programming in Go, C, and Python. I’ve worked mostly on games and large-scale server software.</p>
+      
+
+
+      
+      <a class="facebook" target="_blank"
+      href="https://www.facebook.com/paul.hankin">
+      <i class="fa fa-facebook"
+      title="facebook icon"></i>
+    </a>
+    
+
+    
+
+
+  
+
+
+
+<a class="email" target="_blank"
+href="mailto:paul.hankin@pobox.com">
+<i class="fa fa-envelope"
+title="email icon"></i>
+</a>
+
+
+
+
+
+<a class="stackoverflow" target="_blank"
+href="https://stackoverflow.com/users/1400793/paul-hankin">
+<i class="fa fa-stack-overflow"
+title="stackoverflow icon"></i>
+</a>
+
+
+
+<a class="github" target="_blank"
+href="https://github.com/paulhankin">
+<i class="fa fa-github"
+title="github icon"></i>
+</a>
+
+
+
+
+
+
+
+</div>
+</div>
+
+</div>
+</div>
+
+<section id="comments" class="comments">
+  <div id="disqus_thread"></div>
+<script>
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "blog-paulhankin" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+  
+
+
+
+
+</section>
+</div>
+
+ 
+
+
+
+    </div>
+
+    <footer id="site-footer" class="site-footer" role="contentinfo">
+
+	<h1>
+    
+    <a href=""> Paul&#39;s blog </a>
+    
+	</h1>
+
+			
+			<p class="site-description">Tasty brain snacks</p>
+			
+
+		<div id="menu-footer" class="menu-container menu-footer" role="navigation">
+		<div class="menu">
+
+      <ul id="menu-footer-items" class="menu-footer-items">
+        
+</ul>
+
+</div>	</div>
+
+<ul class="social-media-icons">
+
+        
+				<li>
+					<a class="facebook" target="_blank"
+					   href="https://www.facebook.com/paul.hankin" >
+						<i class="fa fa-facebook" title="facebook"></i>
+						<span class="screen-reader-text">facebook</span>
+					</a>
+				</li>
+        
+
+        
+
+
+        
+
+        
+
+        
+        <li>
+        <a href="mailto:paul.hankin@pobox.com"  class="email">
+            <i class="fa fa-envelope" title="email"></i>
+            <span class="screen-reader-text">email</span>
+        </a>
+        </li>
+        
+
+        
+
+        
+        <li>
+        <a href="https://stackoverflow.com/users/1400793/paul-hankin"  class="stackoverflow" target="_blank">
+            <i class="fa fa-stack-overflow" title="stackoverflow"></i>
+            <span class="screen-reader-text">stackoverflow</span>
+        </a>
+        </li>
+        
+
+
+        
+        <li>
+        <a href="https://github.com/paulhankin"  class="github" target="_blank">
+            <i class="fa fa-github" title="github"></i>
+            <span class="screen-reader-text">github</span>
+        </a>
+        </li>
+        
+
+
+        
+
+				</ul>	<div class="design-credit">
+		
+		<p>&copy; 2015 &mdash; 2018 Paul Hankin</p>
+		
+		<p>Nederburg Hugo Theme by <a href="https://appernetic.io">Appernetic</a>.</p>
+		
+		<p>A port of Tracks by Compete Themes.</p>
+		
+	</div>
+</footer>
+
+  </div>
+  <script src="https://blog.paulhankin.net/js/jquery.min.js"></script>
+<script src="https://blog.paulhankin.net/js/jquerymigrate.js"></script>
+<script src="https://blog.paulhankin.net/js/production.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.6.0/katex.min.css">
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+</body>
+</html>
