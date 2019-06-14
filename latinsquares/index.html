@@ -267,12 +267,12 @@ implements the rather ingenious method of <a href="https://onlinelibrary.wiley.c
 <h2 id="jacobson-and-matthews">Jacobson and Matthews</h2>
 
 <p>In their paper, Jacobson and Matthews present an algorithm for generating random Latin squares.
-Their work relies on two main insights. First, that a latin square is equivalent to an incidence matrix.
+Their work relies on two main insights. First, that a Latin square is equivalent to an incidence matrix.
 That's an <span  class="math">\(n\)</span> by <span  class="math">\(n\)</span> by <span  class="math">\(n\)</span> array of 0's and 1's such that if you cut a line of <span  class="math">\(n\)</span> elements
 out of the array, in any of the 3 dimensions (that is, left-to-right, down-to-up, front-to-back), you have
 exactly one 1 entry.</p>
 
-<p>These incidence matrices correspond to latin squares: if you start with an incidence matrix and fix two dimensions (I choose <span  class="math">\(x\)</span> and <span  class="math">\(y\)</span>), then for each <span  class="math">\(i\)</span> and <span  class="math">\(j\)</span>, there's an unique <span  class="math">\(k\)</span> such that <span  class="math">\(M_{i,j,k}\)</span> is 1. This <span  class="math">\(k\)</span> is the value of the corresponding latin square at position <span  class="math">\(i,j\)</span>.</p>
+<p>These incidence matrices correspond to Latin squares: if you start with an incidence matrix and fix two dimensions (I choose <span  class="math">\(x\)</span> and <span  class="math">\(y\)</span>), then for each <span  class="math">\(i\)</span> and <span  class="math">\(j\)</span>, there's an unique <span  class="math">\(k\)</span> such that <span  class="math">\(M_{i,j,k}\)</span> is 1. This <span  class="math">\(k\)</span> is the value of the corresponding Latin square at position <span  class="math">\(i,j\)</span>.</p>
 
 <p>Their ingenious step is to generalize this idea of incidence matrix. They frame the &quot;exactly one element in each line is 1&quot; to &quot;if you fix <span  class="math">\(i,j\)</span>, then <span  class="math">\(\Sigma_{k=1}^nM_{i,j,k} = 1\)</span>, with similar equations for fixing <span  class="math">\(i,k\)</span> and fixing <span  class="math">\(j,k\)</span>. Then they allow a single element of the incidence matrix to be -1. Although these almost-incidence-matrices no longer correspond to Latin squares, this loosening of the definitions allows them to define a random transition from any incidence matrix or almost-incidence-matrix to some other. They prove that these random transitions allow one to eventually get from any incidence matrix to any other, and that the stationary distribution is uniform. That means if you apply enough of these random transitions and have landed on a proper incidence matrix, you're almost equally likely to be at any possible incidence matrix.</p>
 
@@ -280,19 +280,19 @@ exactly one 1 entry.</p>
 
 <p>Jacobson and Matthews define the transition step based on whether you've currently got a perfect incidence matrix (that is, one with no -1 entry), or an imperfect one (that is, one with a single -1 entry).</p>
 
-<p>In the perfect case, the pick <span  class="math">\(i,j,k\)</span>, a 0 entry of the incidence matrix. In the imperfect case, they choose <span  class="math">\(i,j,k\)</span> to be the -1 entry of the imperfect incidence matrix.</p>
+<p>In the perfect case, they pick <span  class="math">\(i,j,k\)</span>, a 0 entry of the incidence matrix. In the imperfect case, they pick <span  class="math">\(i,j,k\)</span> to be the -1 entry of the imperfect incidence matrix.</p>
 
 <p>Next, they choose <span  class="math">\(i', j', k'\)</span> such that each of <span  class="math">\(M_{i,j,k'}\)</span>, <span  class="math">\(M_{i,j',k}\)</span>, <span  class="math">\(M_{i',j,k}\)</span> are all 1. In the perfect case, this choice is fixed (since each line contains exactly one 1), but in the imperfect case, there's a choice of two 1's in the three lines, and they pick from the choices randomly.</p>
 
-<p>Now, <span  class="math">\(i,j,k\)</span> and <span  class="math">\(i',j',k'\)</span> are considered to define a cube, with the eight corners of the cube being <span  class="math">\(\{i,i'\}\times\{j,j'\}\times\{k,k'\}\)</span>. We've constructed this cube such that <span  class="math">\(i,j,k'\)</span>, <span  class="math">\(i,j',k\)</span> and <span  class="math">\(i',j,k\)</span> are all 1. Because of the definition of the incidence matrix, the corners <span  class="math">\(i',j',k\)</span>, <span  class="math">\(i',j,j'\)</span> and <span  class="math">\(i,j',k'\)</span> are all 1. We know that <span  class="math">\(i,j,k\)</span> is either 0 or -1 depending on whether we started with a perfect or imperfect incidence matrix. That just leaves <span  class="math">\(i',j',k'\)</span> which may be 0 or 1.</p>
+<p>Now, <span  class="math">\(i,j,k\)</span> and <span  class="math">\(i',j',k'\)</span> are considered to define a cube, with the eight corners of the cube being <span  class="math">\(\{i,i'\}\times\{j,j'\}\times\{k,k'\}\)</span>. They've constructed this cube such that <span  class="math">\(M_{i,j,k'}\)</span>, <span  class="math">\(M_{i,j',k}\)</span> and <span  class="math">\(M_{i',j,k}\)</span> are all 1. Because of the definition of the incidence matrix, the corners <span  class="math">\(M_{i',j',k}\)</span>, <span  class="math">\(M_{i',j,j'}\)</span> and <span  class="math">\(M_{i,j',k'}\)</span> are all 1. We know that <span  class="math">\(M_{i,j,k}\)</span> is either 0 or -1 depending on whether we started with a perfect or imperfect incidence matrix. That just leaves <span  class="math">\(M_{i',j',k'}\)</span> which may be 0 or 1.</p>
 
-<p>The transition step is to add 1 to the element at <span  class="math">\(i,j,k\)</span>, subtract one from the element at <span  class="math">\(i',j',k'\)</span>, and toggle the remaining entries. With a little thought, one can see that this leaves us with a perfect incidence matrix if the entry at <span  class="math">\(i',j',k'\)</span> was 1, and an imperfect incidence matrix if not.</p>
+<p>The transition step is to add 1 to the element <span  class="math">\(M_{i,j,k}\)</span>, subtract one from the element <span  class="math">\(M_{i',j',k'}\)</span>, and toggle the remaining entries. With a little thought, one can see that this leaves a perfect incidence matrix if <span  class="math">\(M_{i',j',k'}\)</span> was 1, and an imperfect incidence matrix if not.</p>
 
 <h1 id="implementation">Implementation</h1>
 
 <p>To implement the algorithm efficiently, we'd like the transition function to take O(1) time. The slow part, with a naive implementation, will be finding the 1 elements in the (perfect or imperfect) incidence matrix.</p>
 
-<p>I take a similar, but slightly more efficient, approach to Sagastume.</p>
+<p>I take a similar, but slightly more efficient, approach to Sagastume's Java implementation.</p>
 
 <p>The matrix <span  class="math">\(M\)</span> is represented like this:</p>
 
