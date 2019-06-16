@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://blog.paulhankin.net/powercheat/</loc>
+    <lastmod>2019-06-16T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://blog.paulhankin.net/latinsquares/</loc>
     <lastmod>2019-06-14T00:00:00+00:00</lastmod>
   </url>
@@ -136,7 +141,7 @@
   
   <url>
     <loc>https://blog.paulhankin.net/tags/golang/</loc>
-    <lastmod>2019-06-14T00:00:00+00:00</lastmod>
+    <lastmod>2019-06-16T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -160,7 +165,7 @@
   
   <url>
     <loc>https://blog.paulhankin.net/tags/mathematics/</loc>
-    <lastmod>2019-06-14T00:00:00+00:00</lastmod>
+    <lastmod>2019-06-16T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -178,7 +183,7 @@
   
   <url>
     <loc>https://blog.paulhankin.net/</loc>
-    <lastmod>2019-06-14T00:00:00+00:00</lastmod>
+    <lastmod>2019-06-16T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -190,7 +195,7 @@
   
   <url>
     <loc>https://blog.paulhankin.net/post/</loc>
-    <lastmod>2019-06-14T00:00:00+00:00</lastmod>
+    <lastmod>2019-06-16T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -202,13 +207,13 @@
   
   <url>
     <loc>https://blog.paulhankin.net/tags/programming/</loc>
-    <lastmod>2019-06-14T00:00:00+00:00</lastmod>
+    <lastmod>2019-06-16T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://blog.paulhankin.net/categories/programming/</loc>
-    <lastmod>2019-06-14T00:00:00+00:00</lastmod>
+    <lastmod>2019-06-16T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   

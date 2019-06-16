@@ -6,10 +6,41 @@
     <description>Recent content in Programming on Paul&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 14 Jun 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 16 Jun 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://blog.paulhankin.net/categories/programming/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>A suspiciously fast program</title>
+      <link>https://blog.paulhankin.net/powercheat/</link>
+      <pubDate>Sun, 16 Jun 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.paulhankin.net/powercheat/</guid>
+      <description>&lt;p&gt;Computing large integer powers modulo some number is a somewhat common operation. For example, it&#39;s used in RSA encryption. Usually, this is done using exponentiation by squaring, but this go program correctly prints the results of &lt;span  class=&#34;math&#34;&gt;\(n^{2^{64}}\ (\mathrm{mod}\ 115763)\)&lt;/span&gt; for &lt;span  class=&#34;math&#34;&gt;\(n\)&lt;/span&gt; from 1 to 20, seemingly naively:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;package main
+
+import &amp;quot;fmt&amp;quot;
+
+func main() {
+	for n := 1; n &amp;lt;= 20; n++ {
+		result := 1
+		for i := 0; i &amp;lt; 2^64; i++ {
+			result = (result * n) % 115763
+		}
+		fmt.Printf(&amp;quot;pow(%d, pow(2, 64)) mod 115763 = %d\n&amp;quot;, n, result)
+	}
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;It runs, unoptimized, in a few milliseconds on my desktop.
+You can run it yourself online using the &lt;a href=&#34;https://play.golang.org/p/y2L63tDfUMJ&#34;&gt;go playground&lt;/a&gt;. Feel free to edit the code a little before running it to convince yourself it&#39;s not just fast because the playground is caching the results or something.&lt;/p&gt;
+
+&lt;p&gt;How can it be that fast? Is go&#39;s optimizing compiler that clever? It&#39;s not, and there&#39;s a trick in the code. Can you see it?&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>Generating random Latin squares</title>

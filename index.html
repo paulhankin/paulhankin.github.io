@@ -22,8 +22,8 @@
         "accountablePerson" : "",
         "copyrightHolder" : "",
         "copyrightYear" : "2019",
-        "datePublished": "2019-06-14 00:00:00 &#43;0000 UTC",
-        "dateModified" : "2019-06-14 00:00:00 &#43;0000 UTC",
+        "datePublished": "2019-06-16 00:00:00 &#43;0000 UTC",
+        "dateModified" : "2019-06-16 00:00:00 &#43;0000 UTC",
         "url" : "https://blog.paulhankin.net/",
         "wordCount" : "0",
         "image" : https://blog.paulhankin.net/%!s(&lt;nil&gt;)",
@@ -214,6 +214,73 @@ ga('send', 'pageview');
 			
 
 				
+				<a class="featured-image-link" href="https://blog.paulhankin.net/powercheat/"><div class='featured-image lazy lazy-bg-image'   data-background="https://blog.paulhankin.net/img/post/bent_pencil.png"></div></a>
+
+				
+				<div class="excerpt-container">
+					<div class="excerpt-meta">
+						<span class="date">16 June 2019</span>	<span> / </span>
+
+						
+
+						<span class="author">
+							
+							Paul Hankin
+							
+						</span>
+						
+
+						
+						<span> / </span>
+						<span class="category">
+							<a href="/categories/programming">programming</a>
+						</span>
+						
+					</div>
+					<div class='excerpt-header'>
+						<h2 class='excerpt-title'>
+							<a href="https://blog.paulhankin.net/powercheat/ "> A suspiciously fast program </a>
+						</h2>
+					</div>
+					<div class='excerpt-content'>
+						<article>
+							<p>Computing large integer powers modulo some number is a somewhat common operation. For example, it's used in RSA encryption. Usually, this is done using exponentiation by squaring, but this go program correctly prints the results of <span  class="math">\(n^{2^{64}}\ (\mathrm{mod}\ 115763)\)</span> for <span  class="math">\(n\)</span> from 1 to 20, seemingly naively:</p>
+
+<pre><code class="language-go">package main
+
+import &quot;fmt&quot;
+
+func main() {
+	for n := 1; n &lt;= 20; n++ {
+		result := 1
+		for i := 0; i &lt; 2^64; i++ {
+			result = (result * n) % 115763
+		}
+		fmt.Printf(&quot;pow(%d, pow(2, 64)) mod 115763 = %d\n&quot;, n, result)
+	}
+}
+</code></pre>
+
+<p>It runs, unoptimized, in a few milliseconds on my desktop.
+You can run it yourself online using the <a href="https://play.golang.org/p/y2L63tDfUMJ">go playground</a>. Feel free to edit the code a little before running it to convince yourself it's not just fast because the playground is caching the results or something.</p>
+
+<p>How can it be that fast? Is go's optimizing compiler that clever? It's not, and there's a trick in the code. Can you see it?</p>
+
+<p></p>
+
+							<div class="more-link-wrapper"><a class="more-link" href="https://blog.paulhankin.net/powercheat/">Read the post<span class="screen-reader-text">This is a Standard Post</span></a></div>
+						</article>
+					</div>
+				</div>
+			</div>
+			
+	
+	
+		<div class="post type-post status-publish format-standard has-post-thumbnail hentry category-design tag-memories tag-normal-post tag-standard-2 excerpt zoom full-without-featured even excerpt">
+			
+			
+
+				
 				<a class="featured-image-link" href="https://blog.paulhankin.net/latinsquares/"><div class='featured-image lazy lazy-bg-image'   data-background="https://blog.paulhankin.net/img/post/latinsquares.png"></div></a>
 
 				
@@ -260,8 +327,8 @@ implements the rather ingenious method of <a href="https://onlinelibrary.wiley.c
 			
 	
 	
-		<div class="post type-post status-publish format-standard has-post-thumbnail hentry category-design tag-memories tag-normal-post tag-standard-2 excerpt zoom full-without-featured even excerpt">
-			
+	<div class="post type-post status-publish format-standard has-post-thumbnail hentry category-design tag-memories tag-normal-post tag-standard-2 excerpt zoom full-without-featured odd excerpt">
+		
 			
 
 				
@@ -324,8 +391,8 @@ like.</p>
 			
 	
 	
-	<div class="post type-post status-publish format-standard has-post-thumbnail hentry category-design tag-memories tag-normal-post tag-standard-2 excerpt zoom full-without-featured odd excerpt">
-		
+		<div class="post type-post status-publish format-standard has-post-thumbnail hentry category-design tag-memories tag-normal-post tag-standard-2 excerpt zoom full-without-featured even excerpt">
+			
 			
 
 				
@@ -387,8 +454,8 @@ students, and most young financial professionals), and read the disclaimer at th
 			
 	
 	
-		<div class="post type-post status-publish format-standard has-post-thumbnail hentry category-design tag-memories tag-normal-post tag-standard-2 excerpt zoom full-without-featured even excerpt">
-			
+	<div class="post type-post status-publish format-standard has-post-thumbnail hentry category-design tag-memories tag-normal-post tag-standard-2 excerpt zoom full-without-featured odd excerpt">
+		
 			
 
 				
@@ -445,60 +512,6 @@ email a simple and efficient variant, that I believe is novel.</p>
 </p>
 
 							<div class="more-link-wrapper"><a class="more-link" href="https://blog.paulhankin.net/fibonacci2/">Read the post<span class="screen-reader-text">This is a Standard Post</span></a></div>
-						</article>
-					</div>
-				</div>
-			</div>
-			
-	
-	
-	<div class="post type-post status-publish format-standard has-post-thumbnail hentry category-design tag-memories tag-normal-post tag-standard-2 excerpt zoom full-without-featured odd excerpt">
-		
-			
-
-				
-				<a class="featured-image-link" href="https://blog.paulhankin.net/littlemancomputer/"><div class='featured-image lazy lazy-bg-image'   data-background="https://blog.paulhankin.net/img/post/lmc-snapshot.png"></div></a>
-
-				
-				<div class="excerpt-container">
-					<div class="excerpt-meta">
-						<span class="date">20 April 2016</span>	<span> / </span>
-
-						
-
-						<span class="author">
-							
-							Paul Hankin
-							
-						</span>
-						
-
-						
-						<span> / </span>
-						<span class="category">
-							<a href="/categories/programming">programming</a>
-						</span>
-						
-					</div>
-					<div class='excerpt-header'>
-						<h2 class='excerpt-title'>
-							<a href="https://blog.paulhankin.net/littlemancomputer/ "> Little Man Computer </a>
-						</h2>
-					</div>
-					<div class='excerpt-content'>
-						<article>
-							<p>I had never seen this mini-assembler-based educational computer before. <a href="https://en.wikipedia.org/wiki/Little_man_computer">wikipedia.org/Little_man_computer</a>.</p>
-
-<p>I couldn't find a good online emulator, so I wrote one: <a href="/lmc/lmc.html">Little Man Computer Emulator</a>.</p>
-
-<p>Enter the program on the left, click &quot;Assemble&quot;, enter some inputs if your program needs them, and then step
-through the execution.</p>
-
-<p>It's probably got some bugs since it was a quick hack, but it worked on the examples I tried it on.</p>
-
-<p></p>
-
-							<div class="more-link-wrapper"><a class="more-link" href="https://blog.paulhankin.net/littlemancomputer/">Read the post<span class="screen-reader-text">This is a Standard Post</span></a></div>
 						</article>
 					</div>
 				</div>
