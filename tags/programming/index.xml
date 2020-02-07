@@ -6,10 +6,32 @@
     <description>Recent content in Programming on Paul&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 16 Jun 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 07 Feb 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://blog.paulhankin.net/tags/programming/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Back to C</title>
+      <link>https://blog.paulhankin.net/back-to-c/</link>
+      <pubDate>Fri, 07 Feb 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.paulhankin.net/back-to-c/</guid>
+      <description>&lt;p&gt;I&#39;ve recently been programming seriously in C, after around 10 years in higher
+level languages (Go, Python, C++, and others). I&#39;ve been using C11, the
+latest standard, whereas previously I was working in C89.&lt;/p&gt;
+
+&lt;p&gt;I &lt;em&gt;like&lt;/em&gt; programming in C. It&#39;s not an easy language to write fluently because
+it doens&#39;t provide many conveniences, it&#39;s full of traps, and I&#39;d avoid it if I
+was writing something that needed to be safe, but I still find it fun.&lt;/p&gt;
+
+&lt;p&gt;This post describes my recent experience with C and the new standard, and my
+observations about how things have and haven&#39;t changed. It&#39;s not a critique of C,
+and some of the obvious problems with writing C (such as lack of bounds checking
+of arrays) aren&#39;t discussed.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>A suspiciously fast program</title>

@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<script type="application/ld+json">
+    {
+        "@context" : "http://schema.org",
+        "@type" : "BlogPosting",
+        "mainEntityOfPage": {
+             "@type": "WebPage",
+             "@id": "https://blog.paulhankin.net/"
+        },
+        "articleSection" : "post",
+        "name" : "Back to C",
+        "headline" : "Back to C",
+        "description" : "<p>I've recently been programming seriously in C, after around 10 years in higher
+level languages (Go, Python, C++, and others). I've been using C11, the
+latest standard, whereas previously I was working in C89.</p>
+
+<p>I <em>like</em> programming in C. It's not an easy language to write fluently because
+it doens't provide many conveniences, it's full of traps, and I'd avoid it if I
+was writing something that needed to be safe, but I still find it fun.</p>
+
+<p>This post describes my recent experience with C and the new standard, and my
+observations about how things have and haven't changed. It's not a critique of C,
+and some of the obvious problems with writing C (such as lack of bounds checking
+of arrays) aren't discussed.</p>
+
+<p></p>",
+        "inLanguage" : "en-US",
+        "author" : "",
+        "creator" : "",
+        "publisher": "",
+        "accountablePerson" : "",
+        "copyrightHolder" : "",
+        "copyrightYear" : "2020",
+        "datePublished": "2020-02-07 00:00:00 &#43;0000 UTC",
+        "dateModified" : "2020-02-07 00:00:00 &#43;0000 UTC",
+        "url" : "https://blog.paulhankin.net/back-to-c/",
+        "wordCount" : "0",
+        "image" : https://blog.paulhankin.net//img/post/backtoc.png",
+        "keywords" : [ "programming","Blog" ]   
+    }
+    </script>
+
+ <title>Back to C </title>
+
+
+<meta name="description" content="Programming, Computer Science, Games and Other Things" />
+
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="all,follow">
+<meta name="googlebot" content="index,follow,snippet,archive">
+<link rel="stylesheet" id="ct-tracks-google-fonts-css" href="//fonts.googleapis.com/css?family=Raleway%3A400%2C700&amp;subset=latin%2Clatin-ext&amp;ver=4.7.2" type="text/css" media="all">
+<link rel="stylesheet" href="https://blog.paulhankin.net/css/font-awesome.min.css" type='text/css' media='all'>
+
+<link href="https://blog.paulhankin.net/css/style.css" rel="stylesheet" id="theme-stylesheet" type='text/css' media='all'>
+
+<link href="https://blog.paulhankin.net/css/custom.css" rel="stylesheet" type='text/css' media='all'>
+<link rel="shortcut icon" href="https://blog.paulhankin.net/img/favicon.ico" type="image/x-icon">
+<link rel="icon" href="https://blog.paulhankin.net/img/favicon.ico" type="image/x-icon">
+
+
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-63206765-1', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='//www.google-analytics.com/analytics.js'></script>
+
+</head>
+
+
+<body class="post-template-default single single-post single-format-standard ct-body singular singular-post not-front standard">
+  
+  <div id="overflow-container" class="overflow-container">
+    <a class="skip-content" href="#main">Skip to content</a>
+    <header id="site-header" class="site-header" role="banner">
+      <div class='top-navigation'>
+        <div class='container'>
+
+  <div id="menu-secondary" class="menu-container menu-secondary" role="navigation">
+    <button id="toggle-secondary-navigation" class="toggle-secondary-navigation"><i class="fa fa-plus"></i></button>
+
+    <div class="menu">
+
+      <ul id="menu-secondary-items" class="menu-secondary-items">
+        
+        <li id="menu-item" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item">
+          <a href="/categories/computer-science">computer science</a>
+        </li>
+        
+        <li id="menu-item" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item">
+          <a href="/categories/game-theory">game theory</a>
+        </li>
+        
+        <li id="menu-item" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item">
+          <a href="/categories/mathematics">mathematics</a>
+        </li>
+        
+        <li id="menu-item" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item">
+          <a href="/categories/programming">programming</a>
+        </li>
+        
+
+      </ul>
+
+    </div>
+
+  </div>
+
+
+  <ul class="social-media-icons">
+
+
+    
+    <li>
+      <a href="https://www.facebook.com/paul.hankin" data-animate-hover="pulse" class="facebook" target="_blank">
+        <i class="fa fa-facebook-square" title="facebook"></i>
+        <span class="screen-reader-text">facebook</span>
+      </a>
+    </li>
+    
+
+    
+
+    
+
+    
+
+    
+    <li>
+      <a href="mailto:paul.hankin@pobox.com" data-animate-hover="pulse" class="email">
+        <i class="fa fa-envelope" title="email"></i>
+        <span class="screen-reader-text">email</span>
+      </a>
+    </li>
+    
+
+    
+
+    
+    <li>
+      <a href="https://stackoverflow.com/users/1400793/paul-hankin" data-animate-hover="pulse" class="stackoverflow" target="_blank">
+        <i class="fa fa-stack-overflow" title="stackoverflow"></i>
+        <span class="screen-reader-text">stackoverflow</span>
+      </a>
+    </li>
+    
+
+
+    
+    <li>
+      <a href="https://github.com/paulhankin" data-animate-hover="pulse" class="github" target="_blank">
+        <i class="fa fa-github" title="github"></i>
+        <span class="screen-reader-text">github</span>
+      </a>
+    </li>
+    
+
+
+    
+
+
+  </ul></div>
+
+      </div>
+
+      <div class="container">
+        <div id="title-info" class="title-info">
+  <div id='site-title' class='site-title'>
+    
+    <a href="/"> Paul&#39;s blog </a>
+    </div>
+  </div>
+  <button id="toggle-navigation" class="toggle-navigation">
+    <i class="fa fa-bars"></i>
+  </button>
+
+  <div id="menu-primary-tracks" class="menu-primary-tracks"></div>
+  <div id="menu-primary" class="menu-container menu-primary" role="navigation">
+    
+    <p class="site-description">Tasty brain snacks</p>
+    
+
+    <div class="menu">
+      <ul id="menu-primary-items" class="menu-primary-items">
+        
+        
+        <li id="menu-item" class='menu-item menu-item-type-custom menu-item-object-custom '>
+          <a href="https://blog.paulhankin.net/">Home</a>
+        </li>
+        
+        <li id="menu-item" class='menu-item menu-item-type-post_type menu-item-object-page '>
+          <a href="https://blog.paulhankin.net/about/">About</a>
+        </li>
+        
+        <li id="menu-item" class='menu-item menu-item-type-post_type menu-item-object-page '>
+          <a href="https://blog.paulhankin.net/post/index.xml">RSS</a>
+        </li>
+        
+      </ul>
+    </div>
+
+  </div>
+
+      </div>
+    </header>
+
+    <div id="main" class="main" role="main">
+
+      
+  <div id="loop-container" class="loop-container">
+    
+    <div class="post type-post status-publish format-standard has-post-thumbnail hentry category-design tag-design tag-standard-2 tag-tagalicious tag-travel entry full-without-featured odd excerpt-1">
+
+      <div class='featured-image lazy lazy-bg-image' data-background="https://blog.paulhankin.net/img/post/backtoc.png">
+      </div>
+      
+        <div class="entry-meta">
+          <span class="date">7 February 2020</span>	<span> / </span>
+
+          <span class="author">
+            
+            Paul Hankin
+            
+          </span>
+
+
+          
+          <span class="category">
+            <span> / </span>
+
+            <a href="/categories/programming">programming</a>
+          </span>
+          
+
+
+        </div>
+        <div class='entry-header'>
+          <h1 class='entry-title'> Back to C</h1>
+        </div>
+        <div class="entry-container">
+          <div class="entry-content">
+            <article>
+              <p>I've recently been programming seriously in C, after around 10 years in higher
+level languages (Go, Python, C++, and others). I've been using C11, the
+latest standard, whereas previously I was working in C89.</p>
+
+<p>I <em>like</em> programming in C. It's not an easy language to write fluently because
+it doens't provide many conveniences, it's full of traps, and I'd avoid it if I
+was writing something that needed to be safe, but I still find it fun.</p>
+
+<p>This post describes my recent experience with C and the new standard, and my
+observations about how things have and haven't changed. It's not a critique of C,
+and some of the obvious problems with writing C (such as lack of bounds checking
+of arrays) aren't discussed.</p>
+
+<p></p>
+
+<h2 id="the-good">The good</h2>
+
+<p>First the good things about C11 (relative to C89 &mdash; these things may have
+appeared in in-between standards).</p>
+
+<p>The new standard integer types, <code>int64_t</code>,
+<code>uint32_t</code>, <code>int8_t</code> and so on, are a very welcome addition. Previously,
+typically one would have to generate a header file with platform-specific
+definitions with the same effect, but it's nice to have it in the standard library.
+That you need to write, for example, <code>printf(&quot;a 64 bit number: %&quot; PRIu64 &quot;\n&quot;, (uint64_t)42);</code>
+to print one out is pretty ugly though.</p>
+
+<p>Similarly, it's nice to have a <code>bool</code> type built into the language.</p>
+
+<p>Being able to specify struct field names, and array indices in literals and initializers
+helps readability (and, like in Go, allows one to extend structs with backwards-compatibility
+if code treats zero values carefully).</p>
+
+<p>I find myself writing code like this quite often, which initializes a struct pointer's fields,
+including zeroing the unspecified ones:</p>
+
+<pre><code>*item = (layerItem_s){
+    .props = LAYER_ITEM_PROP_ELEMENT_TRIANGLES | LAYER_ITEM_PROP_BLEND | LAYER_ITEM_PROP_TEX0,
+    .vao_index = vao,
+    .offset = buf_offset / sizeof(font_vertex_s),
+    .n_elements = vx_count,
+    .tex0 = texture,
+};
+</code></pre>
+
+<p>Many functions in the standard library that set <code>errno</code> now have a &quot;safe&quot; <code>_s</code> variant that
+returns an <code>errno_t</code> rather than using a global (or thread-local) variable to report the errors.
+For example:</p>
+
+<pre><code>FILE *f;
+errno_t err = fopen_s(&amp;f, &quot;data.txt&quot;, &quot;r&quot;);
+... code that checks err.
+</code></pre>
+
+<p>The lack of multiple return-values makes this a bit ugly, but this seems like a step forward to
+me, both because it makes error-checking a bit more obvious, but also because it avoids the
+problems with the global <code>errno</code>.</p>
+
+<p>Having <code>clang-format</code> is really nice, for all the usual reasons that automated code-formatters are nice.</p>
+
+<p>Finally, compilation speed with clang is tolerable. On my development machine, I can run
+a parallel make, and get a binary in around 2 seconds. Ideally it would be
+faster, but it's quite acceptable.</p>
+
+<h2 id="things-i-miss">Things I miss</h2>
+
+<p>Having to write separate <code>.h</code> files, and in general, the lack of modules or packages or whatever
+else you might call them, is a chore. The Go model of packages possibly being multiple files,
+and having a way of specifying what's public and what's not works really well, and the bonus
+of getting explicit dependency information makes the build process more easily toolable. I don't
+want to have to write a <code>Makefile</code> to incrementally compile a library or binary. I don't claim
+that adding modules/packages to C is straightforward, but it's something I found a bit painful.</p>
+
+<p>I missed something like C++'s RAII or go's <code>defer</code>. With explicit memory management, in many
+cases one wants to allocate at the start of a block and free at the end, and not have
+unruly code to handle the frees when you break out of the block or return from a function mid-block.</p>
+
+<p>I also missed objects. Nearly all mainstream languages now have a way of specifying methods
+for objects. Being able to define methods (even if there's no generics, interfaces or inheritance),
+is a natural way of grouping functionality with the associated data, and the method names
+are not in any global or package namespace, so they can be shorter. I'd much rather read a function call
+that takes an item and an integer that looks like <code>item.F(123)</code> than how you'd write it using
+the convention of prefixing function names with the package that defines them: <code>item_F(item, 123)</code>.</p>
+
+<p>I'd really like a smarter <code>printf</code>, which I guess would require much smarter macros like in <a href="https://ziglang.org">zig</a>.
+Not only would it mean that for example you could write <code>%d</code> whatever the specific integer type, but also
+allow better error-checking, and perhaps even enable custom formatting code.</p>
+
+<h2 id="the-awful">The awful</h2>
+
+<p>Concurrency and parallelism are still not properly in the language. I was extremely
+happy to see a threads module in the standard library (<code>threads.h</code>), but the I discovered it
+was an optional extension, and isn't available everywhere (including on the
+clang distribution I'm using). The obvious alternative choice on Linux is pthreads, but on Windows
+either you use the Windows API, or download a port of pthreads from sourceforge.net. What a mess.</p>
+
+<p>Debug information is not standardized. Linux has a nice <code>execinfo.h</code> module that provides a
+simple way to get backtraces, and Windows has a quite complicated API that also requires
+separate debug symbol files. I just want debug information compiled into my debug build, and
+for there to be a standard API for parsing the stack.</p>
+
+<p>Dependencies are awful. In my code, I've minimized my third-party dependencies, and
+only currently depend on OpenGL and SDL2. But
+still, I found it extremely painful to find the right libraries to link to, and OpenGL in
+particular has become user-hostile, requiring &quot;glew&quot; on Windows to use the latest versions. I
+still haven't managed to build a statically-linked binary on Windows using the clang
+compiler and SDL.</p>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>Overall, I found the newer features of C11 I used beneficial, but relatively superficial.
+I consider the lack of availability of <code>threads.h</code> to be the biggest disappointment,
+given the modern world with its multi-core CPUs.</p>
+
+<p>Mostly, I found C to be as good as it ever was. Fun and efficient, but error-prone and with
+rough usability.</p>
+            </article>
+          </div>
+          
+      <div class='entry-meta-bottom'>
+        
+
+  <div class="entry-categories"><p><span>Categories</span>
+    
+    <a href="/categories/programming" title="View all posts in programming">programming</a>
+  </p>
+</div>
+
+
+
+<div class="entry-tags"><p><span>Tags</span>
+  
+  <a href="/tags/programming" title="View all posts tagged programming">programming</a>
+  
+
+</p></div>	</div>
+
+<div class="author-meta">
+
+  <div class="author">
+    <img alt='Paul Hankin' src="/img/paulhankin_portrait.png" class='avatar avatar-72 photo' height='72' width='72'>
+
+    <span>
+      Written by:<a href="https://blog.paulhankin.net/" title="Posts by Paul Hankin" rel="author">Paul Hankin</a>        </span>
+    </div>
+    <div class="bio">
+      
+      <p>Programming since 1981, professionally since 2000. I’ve a PhD in programming language semantics but these days I prefer programming in Go, C, and Python. I’ve worked mostly on games and large-scale server software.</p>
+      
+
+
+      
+      <a class="facebook" target="_blank"
+      href="https://www.facebook.com/paul.hankin">
+      <i class="fa fa-facebook"
+      title="facebook icon"></i>
+    </a>
+    
+
+    
+
+
+  
+
+
+
+<a class="email" target="_blank"
+href="mailto:paul.hankin@pobox.com">
+<i class="fa fa-envelope"
+title="email icon"></i>
+</a>
+
+
+
+
+
+<a class="stackoverflow" target="_blank"
+href="https://stackoverflow.com/users/1400793/paul-hankin">
+<i class="fa fa-stack-overflow"
+title="stackoverflow icon"></i>
+</a>
+
+
+
+<a class="github" target="_blank"
+href="https://github.com/paulhankin">
+<i class="fa fa-github"
+title="github icon"></i>
+</a>
+
+
+
+
+
+
+
+</div>
+</div>
+
+</div>
+</div>
+
+<section id="comments" class="comments">
+  <div id="disqus_thread"></div>
+<script>
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "blog-paulhankin" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+  
+
+
+
+
+</section>
+</div>
+
+ 
+
+
+
+    </div>
+
+    <footer id="site-footer" class="site-footer" role="contentinfo">
+
+	<h1>
+    
+    <a href=""> Paul&#39;s blog </a>
+    
+	</h1>
+
+			
+			<p class="site-description">Tasty brain snacks</p>
+			
+
+		<div id="menu-footer" class="menu-container menu-footer" role="navigation">
+		<div class="menu">
+
+      <ul id="menu-footer-items" class="menu-footer-items">
+        
+</ul>
+
+</div>	</div>
+
+<ul class="social-media-icons">
+
+        
+				<li>
+					<a class="facebook" target="_blank"
+					   href="https://www.facebook.com/paul.hankin" >
+						<i class="fa fa-facebook" title="facebook"></i>
+						<span class="screen-reader-text">facebook</span>
+					</a>
+				</li>
+        
+
+        
+
+
+        
+
+        
+
+        
+        <li>
+        <a href="mailto:paul.hankin@pobox.com"  class="email">
+            <i class="fa fa-envelope" title="email"></i>
+            <span class="screen-reader-text">email</span>
+        </a>
+        </li>
+        
+
+        
+
+        
+        <li>
+        <a href="https://stackoverflow.com/users/1400793/paul-hankin"  class="stackoverflow" target="_blank">
+            <i class="fa fa-stack-overflow" title="stackoverflow"></i>
+            <span class="screen-reader-text">stackoverflow</span>
+        </a>
+        </li>
+        
+
+
+        
+        <li>
+        <a href="https://github.com/paulhankin"  class="github" target="_blank">
+            <i class="fa fa-github" title="github"></i>
+            <span class="screen-reader-text">github</span>
+        </a>
+        </li>
+        
+
+
+        
+
+				</ul>	<div class="design-credit">
+		
+		<p>&copy; 2015 &mdash; 2018 Paul Hankin</p>
+		
+		<p>Nederburg Hugo Theme by <a href="https://appernetic.io">Appernetic</a>.</p>
+		
+		<p>A port of Tracks by Compete Themes.</p>
+		
+	</div>
+</footer>
+
+  </div>
+  <script src="https://blog.paulhankin.net/js/jquery.min.js"></script>
+<script src="https://blog.paulhankin.net/js/jquerymigrate.js"></script>
+<script src="https://blog.paulhankin.net/js/production.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.6.0/katex.min.css">
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+</body>
+</html>
