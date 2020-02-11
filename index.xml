@@ -80,19 +80,6 @@ implements the rather ingenious method of &lt;a href=&#34;https://onlinelibrary.
     </item>
     
     <item>
-      <title>Portfolio</title>
-      <link>https://blog.paulhankin.net/portfolio/</link>
-      <pubDate>Mon, 04 Feb 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://blog.paulhankin.net/portfolio/</guid>
-      <description>Flyover of Switzerland Using height map data from https://www.swisstopo.admin.ch (with noise added to reduce artefacts) as a displacement map, the scene was rendered in Blender. A procedurally generated texture was used to color the heightmap.
- Waveform Collapse Implemented the WFC algorithm in Go and Python. The resulting scenes are rendered in Blender. Here&#39;s two examples of an array of scenes using two tilesets.
-
-
-This was joint work with a friend.</description>
-    </item>
-    
-    <item>
       <title>A gentle introduction to hard programming</title>
       <link>https://blog.paulhankin.net/learnprogramming/</link>
       <pubDate>Sun, 17 Jun 2018 00:00:00 +0000</pubDate>
