@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<script type="application/ld+json">
+    {
+        "@context" : "http://schema.org",
+        "@type" : "BlogPosting",
+        "mainEntityOfPage": {
+             "@type": "WebPage",
+             "@id": "https://blog.paulhankin.net/"
+        },
+        "articleSection" : "post",
+        "name" : "Deriving the Fibonacci doubling formulas combinatorially",
+        "headline" : "Deriving the Fibonacci doubling formulas combinatorially",
+        "description" : "<p>This post provides a quick derivation of the fast Fibonacci
+doubling formulas, using the correspondence between Fibonacci numbers
+and the number of ways to climb <span  class="math">\(n\)</span> steps taking 1 or 2 steps at a time.</p>
+
+<p>The Fibonacci numbers are a sequence <span  class="math">\(\mathrm{Fib}(i)\)</span> defined by <span  class="math">\(\mathrm{Fib}(1)=\mathrm{Fib}(2)=1\)</span> and <span  class="math">\(\mathrm{Fib}(n+2)=\mathrm{Fib}(n+1)+\mathrm{Fib}(n)\)</span>.</p>
+
+<p>The Fibonacci doubling formulas are:</p>
+
+<p><span  class="math">\[\begin{eqnarray}
+\mathrm{Fib}(2n) &=& 2\mathrm{Fib}(n)\mathrm{Fib}(n+1) - \mathrm{Fib}(n)^2 \\
+\mathrm{Fib}(2n+1) &=& \mathrm{Fib}(n+1)^2 + \mathrm{Fib}(n)^2
+\end{eqnarray}\]</span></p>
+
+<p>These formulas can be used to efficiently compute Fibonacci numbers (see the the end of the post for how). They are usually derived from a matrix power representation of Fibonacci numbers (or see <a href="https://blog.paulhankin.net/fibonacci2/">one of my earlier posts</a> for an alternative). This blog post gives a direct combinatorial derivation.</p>
+
+<p></p>",
+        "inLanguage" : "en-US",
+        "author" : "",
+        "creator" : "",
+        "publisher": "",
+        "accountablePerson" : "",
+        "copyrightHolder" : "",
+        "copyrightYear" : "2020",
+        "datePublished": "2020-03-16 00:00:00 &#43;0000 UTC",
+        "dateModified" : "2020-03-16 00:00:00 &#43;0000 UTC",
+        "url" : "https://blog.paulhankin.net/fibonacci_doubling/",
+        "wordCount" : "0",
+        "image" : https://blog.paulhankin.net/img/post/flowerplot.png",
+        "keywords" : [ "Blog" ]   
+    }
+    </script>
+
+ <title>Deriving the Fibonacci doubling formulas combinatorially </title>
+
+
+<meta name="description" content="Programming, Computer Science, Games and Other Things" />
+
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="all,follow">
+<meta name="googlebot" content="index,follow,snippet,archive">
+<link rel="stylesheet" id="ct-tracks-google-fonts-css" href="//fonts.googleapis.com/css?family=Raleway%3A400%2C700&amp;subset=latin%2Clatin-ext&amp;ver=4.7.2" type="text/css" media="all">
+<link rel="stylesheet" href="https://blog.paulhankin.net/css/font-awesome.min.css" type='text/css' media='all'>
+
+<link href="https://blog.paulhankin.net/css/style.css" rel="stylesheet" id="theme-stylesheet" type='text/css' media='all'>
+
+<link href="https://blog.paulhankin.net/css/custom.css" rel="stylesheet" type='text/css' media='all'>
+<link rel="shortcut icon" href="https://blog.paulhankin.net/img/favicon.ico" type="image/x-icon">
+<link rel="icon" href="https://blog.paulhankin.net/img/favicon.ico" type="image/x-icon">
+
+
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-63206765-1', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='//www.google-analytics.com/analytics.js'></script>
+
+</head>
+
+
+<body class="post-template-default single single-post single-format-standard ct-body singular singular-post not-front standard">
+  
+  <div id="overflow-container" class="overflow-container">
+    <a class="skip-content" href="#main">Skip to content</a>
+    <header id="site-header" class="site-header" role="banner">
+      <div class='top-navigation'>
+        <div class='container'>
+
+  <div id="menu-secondary" class="menu-container menu-secondary" role="navigation">
+    <button id="toggle-secondary-navigation" class="toggle-secondary-navigation"><i class="fa fa-plus"></i></button>
+
+    <div class="menu">
+
+      <ul id="menu-secondary-items" class="menu-secondary-items">
+        
+        <li id="menu-item" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item">
+          <a href="/categories/computer-science">computer science</a>
+        </li>
+        
+        <li id="menu-item" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item">
+          <a href="/categories/game-theory">game theory</a>
+        </li>
+        
+        <li id="menu-item" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item">
+          <a href="/categories/mathematics">mathematics</a>
+        </li>
+        
+        <li id="menu-item" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item">
+          <a href="/categories/programming">programming</a>
+        </li>
+        
+
+      </ul>
+
+    </div>
+
+  </div>
+
+
+  <ul class="social-media-icons">
+
+
+    
+    <li>
+      <a href="https://www.facebook.com/paul.hankin" data-animate-hover="pulse" class="facebook" target="_blank">
+        <i class="fa fa-facebook-square" title="facebook"></i>
+        <span class="screen-reader-text">facebook</span>
+      </a>
+    </li>
+    
+
+    
+
+    
+
+    
+
+    
+    <li>
+      <a href="mailto:paul.hankin@pobox.com" data-animate-hover="pulse" class="email">
+        <i class="fa fa-envelope" title="email"></i>
+        <span class="screen-reader-text">email</span>
+      </a>
+    </li>
+    
+
+    
+
+    
+    <li>
+      <a href="https://stackoverflow.com/users/1400793/paul-hankin" data-animate-hover="pulse" class="stackoverflow" target="_blank">
+        <i class="fa fa-stack-overflow" title="stackoverflow"></i>
+        <span class="screen-reader-text">stackoverflow</span>
+      </a>
+    </li>
+    
+
+
+    
+    <li>
+      <a href="https://github.com/paulhankin" data-animate-hover="pulse" class="github" target="_blank">
+        <i class="fa fa-github" title="github"></i>
+        <span class="screen-reader-text">github</span>
+      </a>
+    </li>
+    
+
+
+    
+
+
+  </ul></div>
+
+      </div>
+
+      <div class="container">
+        <div id="title-info" class="title-info">
+  <div id='site-title' class='site-title'>
+    
+    <a href="/"> Paul&#39;s blog </a>
+    </div>
+  </div>
+  <button id="toggle-navigation" class="toggle-navigation">
+    <i class="fa fa-bars"></i>
+  </button>
+
+  <div id="menu-primary-tracks" class="menu-primary-tracks"></div>
+  <div id="menu-primary" class="menu-container menu-primary" role="navigation">
+    
+    <p class="site-description">Tasty brain snacks</p>
+    
+
+    <div class="menu">
+      <ul id="menu-primary-items" class="menu-primary-items">
+        
+        
+        <li id="menu-item" class='menu-item menu-item-type-custom menu-item-object-custom '>
+          <a href="https://blog.paulhankin.net/">Home</a>
+        </li>
+        
+        <li id="menu-item" class='menu-item menu-item-type-post_type menu-item-object-page '>
+          <a href="https://blog.paulhankin.net/about/">About</a>
+        </li>
+        
+        <li id="menu-item" class='menu-item menu-item-type-post_type menu-item-object-page '>
+          <a href="https://blog.paulhankin.net/post/index.xml">RSS</a>
+        </li>
+        
+      </ul>
+    </div>
+
+  </div>
+
+      </div>
+    </header>
+
+    <div id="main" class="main" role="main">
+
+      
+  <div id="loop-container" class="loop-container">
+    
+    <div class="post type-post status-publish format-standard has-post-thumbnail hentry category-design tag-design tag-standard-2 tag-tagalicious tag-travel entry full-without-featured odd excerpt-1">
+
+      <div class='featured-image lazy lazy-bg-image' data-background="https://blog.paulhankin.net/img/post/flowerplot.png">
+      </div>
+      
+        <div class="entry-meta">
+          <span class="date">16 March 2020</span>	<span> / </span>
+
+          <span class="author">
+            
+            Paul Hankin
+            
+          </span>
+
+
+          
+          <span class="category">
+            <span> / </span>
+
+            <a href="/categories/computer%20science">computer science</a>
+          </span>
+          
+          <span class="category">
+            <span> / </span>
+
+            <a href="/categories/mathematics">mathematics</a>
+          </span>
+          
+
+
+        </div>
+        <div class='entry-header'>
+          <h1 class='entry-title'> Deriving the Fibonacci doubling formulas combinatorially</h1>
+        </div>
+        <div class="entry-container">
+          <div class="entry-content">
+            <article>
+              <p>This post provides a quick derivation of the fast Fibonacci
+doubling formulas, using the correspondence between Fibonacci numbers
+and the number of ways to climb <span  class="math">\(n\)</span> steps taking 1 or 2 steps at a time.</p>
+
+<p>The Fibonacci numbers are a sequence <span  class="math">\(\mathrm{Fib}(i)\)</span> defined by <span  class="math">\(\mathrm{Fib}(1)=\mathrm{Fib}(2)=1\)</span> and <span  class="math">\(\mathrm{Fib}(n+2)=\mathrm{Fib}(n+1)+\mathrm{Fib}(n)\)</span>.</p>
+
+<p>The Fibonacci doubling formulas are:</p>
+
+<p><span  class="math">\[\begin{eqnarray}
+\mathrm{Fib}(2n) &=& 2\mathrm{Fib}(n)\mathrm{Fib}(n+1) - \mathrm{Fib}(n)^2 \\
+\mathrm{Fib}(2n+1) &=& \mathrm{Fib}(n+1)^2 + \mathrm{Fib}(n)^2
+\end{eqnarray}\]</span></p>
+
+<p>These formulas can be used to efficiently compute Fibonacci numbers (see the the end of the post for how). They are usually derived from a matrix power representation of Fibonacci numbers (or see <a href="https://blog.paulhankin.net/fibonacci2/">one of my earlier posts</a> for an alternative). This blog post gives a direct combinatorial derivation.</p>
+
+<p></p>
+
+<p>There's a well-known algorithmic problem of counting the number of ways (<span  class="math">\(S(n)\)</span>) to climb <span  class="math">\(n\)</span> steps, starting at the first step, ending exactly on the <span  class="math">\(n\)</span>th step, and taking 1 or 2 steps at a time. We see that <span  class="math">\(S(1)=S(2)=1\)</span>, and <span  class="math">\(S(n+2)=S(n+1)+S(n)\)</span>. Since this problem has the exact same recurrence relation as the Fibonacci numbers, <span  class="math">\(S(n) = \mathrm{Fib}(n)\)</span>.</p>
+
+<p>We can count solutions to the steps problem in a different way, by dividing the problem in two (treating even and odd separately).</p>
+
+<p>First the even case. Suppose we have <span  class="math">\(2n\)</span> steps. The number of ways of taking these steps landing on the <span  class="math">\(n\)</span>th step is <span  class="math">\(S(n)S(n+1)\)</span> (the number of ways of reaching step <span  class="math">\(n\)</span>, times the number ways of climbing <span  class="math">\(n+1\)</span> steps). If a path doesn't land on step <span  class="math">\(n\)</span>, then it must land on step <span  class="math">\(n-1\)</span> and jump over step <span  class="math">\(n\)</span> to land on step <span  class="math">\(n+1\)</span>. The number of such paths is <span  class="math">\(S(n-1)S(n)\)</span>. Thus <span  class="math">\(S(2n) = S(n)S(n+1) + S(n-1)S(n)\)</span>. Since <span  class="math">\(S(n-1)+S(n)=S(n+1)\)</span>, we have <span  class="math">\(S(2n) = S(n)S(n+1) + (S(n+1)-S(n))S(n) = 2S(n)S(n+1) - S(n)^2\)</span>.</p>
+
+<p>The odd case is similar. Suppose we have <span  class="math">\(2n+1\)</span> steps. By similar arguments to above, there are <span  class="math">\(S(n+1)S(n+1)\)</span> paths that land on step <span  class="math">\(n+1\)</span>, and <span  class="math">\(S(n)S(n)\)</span> paths that don't.</p>
+
+<p>Since <span  class="math">\(S = \mathrm{Fib}\)</span>, we've already derived the doubling formulas:</p>
+
+<p><span  class="math">\[\begin{eqnarray}
+\mathrm{Fib}(2n) &=& 2\mathrm{Fib}(n)\mathrm{Fib}(n+1) - \mathrm{Fib}(n)^2 \\
+\mathrm{Fib}(2n+1) &=& \mathrm{Fib}(n+1)^2 + \mathrm{Fib}(n)^2
+\end{eqnarray}\]</span></p>
+
+<p>For completeness, here's how to use these formulae to quickly compute Fibonacci numbers with <span  class="math">\(O(\mathrm{log}_2(n))\)</span> arithmetic operations.</p>
+
+<pre><code>def fib2(n):
+    &quot;&quot;&quot;fib2(n) returns fib(n), fib(n+1)&quot;&quot;&quot;
+    if n == 0:
+        return 0, 1
+    f0, f1 = fib2(n//2)
+    if n % 2 == 0:
+        # Even case.
+        return 2*f0*f1 - f0*f0, f0*f0 + f1*f1
+    else: 
+        # Odd case.
+        # We need to return fib(2k+1), fib(2k+2) 
+        # and we have f0=fib(k), f1=fib(k+1).
+        # The doubling formulas give:
+        # fib(2k) = 2*f0*f1 - f0*f0, fib(2k+1)=f0*f0 + f1*f1
+        # Then fib(2k+2) = fib(2k) + fib(2k+1) = 2*f0*f1 + f1*f1.
+        return f0*f0 + f1*f1, 2*f0*f1 + f1*f1
+
+for i in range(20):
+    print(i, fib2(i)[0])
+</code></pre>
+            </article>
+          </div>
+          
+      <div class='entry-meta-bottom'>
+        
+
+  <div class="entry-categories"><p><span>Categories</span>
+    
+    <a href="/categories/computer-science" title="View all posts in computer science">computer science</a>
+    <a href="/categories/mathematics" title="View all posts in mathematics">mathematics</a>
+  </p>
+</div>
+
+
+
+<div class="entry-tags"><p><span>Tags</span>
+  
+
+</p></div>	</div>
+
+<div class="author-meta">
+
+  <div class="author">
+    <img alt='Paul Hankin' src="/img/paulhankin_portrait.png" class='avatar avatar-72 photo' height='72' width='72'>
+
+    <span>
+      Written by:<a href="https://blog.paulhankin.net/" title="Posts by Paul Hankin" rel="author">Paul Hankin</a>        </span>
+    </div>
+    <div class="bio">
+      
+      <p>Programming since 1981, professionally since 2000. I’ve a PhD in programming language semantics but these days I prefer programming in Go, C, and Python. I’ve worked mostly on games and large-scale server software.</p>
+      
+
+
+      
+      <a class="facebook" target="_blank"
+      href="https://www.facebook.com/paul.hankin">
+      <i class="fa fa-facebook"
+      title="facebook icon"></i>
+    </a>
+    
+
+    
+
+
+  
+
+
+
+<a class="email" target="_blank"
+href="mailto:paul.hankin@pobox.com">
+<i class="fa fa-envelope"
+title="email icon"></i>
+</a>
+
+
+
+
+
+<a class="stackoverflow" target="_blank"
+href="https://stackoverflow.com/users/1400793/paul-hankin">
+<i class="fa fa-stack-overflow"
+title="stackoverflow icon"></i>
+</a>
+
+
+
+<a class="github" target="_blank"
+href="https://github.com/paulhankin">
+<i class="fa fa-github"
+title="github icon"></i>
+</a>
+
+
+
+
+
+
+
+</div>
+</div>
+
+</div>
+</div>
+
+<section id="comments" class="comments">
+  <div id="disqus_thread"></div>
+<script>
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "blog-paulhankin" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+  
+
+
+
+
+</section>
+</div>
+
+ 
+
+
+
+    </div>
+
+    <footer id="site-footer" class="site-footer" role="contentinfo">
+
+	<h1>
+    
+    <a href=""> Paul&#39;s blog </a>
+    
+	</h1>
+
+			
+			<p class="site-description">Tasty brain snacks</p>
+			
+
+		<div id="menu-footer" class="menu-container menu-footer" role="navigation">
+		<div class="menu">
+
+      <ul id="menu-footer-items" class="menu-footer-items">
+        
+</ul>
+
+</div>	</div>
+
+<ul class="social-media-icons">
+
+        
+				<li>
+					<a class="facebook" target="_blank"
+					   href="https://www.facebook.com/paul.hankin" >
+						<i class="fa fa-facebook" title="facebook"></i>
+						<span class="screen-reader-text">facebook</span>
+					</a>
+				</li>
+        
+
+        
+
+
+        
+
+        
+
+        
+        <li>
+        <a href="mailto:paul.hankin@pobox.com"  class="email">
+            <i class="fa fa-envelope" title="email"></i>
+            <span class="screen-reader-text">email</span>
+        </a>
+        </li>
+        
+
+        
+
+        
+        <li>
+        <a href="https://stackoverflow.com/users/1400793/paul-hankin"  class="stackoverflow" target="_blank">
+            <i class="fa fa-stack-overflow" title="stackoverflow"></i>
+            <span class="screen-reader-text">stackoverflow</span>
+        </a>
+        </li>
+        
+
+
+        
+        <li>
+        <a href="https://github.com/paulhankin"  class="github" target="_blank">
+            <i class="fa fa-github" title="github"></i>
+            <span class="screen-reader-text">github</span>
+        </a>
+        </li>
+        
+
+
+        
+
+				</ul>	<div class="design-credit">
+		
+		<p>&copy; 2015 &mdash; 2018 Paul Hankin</p>
+		
+		<p>Nederburg Hugo Theme by <a href="https://appernetic.io">Appernetic</a>.</p>
+		
+		<p>A port of Tracks by Compete Themes.</p>
+		
+	</div>
+</footer>
+
+  </div>
+  <script src="https://blog.paulhankin.net/js/jquery.min.js"></script>
+<script src="https://blog.paulhankin.net/js/jquerymigrate.js"></script>
+<script src="https://blog.paulhankin.net/js/production.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.6.0/katex.min.css">
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+</body>
+</html>

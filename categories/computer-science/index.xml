@@ -6,10 +6,34 @@
     <description>Recent content in Computer science on Paul&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 14 May 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 16 Mar 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://blog.paulhankin.net/categories/computer-science/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Deriving the Fibonacci doubling formulas combinatorially</title>
+      <link>https://blog.paulhankin.net/fibonacci_doubling/</link>
+      <pubDate>Mon, 16 Mar 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.paulhankin.net/fibonacci_doubling/</guid>
+      <description>&lt;p&gt;This post provides a quick derivation of the fast Fibonacci
+doubling formulas, using the correspondence between Fibonacci numbers
+and the number of ways to climb &lt;span  class=&#34;math&#34;&gt;\(n\)&lt;/span&gt; steps taking 1 or 2 steps at a time.&lt;/p&gt;
+
+&lt;p&gt;The Fibonacci numbers are a sequence &lt;span  class=&#34;math&#34;&gt;\(\mathrm{Fib}(i)\)&lt;/span&gt; defined by &lt;span  class=&#34;math&#34;&gt;\(\mathrm{Fib}(1)=\mathrm{Fib}(2)=1\)&lt;/span&gt; and &lt;span  class=&#34;math&#34;&gt;\(\mathrm{Fib}(n+2)=\mathrm{Fib}(n+1)+\mathrm{Fib}(n)\)&lt;/span&gt;.&lt;/p&gt;
+
+&lt;p&gt;The Fibonacci doubling formulas are:&lt;/p&gt;
+
+&lt;p&gt;&lt;span  class=&#34;math&#34;&gt;\[\begin{eqnarray}
+\mathrm{Fib}(2n) &amp;=&amp; 2\mathrm{Fib}(n)\mathrm{Fib}(n+1) - \mathrm{Fib}(n)^2 \\
+\mathrm{Fib}(2n+1) &amp;=&amp; \mathrm{Fib}(n+1)^2 + \mathrm{Fib}(n)^2
+\end{eqnarray}\]&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;These formulas can be used to efficiently compute Fibonacci numbers (see the the end of the post for how). They are usually derived from a matrix power representation of Fibonacci numbers (or see &lt;a href=&#34;https://blog.paulhankin.net/fibonacci2/&#34;&gt;one of my earlier posts&lt;/a&gt; for an alternative). This blog post gives a direct combinatorial derivation.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>A novel and efficient way to compute Fibonacci numbers</title>
