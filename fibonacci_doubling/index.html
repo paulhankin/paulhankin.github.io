@@ -270,13 +270,13 @@ and the number of ways to climb <span  class="math">\(n\)</span> steps taking 1 
 
 <p></p>
 
-<p>There's a well-known algorithmic problem of counting the number of ways (<span  class="math">\(S(n)\)</span>) to climb <span  class="math">\(n\)</span> steps, starting at the first step, ending exactly on the <span  class="math">\(n\)</span>th step, and taking 1 or 2 steps at a time. We see that <span  class="math">\(S(1)=S(2)=1\)</span>, and <span  class="math">\(S(n+2)=S(n+1)+S(n)\)</span>. Since this problem has the exact same recurrence relation as the Fibonacci numbers, <span  class="math">\(S(n) = \mathrm{Fib}(n)\)</span>.</p>
+<p>There's a well-known algorithmic problem of counting the number of ways, <span  class="math">\(S(n)\)</span>, to climb <span  class="math">\(n\)</span> steps, starting at the first step, ending exactly on the <span  class="math">\(n\)</span>th step, and taking 1 or 2 steps at a time. We see that <span  class="math">\(S(1)=S(2)=1\)</span>, and <span  class="math">\(S(n+2)=S(n+1)+S(n)\)</span>. Since this problem has the exact same recurrence relation as the Fibonacci numbers, <span  class="math">\(S(n) = \mathrm{Fib}(n)\)</span>.</p>
 
 <p>We can count solutions to the steps problem in a different way, by dividing the problem in two (treating even and odd separately).</p>
 
 <p>First the even case. Suppose we have <span  class="math">\(2n\)</span> steps. The number of ways of taking these steps landing on the <span  class="math">\(n\)</span>th step is <span  class="math">\(S(n)S(n+1)\)</span> (the number of ways of reaching step <span  class="math">\(n\)</span>, times the number ways of climbing <span  class="math">\(n+1\)</span> steps). If a path doesn't land on step <span  class="math">\(n\)</span>, then it must land on step <span  class="math">\(n-1\)</span> and jump over step <span  class="math">\(n\)</span> to land on step <span  class="math">\(n+1\)</span>. The number of such paths is <span  class="math">\(S(n-1)S(n)\)</span>. Thus <span  class="math">\(S(2n) = S(n)S(n+1) + S(n-1)S(n)\)</span>. Since <span  class="math">\(S(n-1)+S(n)=S(n+1)\)</span>, we have <span  class="math">\(S(2n) = S(n)S(n+1) + (S(n+1)-S(n))S(n) = 2S(n)S(n+1) - S(n)^2\)</span>.</p>
 
-<p>The odd case is similar. Suppose we have <span  class="math">\(2n+1\)</span> steps. By similar arguments to above, there are <span  class="math">\(S(n+1)S(n+1)\)</span> paths that land on step <span  class="math">\(n+1\)</span>, and <span  class="math">\(S(n)S(n)\)</span> paths that don't.</p>
+<p>The odd case is similar. Suppose we have <span  class="math">\(2n+1\)</span> steps. By similar arguments to above, there are <span  class="math">\(S(n+1)S(n+1)\)</span> paths that land on step <span  class="math">\(n+1\)</span>, and <span  class="math">\(S(n)S(n)\)</span> paths that don't. Thus <span  class="math">\(S(2n+1) = S(n+1)^2 + S(n)^2\)</span>.</p>
 
 <p>Since <span  class="math">\(S = \mathrm{Fib}\)</span>, we've already derived the doubling formulas:</p>
 
