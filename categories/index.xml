@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Categories on Paul&#39;s blog</title>
@@ -6,12 +6,13 @@
     <description>Recent content in Categories on Paul&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
+    <lastBuildDate>Mon, 16 Mar 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://blog.paulhankin.net/categories/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>Computer science</title>
+      <title>computer science</title>
       <link>https://blog.paulhankin.net/categories/computer-science/</link>
       <pubDate>Mon, 16 Mar 2020 00:00:00 +0000</pubDate>
       
@@ -20,16 +21,7 @@
     </item>
     
     <item>
-      <title>Game theory</title>
-      <link>https://blog.paulhankin.net/categories/game-theory/</link>
-      <pubDate>Sun, 10 Jun 2018 00:00:00 +0000</pubDate>
-      
-      <guid>https://blog.paulhankin.net/categories/game-theory/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Mathematics</title>
+      <title>mathematics</title>
       <link>https://blog.paulhankin.net/categories/mathematics/</link>
       <pubDate>Mon, 16 Mar 2020 00:00:00 +0000</pubDate>
       
@@ -38,11 +30,20 @@
     </item>
     
     <item>
-      <title>Programming</title>
+      <title>programming</title>
       <link>https://blog.paulhankin.net/categories/programming/</link>
       <pubDate>Fri, 07 Feb 2020 00:00:00 +0000</pubDate>
       
       <guid>https://blog.paulhankin.net/categories/programming/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>game theory</title>
+      <link>https://blog.paulhankin.net/categories/game-theory/</link>
+      <pubDate>Sun, 10 Jun 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.paulhankin.net/categories/game-theory/</guid>
       <description></description>
     </item>
     

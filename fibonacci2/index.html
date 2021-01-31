@@ -8,27 +8,12 @@
         "@type" : "BlogPosting",
         "mainEntityOfPage": {
              "@type": "WebPage",
-             "@id": "https://blog.paulhankin.net/"
+             "@id": "https:\/\/blog.paulhankin.net\/"
         },
         "articleSection" : "post",
         "name" : "A novel and efficient way to compute Fibonacci numbers",
         "headline" : "A novel and efficient way to compute Fibonacci numbers",
-        "description" : "<p><a href="/fibonacci/">An earlier post</a> described how to compute Fibonacci numbers in a single arithmetic expression.</p>
-
-<p>Faré Rideau, the author of a <a href="http://fare.tunes.org/files/fun/fibonacci.lisp">page of Fibonacci computations in Lisp</a>, suggested in a private
-email a simple and efficient variant, that I believe is novel.</p>
-
-<p>For <span  class="math">\(X\)</span> large enough, <span  class="math">\(\mathrm{Fib}_n = (X^{n+1}\ \mathrm{mod}\ (X^2-X-1))\ \mathrm{mod}\ X\)</span>.</p>
-
-<p>That means you can compute Fibonacci numbers efficiently with a simple program:</p>
-
-<pre><code>for n in range(1, 21):
-    X = 1&lt;&lt;(n+2)
-    print(pow(X, n+1, X*X-X-1) % X)
-</code></pre>
-
-<p>This blog post describes how this method works, gives a few ways to think about it, easily infers the fast Fibonacci doubling formulas, provides a nice alternative to Binet's formula relating the golden ratio and Fibonacci numbers, and expands the method to generalized Fibonacci recurrences, including a near one-line solution to the problem of counting how many ways to reach the end-square of a 100-square game using a single six-sided dice.
-</p>",
+        "description" : "\x3cp\x3e\x3ca href=\x22\/fibonacci\/\x22\x3eAn earlier post\x3c\/a\x3e described how to compute Fibonacci numbers in a single arithmetic expression.\x3c\/p\x3e\n\n\x3cp\x3eFaré Rideau, the author of a \x3ca href=\x22http:\/\/fare.tunes.org\/files\/fun\/fibonacci.lisp\x22\x3epage of Fibonacci computations in Lisp\x3c\/a\x3e, suggested in a private\nemail a simple and efficient variant, that I believe is novel.\x3c\/p\x3e\n\n\x3cp\x3eFor \x3cspan  class=\x22math\x22\x3e\\(X\\)\x3c\/span\x3e large enough, \x3cspan  class=\x22math\x22\x3e\\(\\mathrm{Fib}_n = (X^{n\x2b1}\\ \\mathrm{mod}\\ (X^2-X-1))\\ \\mathrm{mod}\\ X\\)\x3c\/span\x3e.\x3c\/p\x3e\n\n\x3cp\x3eThat means you can compute Fibonacci numbers efficiently with a simple program:\x3c\/p\x3e\n\x3cpre\x3e\x3ccode\x3efor n in range(1, 21):\n    X = 1\x26lt;\x26lt;(n\x2b2)\n    print(pow(X, n\x2b1, X*X-X-1) % X)\x3c\/code\x3e\x3c\/pre\x3e\n\x3cp\x3eThis blog post describes how this method works, gives a few ways to think about it, easily infers the fast Fibonacci doubling formulas, provides a nice alternative to Binet\x27s formula relating the golden ratio and Fibonacci numbers, and expands the method to generalized Fibonacci recurrences, including a near one-line solution to the problem of counting how many ways to reach the end-square of a 100-square game using a single six-sided dice.\x3c\/p\x3e",
         "inLanguage" : "en-US",
         "author" : "",
         "creator" : "",
@@ -36,11 +21,11 @@ email a simple and efficient variant, that I believe is novel.</p>
         "accountablePerson" : "",
         "copyrightHolder" : "",
         "copyrightYear" : "2018",
-        "datePublished": "2018-05-14 00:00:00 &#43;0000 UTC",
-        "dateModified" : "2018-05-14 00:00:00 &#43;0000 UTC",
-        "url" : "https://blog.paulhankin.net/fibonacci2/",
-        "wordCount" : "0",
-        "image" : https://blog.paulhankin.net/img/post/fibonacci.png",
+        "datePublished": "2018-05-14 00:00:00 \x2b0000 UTC",
+        "dateModified" : "2018-05-14 00:00:00 \x2b0000 UTC",
+        "url" : "https:\/\/blog.paulhankin.net\/fibonacci2\/",
+        "wordCount" : "1241",
+        "image" : "https://blog.paulhankin.net/img/post/fibonacci.png"",
         "keywords" : [ "Blog" ]   
     }
     </script>
@@ -65,12 +50,16 @@ email a simple and efficient variant, that I believe is novel.</p>
 <link rel="icon" href="https://blog.paulhankin.net/img/favicon.ico" type="image/x-icon">
 
 
-<script>
-window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-ga('create', 'UA-63206765-1', 'auto');
-ga('send', 'pageview');
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-63206765-1', 'auto');
+	
+	ga('send', 'pageview');
+}
 </script>
-<script async src='//www.google-analytics.com/analytics.js'></script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
 
 </head>
 
@@ -91,11 +80,11 @@ ga('send', 'pageview');
       <ul id="menu-secondary-items" class="menu-secondary-items">
         
         <li id="menu-item" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item">
-          <a href="/categories/computer-science">computer science</a>
+          <a href="/categories/computer-science">computer-science</a>
         </li>
         
         <li id="menu-item" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item">
-          <a href="/categories/game-theory">game theory</a>
+          <a href="/categories/game-theory">game-theory</a>
         </li>
         
         <li id="menu-item" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item">
@@ -261,14 +250,10 @@ email a simple and efficient variant, that I believe is novel.</p>
 <p>For <span  class="math">\(X\)</span> large enough, <span  class="math">\(\mathrm{Fib}_n = (X^{n+1}\ \mathrm{mod}\ (X^2-X-1))\ \mathrm{mod}\ X\)</span>.</p>
 
 <p>That means you can compute Fibonacci numbers efficiently with a simple program:</p>
-
 <pre><code>for n in range(1, 21):
     X = 1&lt;&lt;(n+2)
-    print(pow(X, n+1, X*X-X-1) % X)
-</code></pre>
-
-<p>This blog post describes how this method works, gives a few ways to think about it, easily infers the fast Fibonacci doubling formulas, provides a nice alternative to Binet's formula relating the golden ratio and Fibonacci numbers, and expands the method to generalized Fibonacci recurrences, including a near one-line solution to the problem of counting how many ways to reach the end-square of a 100-square game using a single six-sided dice.
-</p>
+    print(pow(X, n+1, X*X-X-1) % X)</code></pre>
+<p>This blog post describes how this method works, gives a few ways to think about it, easily infers the fast Fibonacci doubling formulas, provides a nice alternative to Binet's formula relating the golden ratio and Fibonacci numbers, and expands the method to generalized Fibonacci recurrences, including a near one-line solution to the problem of counting how many ways to reach the end-square of a 100-square game using a single six-sided dice.</p>
 
 <h3 id="computing-with-integers">Computing with integers</h3>
 
@@ -351,15 +336,12 @@ common ways to generate Fibonacci numbers.</p>
 <p>So, If we want to compute <span  class="math">\(\mathrm{Fib}_n\)</span>, we need to pick <span  class="math">\(X\)</span> large enough (so that <span  class="math">\(\mathrm{Fib}_nX +\ \mathrm{Fib}_{n-1} < X^2-X-1\)</span>, compute <span  class="math">\(X^{n+1}\ \mathrm{mod}\ X^2-X-1\)</span>, and take the result modulo <span  class="math">\(X\)</span>. Faré uses a tight bound for <span  class="math">\(X\)</span>, but <span  class="math">\(X=2^{n+2}\)</span> is easier (at the cost of a little efficiency), and that's what I'll use here.</p>
 
 <p>In Python:</p>
-
 <pre><code>def fib(n):
     X = 1&lt;&lt;(n+2)
     return pow(X, n+1, X*X-X-1) % X
 
 for i in range(1, 21):
-    print(i, fib(i))        
-</code></pre>
-
+    print(i, fib(i))        </code></pre>
 <p>This code uses Python's built-in ternary <code>pow(a, b, m)</code> function that efficiently computes the result of <code>a</code> to the power of <code>b</code> modulo <code>m</code> in exact integer arithmetic, using exponentiation by squaring.</p>
 
 <p>Computation here is done using approximately <span  class="math">\(2n\)</span> bits, which is reasonable since Fibonacci numbers grow exponentially, so the number of bits grows linearly.</p>
@@ -373,7 +355,6 @@ for i in range(1, 21):
 <p>We can calculate what multiplication looks like here: <span  class="math">\((a_0 + a_1X)(b_0+b_1X) = a_0b_0 + (a_1b_0+a_0b_1)X + a_1b_1X^2\)</span>. As before, using that <span  class="math">\(X^2=X+1\)</span>, this equals <span  class="math">\((a_0b_0+a_1b_1) + (a_1b_0+a_0b_1+a_1b_1)X\)</span>.</p>
 
 <p>We can write some code that implements this multiplication, and performs exponentiation by squaring using it.</p>
-
 <pre><code>def mul(a, b):
     return a[0]*b[0]+a[1]*b[1], a[1]*b[0]+a[0]*b[1]+a[1]*b[1]
 
@@ -386,9 +367,7 @@ def ppow(a, n):
     return r
 
 for i in range(1, 21):
-    print(i, ppow((0, 1), i+1)[0])
-</code></pre>
-
+    print(i, ppow((0, 1), i+1)[0])</code></pre>
 <p>This code is very like the matrix-power method for computing Fibonacci numbers, and it's interesting to think of how the two correspond.</p>
 
 <p>We can also reproduce the fast doubling formulas, which are another good method for computing Fibonacci numbers. The fast doubling formulas are:</p>
@@ -410,24 +389,18 @@ for i in range(1, 21):
 <p>These methods can be straightforwardly generalized to higher-order Fibonacci numbers.</p>
 
 <p>For example, suppose we want to calculate the number of ways to get from the start to (exactly) square 100 of a snakes-and-ladders game (with no snakes or ladders) using a single dice, we have the recurrences:</p>
-
 <pre><code>R(n) = 0 (n&lt;0)
 R(0) = 1
-R(n) = R(n-1) + R(n-2) + R(n-3) + R(n-4) + R(n-5) + R(n-6) for n &gt; 1
-</code></pre>
-
+R(n) = R(n-1) + R(n-2) + R(n-3) + R(n-4) + R(n-5) + R(n-6) for n &gt; 1</code></pre>
 <p>These are the hideously named Hexanacci numbers (although they're usually defined as a sequence starting 0, 0, 0, 0, 0, 1, which is offset from 5 from <code>R</code>). See <a href="https://en.wikipedia.org/wiki/Generalizations_of_Fibonacci_numbers#Higher_orders">the Wikipedia article on higher order Fibonacci numbers</a> and <a href="https://oeis.org/A001592">sequence AA01592 on OEIS</a>.</p>
 
 <p>We can use the same tricks as before to calculate this sequence in very little code, and quite efficiently, using <span  class="math">\(log(n)\)</span> multiplications of numbers with approximately <span  class="math">\(6n\)</span> bits. Again, we can't expect much better than this, since the results grow exponentially.</p>
-
 <pre><code>def hexa(n):
     X = 1&lt;&lt;(n+1)
     return pow(X, n+6, X**6-X**5-X**4-X**3-X**2-X-1) % X
 
 for i in range(1, 21):
-    print(i, hexa(i))
-</code></pre>
-
+    print(i, hexa(i))</code></pre>
 <p>Computing <code>hexa(100)</code> with this function gives 290078479914610587823630044098.</p>
 
 <p>If we wanted, we could easily turn this computation into a single line program.</p>
@@ -530,7 +503,7 @@ title="github icon"></i>
 
 <section id="comments" class="comments">
   <div id="disqus_thread"></div>
-<script>
+<script type="application/javascript">
     var disqus_config = function () {
     
     
@@ -639,7 +612,7 @@ title="github icon"></i>
 
 				</ul>	<div class="design-credit">
 		
-		<p>&copy; 2015 &mdash; 2018 Paul Hankin</p>
+		<p>© 2015 — 2018 Paul Hankin</p>
 		
 		<p>Nederburg Hugo Theme by <a href="https://appernetic.io">Appernetic</a>.</p>
 		

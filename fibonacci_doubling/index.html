@@ -8,27 +8,12 @@
         "@type" : "BlogPosting",
         "mainEntityOfPage": {
              "@type": "WebPage",
-             "@id": "https://blog.paulhankin.net/"
+             "@id": "https:\/\/blog.paulhankin.net\/"
         },
         "articleSection" : "post",
         "name" : "Deriving the Fibonacci doubling formulas combinatorially",
         "headline" : "Deriving the Fibonacci doubling formulas combinatorially",
-        "description" : "<p>This post provides a quick derivation of the fast Fibonacci
-doubling formulas, using the correspondence between Fibonacci numbers
-and the number of ways to climb <span  class="math">\(n\)</span> steps taking 1 or 2 steps at a time.</p>
-
-<p>The Fibonacci numbers are a sequence <span  class="math">\(\mathrm{Fib}(i)\)</span> defined by <span  class="math">\(\mathrm{Fib}(1)=\mathrm{Fib}(2)=1\)</span> and <span  class="math">\(\mathrm{Fib}(n+2)=\mathrm{Fib}(n+1)+\mathrm{Fib}(n)\)</span>.</p>
-
-<p>The Fibonacci doubling formulas are:</p>
-
-<p><span  class="math">\[\begin{eqnarray}
-\mathrm{Fib}(2n) &=& 2\mathrm{Fib}(n)\mathrm{Fib}(n+1) - \mathrm{Fib}(n)^2 \\
-\mathrm{Fib}(2n+1) &=& \mathrm{Fib}(n+1)^2 + \mathrm{Fib}(n)^2
-\end{eqnarray}\]</span></p>
-
-<p>These formulas can be used to efficiently compute Fibonacci numbers (see the the end of the post for how). They are usually derived from a matrix power representation of Fibonacci numbers (or see <a href="https://blog.paulhankin.net/fibonacci2/">one of my earlier posts</a> for an alternative). This blog post gives a direct combinatorial derivation.</p>
-
-<p></p>",
+        "description" : "\x3cp\x3eThis post provides a quick derivation of the fast Fibonacci\ndoubling formulas, using the correspondence between Fibonacci numbers\nand the number of ways to climb \x3cspan  class=\x22math\x22\x3e\\(n\\)\x3c\/span\x3e steps taking 1 or 2 steps at a time.\x3c\/p\x3e\n\n\x3cp\x3eThe Fibonacci numbers are a sequence \x3cspan  class=\x22math\x22\x3e\\(\\mathrm{Fib}(i)\\)\x3c\/span\x3e defined by \x3cspan  class=\x22math\x22\x3e\\(\\mathrm{Fib}(1)=\\mathrm{Fib}(2)=1\\)\x3c\/span\x3e and \x3cspan  class=\x22math\x22\x3e\\(\\mathrm{Fib}(n\x2b2)=\\mathrm{Fib}(n\x2b1)\x2b\\mathrm{Fib}(n)\\)\x3c\/span\x3e.\x3c\/p\x3e\n\n\x3cp\x3eThe Fibonacci doubling formulas are:\x3c\/p\x3e\n\n\x3cp\x3e\x3cspan  class=\x22math\x22\x3e\\[\\begin{eqnarray}\n\\mathrm{Fib}(2n) \x26=\x26 2\\mathrm{Fib}(n)\\mathrm{Fib}(n\x2b1) - \\mathrm{Fib}(n)^2 \\\\\n\\mathrm{Fib}(2n\x2b1) \x26=\x26 \\mathrm{Fib}(n\x2b1)^2 \x2b \\mathrm{Fib}(n)^2\n\\end{eqnarray}\\]\x3c\/span\x3e\x3c\/p\x3e\n\n\x3cp\x3eThese formulas can be used to efficiently compute Fibonacci numbers (see the the end of the post for how). They are usually derived from a matrix power representation of Fibonacci numbers (or see \x3ca href=\x22https:\/\/blog.paulhankin.net\/fibonacci2\/\x22\x3eone of my earlier posts\x3c\/a\x3e for an alternative). This blog post gives a direct combinatorial derivation.\x3c\/p\x3e",
         "inLanguage" : "en-US",
         "author" : "",
         "creator" : "",
@@ -36,11 +21,11 @@ and the number of ways to climb <span  class="math">\(n\)</span> steps taking 1 
         "accountablePerson" : "",
         "copyrightHolder" : "",
         "copyrightYear" : "2020",
-        "datePublished": "2020-03-16 00:00:00 &#43;0000 UTC",
-        "dateModified" : "2020-03-16 00:00:00 &#43;0000 UTC",
-        "url" : "https://blog.paulhankin.net/fibonacci_doubling/",
-        "wordCount" : "0",
-        "image" : https://blog.paulhankin.net/img/post/flowerplot.png",
+        "datePublished": "2020-03-16 00:00:00 \x2b0000 UTC",
+        "dateModified" : "2020-03-16 00:00:00 \x2b0000 UTC",
+        "url" : "https:\/\/blog.paulhankin.net\/fibonacci_doubling\/",
+        "wordCount" : "449",
+        "image" : "https://blog.paulhankin.net/img/post/flowerplot.png"",
         "keywords" : [ "Blog" ]   
     }
     </script>
@@ -65,12 +50,16 @@ and the number of ways to climb <span  class="math">\(n\)</span> steps taking 1 
 <link rel="icon" href="https://blog.paulhankin.net/img/favicon.ico" type="image/x-icon">
 
 
-<script>
-window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-ga('create', 'UA-63206765-1', 'auto');
-ga('send', 'pageview');
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-63206765-1', 'auto');
+	
+	ga('send', 'pageview');
+}
 </script>
-<script async src='//www.google-analytics.com/analytics.js'></script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
 
 </head>
 
@@ -91,11 +80,11 @@ ga('send', 'pageview');
       <ul id="menu-secondary-items" class="menu-secondary-items">
         
         <li id="menu-item" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item">
-          <a href="/categories/computer-science">computer science</a>
+          <a href="/categories/computer-science">computer-science</a>
         </li>
         
         <li id="menu-item" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item">
-          <a href="/categories/game-theory">game theory</a>
+          <a href="/categories/game-theory">game-theory</a>
         </li>
         
         <li id="menu-item" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item">
@@ -268,8 +257,6 @@ and the number of ways to climb <span  class="math">\(n\)</span> steps taking 1 
 
 <p>These formulas can be used to efficiently compute Fibonacci numbers (see the the end of the post for how). They are usually derived from a matrix power representation of Fibonacci numbers (or see <a href="https://blog.paulhankin.net/fibonacci2/">one of my earlier posts</a> for an alternative). This blog post gives a direct combinatorial derivation.</p>
 
-<p></p>
-
 <p>There's a well-known algorithmic problem of counting the number of ways, <span  class="math">\(S(n)\)</span>, to climb <span  class="math">\(n\)</span> steps, starting at the first step, ending exactly on the <span  class="math">\(n\)</span>th step, and taking 1 or 2 steps at a time. We see that <span  class="math">\(S(1)=S(2)=1\)</span>, and <span  class="math">\(S(n+2)=S(n+1)+S(n)\)</span>. Since this problem has the exact same recurrence relation as the Fibonacci numbers, <span  class="math">\(S(n) = \mathrm{Fib}(n)\)</span>.</p>
 
 <p>We can count solutions to the steps problem in a different way, by dividing the problem in two (treating even and odd separately).</p>
@@ -286,9 +273,8 @@ and the number of ways to climb <span  class="math">\(n\)</span> steps taking 1 
 \end{eqnarray}\]</span></p>
 
 <p>For completeness, here's how to use these formulae to quickly compute Fibonacci numbers with <span  class="math">\(O(\mathrm{log}_2(n))\)</span> arithmetic operations.</p>
-
 <pre><code>def fib2(n):
-    &quot;&quot;&quot;fib2(n) returns fib(n), fib(n+1)&quot;&quot;&quot;
+    &#34;&#34;&#34;fib2(n) returns fib(n), fib(n+1)&#34;&#34;&#34;
     if n == 0:
         return 0, 1
     f0, f1 = fib2(n//2)
@@ -305,8 +291,7 @@ and the number of ways to climb <span  class="math">\(n\)</span> steps taking 1 
         return f0*f0 + f1*f1, 2*f0*f1 + f1*f1
 
 for i in range(20):
-    print(i, fib2(i)[0])
-</code></pre>
+    print(i, fib2(i)[0])</code></pre>
             </article>
           </div>
           
@@ -394,7 +379,7 @@ title="github icon"></i>
 
 <section id="comments" class="comments">
   <div id="disqus_thread"></div>
-<script>
+<script type="application/javascript">
     var disqus_config = function () {
     
     
@@ -503,7 +488,7 @@ title="github icon"></i>
 
 				</ul>	<div class="design-credit">
 		
-		<p>&copy; 2015 &mdash; 2018 Paul Hankin</p>
+		<p>© 2015 — 2018 Paul Hankin</p>
 		
 		<p>Nederburg Hugo Theme by <a href="https://appernetic.io">Appernetic</a>.</p>
 		

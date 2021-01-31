@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Python on Paul&#39;s blog</title>
+    <title>python on Paul&#39;s blog</title>
     <link>https://blog.paulhankin.net/tags/python/</link>
-    <description>Recent content in Python on Paul&#39;s blog</description>
+    <description>Recent content in python on Paul&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 27 Apr 2015 00:00:00 +0000</lastBuildDate>
@@ -18,13 +18,9 @@
       
       <guid>https://blog.paulhankin.net/fibonacci/</guid>
       <description>&lt;p&gt;This code, somewhat surprisingly, generates Fibonacci numbers.&lt;/p&gt;
-
 &lt;pre&gt;&lt;code&gt;def fib(n):
-    return (4 &amp;lt;&amp;lt; n*(3+n)) // ((4 &amp;lt;&amp;lt; 2*n) - (2 &amp;lt;&amp;lt; n) - 1) &amp;amp; ((2 &amp;lt;&amp;lt; n) - 1)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;In this blog post, I&#39;ll explain where it comes from and how it works.
-&lt;/p&gt;</description>
+    return (4 &amp;lt;&amp;lt; n*(3+n)) // ((4 &amp;lt;&amp;lt; 2*n) - (2 &amp;lt;&amp;lt; n) - 1) &amp;amp; ((2 &amp;lt;&amp;lt; n) - 1)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;In this blog post, I&#39;ll explain where it comes from and how it works.&lt;/p&gt;</description>
     </item>
     
   </channel>

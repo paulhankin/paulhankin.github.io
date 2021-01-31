@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en-us">
 <head>
-	<meta name="generator" content="Hugo 0.40.1" /><meta charset="utf-8">
+	<meta name="generator" content="Hugo 0.68.3" /><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <script type="application/ld+json">
     {
@@ -9,11 +9,11 @@
         "@type" : "BlogPosting",
         "mainEntityOfPage": {
              "@type": "WebPage",
-             "@id": "https://blog.paulhankin.net/"
+             "@id": "https:\/\/blog.paulhankin.net\/"
         },
         "articleSection" : "",
-        "name" : "Paul&#39;s blog",
-        "headline" : "Paul&#39;s blog",
+        "name" : "Paul\x27s blog",
+        "headline" : "Paul\x27s blog",
         "description" : "",
         "inLanguage" : "en-US",
         "author" : "",
@@ -22,11 +22,11 @@
         "accountablePerson" : "",
         "copyrightHolder" : "",
         "copyrightYear" : "2018",
-        "datePublished": "2018-06-10 00:00:00 &#43;0000 UTC",
-        "dateModified" : "2018-06-10 00:00:00 &#43;0000 UTC",
-        "url" : "https://blog.paulhankin.net/",
+        "datePublished": "2018-06-03 00:00:00 \x2b0000 UTC",
+        "dateModified" : "2018-06-03 00:00:00 \x2b0000 UTC",
+        "url" : "https:\/\/blog.paulhankin.net\/",
         "wordCount" : "0",
-        "image" : https://blog.paulhankin.net/%!s(&lt;nil&gt;)",
+        "image" : "https://blog.paulhankin.net/%!s(\u003cnil\u003e)"",
         "keywords" : [ "Blog" ]   
     }
     </script>
@@ -54,12 +54,16 @@
 <link href="https://blog.paulhankin.net/index.xml" rel="feed" type="application/rss+xml" title="Paul&#39;s blog" />
 
 
-<script>
-window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-ga('create', 'UA-63206765-1', 'auto');
-ga('send', 'pageview');
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-63206765-1', 'auto');
+	
+	ga('send', 'pageview');
+}
 </script>
-<script async src='//www.google-analytics.com/analytics.js'></script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
 
 </head>
 
@@ -79,11 +83,11 @@ ga('send', 'pageview');
       <ul id="menu-secondary-items" class="menu-secondary-items">
         
         <li id="menu-item" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item">
-          <a href="/categories/computer-science">computer science</a>
+          <a href="/categories/computer-science">computer-science</a>
         </li>
         
         <li id="menu-item" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item">
-          <a href="/categories/game-theory">game theory</a>
+          <a href="/categories/game-theory">game-theory</a>
         </li>
         
         <li id="menu-item" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item">
@@ -261,8 +265,7 @@ should be more widely known.</p>
 
 <p>If you decide to apply the knowledge in this post, also consult with a financial
 professional (which as we'll see later doesn't include most finance or economics
-students, and most young financial professionals), and read the disclaimer at the end.
-</p>
+students, and most young financial professionals), and read the disclaimer at the end.</p>
 
 							<div class="more-link-wrapper"><a class="more-link" href="https://blog.paulhankin.net/kellycriterion/">Read the post<span class="screen-reader-text">This is a Standard Post</span></a></div>
 						</article>
@@ -320,14 +323,10 @@ email a simple and efficient variant, that I believe is novel.</p>
 <p>For <span  class="math">\(X\)</span> large enough, <span  class="math">\(\mathrm{Fib}_n = (X^{n+1}\ \mathrm{mod}\ (X^2-X-1))\ \mathrm{mod}\ X\)</span>.</p>
 
 <p>That means you can compute Fibonacci numbers efficiently with a simple program:</p>
-
 <pre><code>for n in range(1, 21):
     X = 1&lt;&lt;(n+2)
-    print(pow(X, n+1, X*X-X-1) % X)
-</code></pre>
-
-<p>This blog post describes how this method works, gives a few ways to think about it, easily infers the fast Fibonacci doubling formulas, provides a nice alternative to Binet's formula relating the golden ratio and Fibonacci numbers, and expands the method to generalized Fibonacci recurrences, including a near one-line solution to the problem of counting how many ways to reach the end-square of a 100-square game using a single six-sided dice.
-</p>
+    print(pow(X, n+1, X*X-X-1) % X)</code></pre>
+<p>This blog post describes how this method works, gives a few ways to think about it, easily infers the fast Fibonacci doubling formulas, provides a nice alternative to Binet's formula relating the golden ratio and Fibonacci numbers, and expands the method to generalized Fibonacci recurrences, including a near one-line solution to the problem of counting how many ways to reach the end-square of a 100-square game using a single six-sided dice.</p>
 
 							<div class="more-link-wrapper"><a class="more-link" href="https://blog.paulhankin.net/fibonacci2/">Read the post<span class="screen-reader-text">This is a Standard Post</span></a></div>
 						</article>
@@ -381,8 +380,6 @@ through the execution.</p>
 
 <p>It's probably got some bugs since it was a quick hack, but it worked on the examples I tried it on.</p>
 
-<p></p>
-
 							<div class="more-link-wrapper"><a class="more-link" href="https://blog.paulhankin.net/littlemancomputer/">Read the post<span class="screen-reader-text">This is a Standard Post</span></a></div>
 						</article>
 					</div>
@@ -434,8 +431,6 @@ through the execution.</p>
 							<p>This blog post looks at closed-hand Chinese Poker, and describes
 a near-optimal strategy for it which is readily implementable
 on a computer.</p>
-
-<p></p>
 
 							<div class="more-link-wrapper"><a class="more-link" href="https://blog.paulhankin.net/chinesepoker/">Read the post<span class="screen-reader-text">This is a Standard Post</span></a></div>
 						</article>
@@ -498,8 +493,6 @@ the most common computational models used in both practice and theory, and
 find out that they're all flawed in one way or another, and in fact in all
 of them either mergesort doesn't run in <span  class="math">\(O(n\mathrm{log}\,n)\)</span> or there's
 asymptotically faster sorts.</p>
-
-<p></p>
 
 							<div class="more-link-wrapper"><a class="more-link" href="https://blog.paulhankin.net/complexity-rant/">Read the post<span class="screen-reader-text">This is a Standard Post</span></a></div>
 						</article>
@@ -637,7 +630,7 @@ asymptotically faster sorts.</p>
 
 				</ul>	<div class="design-credit">
 		
-		<p>&copy; 2015 &mdash; 2018 Paul Hankin</p>
+		<p>© 2015 — 2018 Paul Hankin</p>
 		
 		<p>Nederburg Hugo Theme by <a href="https://appernetic.io">Appernetic</a>.</p>
 		

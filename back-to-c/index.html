@@ -8,25 +8,12 @@
         "@type" : "BlogPosting",
         "mainEntityOfPage": {
              "@type": "WebPage",
-             "@id": "https://blog.paulhankin.net/"
+             "@id": "https:\/\/blog.paulhankin.net\/"
         },
         "articleSection" : "post",
         "name" : "Back to C",
         "headline" : "Back to C",
-        "description" : "<p>I've recently been programming seriously in C, after around 10 years in higher
-level languages (Go, Python, C++, and others). I've been using C11, the
-latest standard, whereas previously I was working in C89.</p>
-
-<p>I <em>like</em> programming in C. It's not an easy language to write fluently because
-it doens't provide many conveniences, it's full of traps, and I'd avoid it if I
-was writing something that needed to be safe, but I still find it fun.</p>
-
-<p>This post describes my recent experience with C and the new standard, and my
-observations about how things have and haven't changed. It's not a critique of C,
-and some of the obvious problems with writing C (such as lack of bounds checking
-of arrays) aren't discussed.</p>
-
-<p></p>",
+        "description" : "\x3cp\x3eI\x27ve recently been programming seriously in C, after around 10 years in higher\nlevel languages (Go, Python, C\x2b\x2b, and others). I\x27ve been using C11, the\nlatest standard, whereas previously I was working in C89.\x3c\/p\x3e\n\n\x3cp\x3eI \x3cem\x3elike\x3c\/em\x3e programming in C. It\x27s not an easy language to write fluently because\nit doens\x27t provide many conveniences, it\x27s full of traps, and I\x27d avoid it if I\nwas writing something that needed to be safe, but I still find it fun.\x3c\/p\x3e\n\n\x3cp\x3eThis post describes my recent experience with C and the new standard, and my\nobservations about how things have and haven\x27t changed. It\x27s not a critique of C,\nand some of the obvious problems with writing C (such as lack of bounds checking\nof arrays) aren\x27t discussed.\x3c\/p\x3e",
         "inLanguage" : "en-US",
         "author" : "",
         "creator" : "",
@@ -34,12 +21,12 @@ of arrays) aren't discussed.</p>
         "accountablePerson" : "",
         "copyrightHolder" : "",
         "copyrightYear" : "2020",
-        "datePublished": "2020-02-07 00:00:00 &#43;0000 UTC",
-        "dateModified" : "2020-02-07 00:00:00 &#43;0000 UTC",
-        "url" : "https://blog.paulhankin.net/back-to-c/",
-        "wordCount" : "0",
-        "image" : https://blog.paulhankin.net//img/post/backtoc.png",
-        "keywords" : [ "programming","Blog" ]   
+        "datePublished": "2020-02-07 00:00:00 \x2b0000 UTC",
+        "dateModified" : "2020-02-07 00:00:00 \x2b0000 UTC",
+        "url" : "https:\/\/blog.paulhankin.net\/back-to-c\/",
+        "wordCount" : "982",
+        "image" : "https://blog.paulhankin.net//img/post/backtoc.png"",
+        "keywords" : [ ""programming"","Blog" ]   
     }
     </script>
 
@@ -63,12 +50,16 @@ of arrays) aren't discussed.</p>
 <link rel="icon" href="https://blog.paulhankin.net/img/favicon.ico" type="image/x-icon">
 
 
-<script>
-window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-ga('create', 'UA-63206765-1', 'auto');
-ga('send', 'pageview');
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-63206765-1', 'auto');
+	
+	ga('send', 'pageview');
+}
 </script>
-<script async src='//www.google-analytics.com/analytics.js'></script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
 
 </head>
 
@@ -89,11 +80,11 @@ ga('send', 'pageview');
       <ul id="menu-secondary-items" class="menu-secondary-items">
         
         <li id="menu-item" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item">
-          <a href="/categories/computer-science">computer science</a>
+          <a href="/categories/computer-science">computer-science</a>
         </li>
         
         <li id="menu-item" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item">
-          <a href="/categories/game-theory">game theory</a>
+          <a href="/categories/game-theory">game-theory</a>
         </li>
         
         <li id="menu-item" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item">
@@ -258,8 +249,6 @@ observations about how things have and haven't changed. It's not a critique of C
 and some of the obvious problems with writing C (such as lack of bounds checking
 of arrays) aren't discussed.</p>
 
-<p></p>
-
 <h2 id="the-good">The good</h2>
 
 <p>First the good things about C11 (relative to C89 &mdash; these things may have
@@ -280,25 +269,19 @@ if code treats zero values carefully).</p>
 
 <p>I find myself writing code like this quite often, which initializes a struct pointer's fields,
 including zeroing the unspecified ones:</p>
-
 <pre><code>*item = (layerItem_s){
     .props = LAYER_ITEM_PROP_ELEMENT_TRIANGLES | LAYER_ITEM_PROP_BLEND | LAYER_ITEM_PROP_TEX0,
     .vao_index = vao,
     .offset = buf_offset / sizeof(font_vertex_s),
     .n_elements = vx_count,
     .tex0 = texture,
-};
-</code></pre>
-
+};</code></pre>
 <p>Many functions in the standard library that set <code>errno</code> now have a &quot;safe&quot; <code>_s</code> variant that
 returns an <code>errno_t</code> rather than using a global (or thread-local) variable to report the errors.
 For example:</p>
-
 <pre><code>FILE *f;
-errno_t err = fopen_s(&amp;f, &quot;data.txt&quot;, &quot;r&quot;);
-... code that checks err.
-</code></pre>
-
+errno_t err = fopen_s(&amp;f, &#34;data.txt&#34;, &#34;r&#34;);
+... code that checks err.</code></pre>
 <p>The lack of multiple return-values makes this a bit ugly, but this seems like a step forward to
 me, both because it makes error-checking a bit more obvious, but also because it avoids the
 problems with the global <code>errno</code>.</p>
@@ -449,7 +432,7 @@ title="github icon"></i>
 
 <section id="comments" class="comments">
   <div id="disqus_thread"></div>
-<script>
+<script type="application/javascript">
     var disqus_config = function () {
     
     
@@ -558,7 +541,7 @@ title="github icon"></i>
 
 				</ul>	<div class="design-credit">
 		
-		<p>&copy; 2015 &mdash; 2018 Paul Hankin</p>
+		<p>© 2015 — 2018 Paul Hankin</p>
 		
 		<p>Nederburg Hugo Theme by <a href="https://appernetic.io">Appernetic</a>.</p>
 		

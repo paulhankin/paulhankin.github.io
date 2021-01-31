@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Posts on Paul&#39;s blog</title>
@@ -30,9 +30,7 @@ and the number of ways to climb &lt;span  class=&#34;math&#34;&gt;\(n\)&lt;/span
 \mathrm{Fib}(2n+1) &amp;=&amp; \mathrm{Fib}(n+1)^2 + \mathrm{Fib}(n)^2
 \end{eqnarray}\]&lt;/span&gt;&lt;/p&gt;
 
-&lt;p&gt;These formulas can be used to efficiently compute Fibonacci numbers (see the the end of the post for how). They are usually derived from a matrix power representation of Fibonacci numbers (or see &lt;a href=&#34;https://blog.paulhankin.net/fibonacci2/&#34;&gt;one of my earlier posts&lt;/a&gt; for an alternative). This blog post gives a direct combinatorial derivation.&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;p&gt;These formulas can be used to efficiently compute Fibonacci numbers (see the the end of the post for how). They are usually derived from a matrix power representation of Fibonacci numbers (or see &lt;a href=&#34;https://blog.paulhankin.net/fibonacci2/&#34;&gt;one of my earlier posts&lt;/a&gt; for an alternative). This blog post gives a direct combinatorial derivation.&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -52,9 +50,7 @@ was writing something that needed to be safe, but I still find it fun.&lt;/p&gt;
 &lt;p&gt;This post describes my recent experience with C and the new standard, and my
 observations about how things have and haven&#39;t changed. It&#39;s not a critique of C,
 and some of the obvious problems with writing C (such as lack of bounds checking
-of arrays) aren&#39;t discussed.&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
+of arrays) aren&#39;t discussed.&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -64,28 +60,23 @@ of arrays) aren&#39;t discussed.&lt;/p&gt;
       
       <guid>https://blog.paulhankin.net/powercheat/</guid>
       <description>&lt;p&gt;Computing large integer powers modulo some number is a somewhat common operation. For example, it&#39;s used in RSA encryption. Usually, this is done using exponentiation by squaring, but this go program correctly prints the results of &lt;span  class=&#34;math&#34;&gt;\(n^{2^{64}}\ (\mathrm{mod}\ 115763)\)&lt;/span&gt; for &lt;span  class=&#34;math&#34;&gt;\(n\)&lt;/span&gt; from 1 to 20, seemingly naively:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span style=&#34;color:#f92672&#34;&gt;package&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;main&lt;/span&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;package main
+&lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;fmt&amp;#34;&lt;/span&gt;
 
-import &amp;quot;fmt&amp;quot;
-
-func main() {
-	for n := 1; n &amp;lt;= 20; n++ {
-		result := 1
-		for i := 0; i &amp;lt; 2^64; i++ {
-			result = (result * n) % 115763
+&lt;span style=&#34;color:#66d9ef&#34;&gt;func&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;main&lt;/span&gt;() {
+	&lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;n&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;:=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;; &lt;span style=&#34;color:#a6e22e&#34;&gt;n&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;20&lt;/span&gt;; &lt;span style=&#34;color:#a6e22e&#34;&gt;n&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;++&lt;/span&gt; {
+		&lt;span style=&#34;color:#a6e22e&#34;&gt;result&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;:=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;
+		&lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;i&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;:=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;; &lt;span style=&#34;color:#a6e22e&#34;&gt;i&lt;/span&gt; &amp;lt; &lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;^&lt;span style=&#34;color:#ae81ff&#34;&gt;64&lt;/span&gt;; &lt;span style=&#34;color:#a6e22e&#34;&gt;i&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;++&lt;/span&gt; {
+			&lt;span style=&#34;color:#a6e22e&#34;&gt;result&lt;/span&gt; = (&lt;span style=&#34;color:#a6e22e&#34;&gt;result&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;n&lt;/span&gt;) &lt;span style=&#34;color:#f92672&#34;&gt;%&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;115763&lt;/span&gt;
 		}
-		fmt.Printf(&amp;quot;pow(%d, pow(2, 64)) mod 115763 = %d\n&amp;quot;, n, result)
+		&lt;span style=&#34;color:#a6e22e&#34;&gt;fmt&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;Printf&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;pow(%d, pow(2, 64)) mod 115763 = %d\n&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#a6e22e&#34;&gt;n&lt;/span&gt;, &lt;span style=&#34;color:#a6e22e&#34;&gt;result&lt;/span&gt;)
 	}
-}
-&lt;/code&gt;&lt;/pre&gt;
-
+}&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;It runs, unoptimized, in a few milliseconds on my desktop.
 You can run it yourself online using the &lt;a href=&#34;https://play.golang.org/p/y2L63tDfUMJ&#34;&gt;go playground&lt;/a&gt;. Feel free to edit the code a little before running it to convince yourself it&#39;s not just fast because the playground is caching the results or something.&lt;/p&gt;
 
-&lt;p&gt;How can it be that fast? Is go&#39;s optimizing compiler that clever? It&#39;s not, and there&#39;s a trick in the code. Can you see it?&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;p&gt;How can it be that fast? Is go&#39;s optimizing compiler that clever? It&#39;s not, and there&#39;s a trick in the code. Can you see it?&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -97,10 +88,8 @@ You can run it yourself online using the &lt;a href=&#34;https://play.golang.org
       <description>&lt;p&gt;Generation of random Latin Squares (such that each latin square of a given size is equally
 likely) is a deceptively difficult problem.&lt;/p&gt;
 
-&lt;p&gt;This post describes my own implementation, loosely based on the &lt;a href=&#34;https://www.researchgate.net/publication/308517970_Generation_of_Random_Latin_Squares_Step_By_Step_and_Graphically&#34;&gt;Java implementation described by Ignacio Gallego Sagastume&lt;/a&gt; which
-implements the rather ingenious method of &lt;a href=&#34;https://onlinelibrary.wiley.com/doi/abs/10.1002/%28SICI%291520-6610%281996%294%3A6%3C405%3A%3AAID-JCD3%3E3.0.CO%3B2-J&#34;&gt;Jacobson and Matthews&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;p&gt;This post describes my own implementation, loosely based on the &lt;a href=&#34;https://www.researhcgate.net/publication/308517970_Generation_of_Random_Latin_Squares_Step_By_Step_and_Graphically&#34;&gt;Java implementation described by Ignacio Gallego Sagastume&lt;/a&gt; which
+implements the rather ingenious method of &lt;a href=&#34;https://onlinelibrary.wiley.com/doi/abs/10.1002/%28SICI%291520-6610%281996%294%3A6%3C405%3A%3AAID-JCD3%3E3.0.CO%3B2-J&#34;&gt;Jacobson and Matthews&lt;/a&gt;&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -126,9 +115,7 @@ it currently is.&lt;/p&gt;
 
 &lt;p&gt;This post takes a look at what made home micros effective
 learning environments, and considers what a modern equivalent might look
-like.&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
+like.&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -149,8 +136,7 @@ should be more widely known.&lt;/p&gt;
 
 &lt;p&gt;If you decide to apply the knowledge in this post, also consult with a financial
 professional (which as we&#39;ll see later doesn&#39;t include most finance or economics
-students, and most young financial professionals), and read the disclaimer at the end.
-&lt;/p&gt;</description>
+students, and most young financial professionals), and read the disclaimer at the end.&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -167,14 +153,10 @@ email a simple and efficient variant, that I believe is novel.&lt;/p&gt;
 &lt;p&gt;For &lt;span  class=&#34;math&#34;&gt;\(X\)&lt;/span&gt; large enough, &lt;span  class=&#34;math&#34;&gt;\(\mathrm{Fib}_n = (X^{n+1}\ \mathrm{mod}\ (X^2-X-1))\ \mathrm{mod}\ X\)&lt;/span&gt;.&lt;/p&gt;
 
 &lt;p&gt;That means you can compute Fibonacci numbers efficiently with a simple program:&lt;/p&gt;
-
 &lt;pre&gt;&lt;code&gt;for n in range(1, 21):
     X = 1&amp;lt;&amp;lt;(n+2)
-    print(pow(X, n+1, X*X-X-1) % X)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;This blog post describes how this method works, gives a few ways to think about it, easily infers the fast Fibonacci doubling formulas, provides a nice alternative to Binet&#39;s formula relating the golden ratio and Fibonacci numbers, and expands the method to generalized Fibonacci recurrences, including a near one-line solution to the problem of counting how many ways to reach the end-square of a 100-square game using a single six-sided dice.
-&lt;/p&gt;</description>
+    print(pow(X, n+1, X*X-X-1) % X)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This blog post describes how this method works, gives a few ways to think about it, easily infers the fast Fibonacci doubling formulas, provides a nice alternative to Binet&#39;s formula relating the golden ratio and Fibonacci numbers, and expands the method to generalized Fibonacci recurrences, including a near one-line solution to the problem of counting how many ways to reach the end-square of a 100-square game using a single six-sided dice.&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -190,9 +172,7 @@ email a simple and efficient variant, that I believe is novel.&lt;/p&gt;
 &lt;p&gt;Enter the program on the left, click &amp;quot;Assemble&amp;quot;, enter some inputs if your program needs them, and then step
 through the execution.&lt;/p&gt;
 
-&lt;p&gt;It&#39;s probably got some bugs since it was a quick hack, but it worked on the examples I tried it on.&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;p&gt;It&#39;s probably got some bugs since it was a quick hack, but it worked on the examples I tried it on.&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -203,9 +183,7 @@ through the execution.&lt;/p&gt;
       <guid>https://blog.paulhankin.net/chinesepoker/</guid>
       <description>&lt;p&gt;This blog post looks at closed-hand Chinese Poker, and describes
 a near-optimal strategy for it which is readily implementable
-on a computer.&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
+on a computer.&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -231,9 +209,7 @@ works.&lt;/p&gt;
 the most common computational models used in both practice and theory, and
 find out that they&#39;re all flawed in one way or another, and in fact in all
 of them either mergesort doesn&#39;t run in &lt;span  class=&#34;math&#34;&gt;\(O(n\mathrm{log}\,n)\)&lt;/span&gt; or there&#39;s
-asymptotically faster sorts.&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
+asymptotically faster sorts.&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -243,13 +219,9 @@ asymptotically faster sorts.&lt;/p&gt;
       
       <guid>https://blog.paulhankin.net/fibonacci/</guid>
       <description>&lt;p&gt;This code, somewhat surprisingly, generates Fibonacci numbers.&lt;/p&gt;
-
 &lt;pre&gt;&lt;code&gt;def fib(n):
-    return (4 &amp;lt;&amp;lt; n*(3+n)) // ((4 &amp;lt;&amp;lt; 2*n) - (2 &amp;lt;&amp;lt; n) - 1) &amp;amp; ((2 &amp;lt;&amp;lt; n) - 1)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;In this blog post, I&#39;ll explain where it comes from and how it works.
-&lt;/p&gt;</description>
+    return (4 &amp;lt;&amp;lt; n*(3+n)) // ((4 &amp;lt;&amp;lt; 2*n) - (2 &amp;lt;&amp;lt; n) - 1) &amp;amp; ((2 &amp;lt;&amp;lt; n) - 1)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;In this blog post, I&#39;ll explain where it comes from and how it works.&lt;/p&gt;</description>
     </item>
     
   </channel>

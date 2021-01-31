@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Education on Paul&#39;s blog</title>
+    <title>education on Paul&#39;s blog</title>
     <link>https://blog.paulhankin.net/tags/education/</link>
-    <description>Recent content in Education on Paul&#39;s blog</description>
+    <description>Recent content in education on Paul&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sun, 17 Jun 2018 00:00:00 +0000</lastBuildDate>
@@ -34,9 +34,7 @@ it currently is.&lt;/p&gt;
 
 &lt;p&gt;This post takes a look at what made home micros effective
 learning environments, and considers what a modern equivalent might look
-like.&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
+like.&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -52,9 +50,7 @@ like.&lt;/p&gt;
 &lt;p&gt;Enter the program on the left, click &amp;quot;Assemble&amp;quot;, enter some inputs if your program needs them, and then step
 through the execution.&lt;/p&gt;
 
-&lt;p&gt;It&#39;s probably got some bugs since it was a quick hack, but it worked on the examples I tried it on.&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;p&gt;It&#39;s probably got some bugs since it was a quick hack, but it worked on the examples I tried it on.&lt;/p&gt;</description>
     </item>
     
   </channel>

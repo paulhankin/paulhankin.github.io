@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on Paul&#39;s blog</title>
@@ -6,175 +6,13 @@
     <description>Recent content in Tags on Paul&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 06 May 2015 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 07 Feb 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://blog.paulhankin.net/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>Advanced</title>
-      <link>https://blog.paulhankin.net/tags/advanced/</link>
-      <pubDate>Wed, 06 May 2015 00:00:00 +0000</pubDate>
-      
-      <guid>https://blog.paulhankin.net/tags/advanced/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Assembler</title>
-      <link>https://blog.paulhankin.net/tags/assembler/</link>
-      <pubDate>Wed, 20 Apr 2016 00:00:00 +0000</pubDate>
-      
-      <guid>https://blog.paulhankin.net/tags/assembler/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Complexity</title>
-      <link>https://blog.paulhankin.net/tags/complexity/</link>
-      <pubDate>Wed, 06 May 2015 00:00:00 +0000</pubDate>
-      
-      <guid>https://blog.paulhankin.net/tags/complexity/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Compsci</title>
-      <link>https://blog.paulhankin.net/tags/compsci/</link>
-      <pubDate>Wed, 06 May 2015 00:00:00 +0000</pubDate>
-      
-      <guid>https://blog.paulhankin.net/tags/compsci/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Computer</title>
-      <link>https://blog.paulhankin.net/tags/computer/</link>
-      <pubDate>Sun, 17 Jun 2018 00:00:00 +0000</pubDate>
-      
-      <guid>https://blog.paulhankin.net/tags/computer/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Education</title>
-      <link>https://blog.paulhankin.net/tags/education/</link>
-      <pubDate>Sun, 17 Jun 2018 00:00:00 +0000</pubDate>
-      
-      <guid>https://blog.paulhankin.net/tags/education/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Fibonacci</title>
-      <link>https://blog.paulhankin.net/tags/fibonacci/</link>
-      <pubDate>Mon, 27 Apr 2015 00:00:00 +0000</pubDate>
-      
-      <guid>https://blog.paulhankin.net/tags/fibonacci/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Finance</title>
-      <link>https://blog.paulhankin.net/tags/finance/</link>
-      <pubDate>Sun, 10 Jun 2018 00:00:00 +0000</pubDate>
-      
-      <guid>https://blog.paulhankin.net/tags/finance/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Gametheory</title>
-      <link>https://blog.paulhankin.net/tags/gametheory/</link>
-      <pubDate>Thu, 21 May 2015 00:00:00 +0000</pubDate>
-      
-      <guid>https://blog.paulhankin.net/tags/gametheory/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Go code</title>
-      <link>https://blog.paulhankin.net/tags/go-code/</link>
-      <pubDate>Thu, 21 May 2015 00:00:00 +0000</pubDate>
-      
-      <guid>https://blog.paulhankin.net/tags/go-code/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Golang</title>
-      <link>https://blog.paulhankin.net/tags/golang/</link>
-      <pubDate>Sun, 16 Jun 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://blog.paulhankin.net/tags/golang/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Insurance</title>
-      <link>https://blog.paulhankin.net/tags/insurance/</link>
-      <pubDate>Sun, 10 Jun 2018 00:00:00 +0000</pubDate>
-      
-      <guid>https://blog.paulhankin.net/tags/insurance/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Kelly</title>
-      <link>https://blog.paulhankin.net/tags/kelly/</link>
-      <pubDate>Sun, 10 Jun 2018 00:00:00 +0000</pubDate>
-      
-      <guid>https://blog.paulhankin.net/tags/kelly/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Littlemancomputer</title>
-      <link>https://blog.paulhankin.net/tags/littlemancomputer/</link>
-      <pubDate>Wed, 20 Apr 2016 00:00:00 +0000</pubDate>
-      
-      <guid>https://blog.paulhankin.net/tags/littlemancomputer/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Mathematics</title>
-      <link>https://blog.paulhankin.net/tags/mathematics/</link>
-      <pubDate>Sun, 16 Jun 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://blog.paulhankin.net/tags/mathematics/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Maths</title>
-      <link>https://blog.paulhankin.net/tags/maths/</link>
-      <pubDate>Mon, 27 Apr 2015 00:00:00 +0000</pubDate>
-      
-      <guid>https://blog.paulhankin.net/tags/maths/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Poker</title>
-      <link>https://blog.paulhankin.net/tags/poker/</link>
-      <pubDate>Thu, 21 May 2015 00:00:00 +0000</pubDate>
-      
-      <guid>https://blog.paulhankin.net/tags/poker/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Probability</title>
-      <link>https://blog.paulhankin.net/tags/probability/</link>
-      <pubDate>Sun, 10 Jun 2018 00:00:00 +0000</pubDate>
-      
-      <guid>https://blog.paulhankin.net/tags/probability/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Programming</title>
+      <title>programming</title>
       <link>https://blog.paulhankin.net/tags/programming/</link>
       <pubDate>Fri, 07 Feb 2020 00:00:00 +0000</pubDate>
       
@@ -183,20 +21,182 @@
     </item>
     
     <item>
-      <title>Python</title>
-      <link>https://blog.paulhankin.net/tags/python/</link>
-      <pubDate>Mon, 27 Apr 2015 00:00:00 +0000</pubDate>
+      <title>golang</title>
+      <link>https://blog.paulhankin.net/tags/golang/</link>
+      <pubDate>Sun, 16 Jun 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://blog.paulhankin.net/tags/python/</guid>
+      <guid>https://blog.paulhankin.net/tags/golang/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>Sorting</title>
+      <title>mathematics</title>
+      <link>https://blog.paulhankin.net/tags/mathematics/</link>
+      <pubDate>Sun, 16 Jun 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.paulhankin.net/tags/mathematics/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>computer</title>
+      <link>https://blog.paulhankin.net/tags/computer/</link>
+      <pubDate>Sun, 17 Jun 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.paulhankin.net/tags/computer/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>education</title>
+      <link>https://blog.paulhankin.net/tags/education/</link>
+      <pubDate>Sun, 17 Jun 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.paulhankin.net/tags/education/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>finance</title>
+      <link>https://blog.paulhankin.net/tags/finance/</link>
+      <pubDate>Sun, 10 Jun 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.paulhankin.net/tags/finance/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>insurance</title>
+      <link>https://blog.paulhankin.net/tags/insurance/</link>
+      <pubDate>Sun, 10 Jun 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.paulhankin.net/tags/insurance/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>kelly</title>
+      <link>https://blog.paulhankin.net/tags/kelly/</link>
+      <pubDate>Sun, 10 Jun 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.paulhankin.net/tags/kelly/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>probability</title>
+      <link>https://blog.paulhankin.net/tags/probability/</link>
+      <pubDate>Sun, 10 Jun 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.paulhankin.net/tags/probability/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>assembler</title>
+      <link>https://blog.paulhankin.net/tags/assembler/</link>
+      <pubDate>Wed, 20 Apr 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.paulhankin.net/tags/assembler/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>littlemancomputer</title>
+      <link>https://blog.paulhankin.net/tags/littlemancomputer/</link>
+      <pubDate>Wed, 20 Apr 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.paulhankin.net/tags/littlemancomputer/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>gametheory</title>
+      <link>https://blog.paulhankin.net/tags/gametheory/</link>
+      <pubDate>Thu, 21 May 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.paulhankin.net/tags/gametheory/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>go code</title>
+      <link>https://blog.paulhankin.net/tags/go-code/</link>
+      <pubDate>Thu, 21 May 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.paulhankin.net/tags/go-code/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>poker</title>
+      <link>https://blog.paulhankin.net/tags/poker/</link>
+      <pubDate>Thu, 21 May 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.paulhankin.net/tags/poker/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>advanced</title>
+      <link>https://blog.paulhankin.net/tags/advanced/</link>
+      <pubDate>Wed, 06 May 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.paulhankin.net/tags/advanced/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>complexity</title>
+      <link>https://blog.paulhankin.net/tags/complexity/</link>
+      <pubDate>Wed, 06 May 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.paulhankin.net/tags/complexity/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>compsci</title>
+      <link>https://blog.paulhankin.net/tags/compsci/</link>
+      <pubDate>Wed, 06 May 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.paulhankin.net/tags/compsci/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>sorting</title>
       <link>https://blog.paulhankin.net/tags/sorting/</link>
       <pubDate>Wed, 06 May 2015 00:00:00 +0000</pubDate>
       
       <guid>https://blog.paulhankin.net/tags/sorting/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>fibonacci</title>
+      <link>https://blog.paulhankin.net/tags/fibonacci/</link>
+      <pubDate>Mon, 27 Apr 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.paulhankin.net/tags/fibonacci/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>maths</title>
+      <link>https://blog.paulhankin.net/tags/maths/</link>
+      <pubDate>Mon, 27 Apr 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.paulhankin.net/tags/maths/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>python</title>
+      <link>https://blog.paulhankin.net/tags/python/</link>
+      <pubDate>Mon, 27 Apr 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.paulhankin.net/tags/python/</guid>
       <description></description>
     </item>
     

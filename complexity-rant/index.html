@@ -8,31 +8,12 @@
         "@type" : "BlogPosting",
         "mainEntityOfPage": {
              "@type": "WebPage",
-             "@id": "https://blog.paulhankin.net/"
+             "@id": "https:\/\/blog.paulhankin.net\/"
         },
         "articleSection" : "post",
         "name" : "Everything you know about complexity is wrong",
         "headline" : "Everything you know about complexity is wrong",
-        "description" : "<p>Who would disagree that the run-time of mergesort is <span  class="math">\(O(n\mathrm{log}\,n)\)</span> and it's asymptotically optimal?
-Not many programmers I reckon, except perhaps to question whether it's talking about
-a model of computation that's not sufficiently close to a real computer, for example a quantum
-computer or one that performs arbitrary operations in parallel (possibly
-involving <a href="http://en.wikipedia.org/wiki/Spaghetti_sort">sticks of spaghetti</a>).</p>
-
-<p>However, if you try to understand how to formalize what it means for a sort
-to run in <span  class="math">\(O(n\mathrm{log}\,n)\)</span> and for it to be optimal,
-it's surprisingly difficult to find a suitable computational model, that is,
-an abstraction of a computer which elides all but the important
-details of the computer: the operations it can perform, and how the memory
-works.</p>
-
-<p>In this post, I'll look at some of
-the most common computational models used in both practice and theory, and
-find out that they're all flawed in one way or another, and in fact in all
-of them either mergesort doesn't run in <span  class="math">\(O(n\mathrm{log}\,n)\)</span> or there's
-asymptotically faster sorts.</p>
-
-<p></p>",
+        "description" : "\x3cp\x3eWho would disagree that the run-time of mergesort is \x3cspan  class=\x22math\x22\x3e\\(O(n\\mathrm{log}\\,n)\\)\x3c\/span\x3e and it\x27s asymptotically optimal?\nNot many programmers I reckon, except perhaps to question whether it\x27s talking about\na model of computation that\x27s not sufficiently close to a real computer, for example a quantum\ncomputer or one that performs arbitrary operations in parallel (possibly\ninvolving \x3ca href=\x22http:\/\/en.wikipedia.org\/wiki\/Spaghetti_sort\x22\x3esticks of spaghetti\x3c\/a\x3e).\x3c\/p\x3e\n\n\x3cp\x3eHowever, if you try to understand how to formalize what it means for a sort\nto run in \x3cspan  class=\x22math\x22\x3e\\(O(n\\mathrm{log}\\,n)\\)\x3c\/span\x3e and for it to be optimal,\nit\x27s surprisingly difficult to find a suitable computational model, that is,\nan abstraction of a computer which elides all but the important\ndetails of the computer: the operations it can perform, and how the memory\nworks.\x3c\/p\x3e\n\n\x3cp\x3eIn this post, I\x27ll look at some of\nthe most common computational models used in both practice and theory, and\nfind out that they\x27re all flawed in one way or another, and in fact in all\nof them either mergesort doesn\x27t run in \x3cspan  class=\x22math\x22\x3e\\(O(n\\mathrm{log}\\,n)\\)\x3c\/span\x3e or there\x27s\nasymptotically faster sorts.\x3c\/p\x3e",
         "inLanguage" : "en-US",
         "author" : "",
         "creator" : "",
@@ -40,12 +21,12 @@ asymptotically faster sorts.</p>
         "accountablePerson" : "",
         "copyrightHolder" : "",
         "copyrightYear" : "2015",
-        "datePublished": "2015-05-06 00:00:00 &#43;0000 UTC",
-        "dateModified" : "2015-05-06 00:00:00 &#43;0000 UTC",
-        "url" : "https://blog.paulhankin.net/complexity-rant/",
-        "wordCount" : "0",
-        "image" : https://blog.paulhankin.net/img/post/complexity.png",
-        "keywords" : [ "compsci","complexity","sorting","advanced","Blog" ]   
+        "datePublished": "2015-05-06 00:00:00 \x2b0000 UTC",
+        "dateModified" : "2015-05-06 00:00:00 \x2b0000 UTC",
+        "url" : "https:\/\/blog.paulhankin.net\/complexity-rant\/",
+        "wordCount" : "925",
+        "image" : "https://blog.paulhankin.net/img/post/complexity.png"",
+        "keywords" : [ ""compsci"",""complexity"",""sorting"",""advanced"","Blog" ]   
     }
     </script>
 
@@ -69,12 +50,16 @@ asymptotically faster sorts.</p>
 <link rel="icon" href="https://blog.paulhankin.net/img/favicon.ico" type="image/x-icon">
 
 
-<script>
-window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-ga('create', 'UA-63206765-1', 'auto');
-ga('send', 'pageview');
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-63206765-1', 'auto');
+	
+	ga('send', 'pageview');
+}
 </script>
-<script async src='//www.google-analytics.com/analytics.js'></script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
 
 </head>
 
@@ -95,11 +80,11 @@ ga('send', 'pageview');
       <ul id="menu-secondary-items" class="menu-secondary-items">
         
         <li id="menu-item" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item">
-          <a href="/categories/computer-science">computer science</a>
+          <a href="/categories/computer-science">computer-science</a>
         </li>
         
         <li id="menu-item" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item">
-          <a href="/categories/game-theory">game theory</a>
+          <a href="/categories/game-theory">game-theory</a>
         </li>
         
         <li id="menu-item" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item">
@@ -269,8 +254,6 @@ the most common computational models used in both practice and theory, and
 find out that they're all flawed in one way or another, and in fact in all
 of them either mergesort doesn't run in <span  class="math">\(O(n\mathrm{log}\,n)\)</span> or there's
 asymptotically faster sorts.</p>
-
-<p></p>
 
 <h2 id="model-1-ram-is-fixedsized-words">Model 1: RAM is fixed-sized words</h2>
 
@@ -450,7 +433,7 @@ title="github icon"></i>
 
 <section id="comments" class="comments">
   <div id="disqus_thread"></div>
-<script>
+<script type="application/javascript">
     var disqus_config = function () {
     
     
@@ -559,7 +542,7 @@ title="github icon"></i>
 
 				</ul>	<div class="design-credit">
 		
-		<p>&copy; 2015 &mdash; 2018 Paul Hankin</p>
+		<p>© 2015 — 2018 Paul Hankin</p>
 		
 		<p>Nederburg Hugo Theme by <a href="https://appernetic.io">Appernetic</a>.</p>
 		

@@ -8,34 +8,12 @@
         "@type" : "BlogPosting",
         "mainEntityOfPage": {
              "@type": "WebPage",
-             "@id": "https://blog.paulhankin.net/"
+             "@id": "https:\/\/blog.paulhankin.net\/"
         },
         "articleSection" : "post",
         "name" : "A suspiciously fast program",
         "headline" : "A suspiciously fast program",
-        "description" : "<p>Computing large integer powers modulo some number is a somewhat common operation. For example, it's used in RSA encryption. Usually, this is done using exponentiation by squaring, but this go program correctly prints the results of <span  class="math">\(n^{2^{64}}\ (\mathrm{mod}\ 115763)\)</span> for <span  class="math">\(n\)</span> from 1 to 20, seemingly naively:</p>
-
-<pre><code class="language-go">package main
-
-import &quot;fmt&quot;
-
-func main() {
-	for n := 1; n &lt;= 20; n++ {
-		result := 1
-		for i := 0; i &lt; 2^64; i++ {
-			result = (result * n) % 115763
-		}
-		fmt.Printf(&quot;pow(%d, pow(2, 64)) mod 115763 = %d\n&quot;, n, result)
-	}
-}
-</code></pre>
-
-<p>It runs, unoptimized, in a few milliseconds on my desktop.
-You can run it yourself online using the <a href="https://play.golang.org/p/y2L63tDfUMJ">go playground</a>. Feel free to edit the code a little before running it to convince yourself it's not just fast because the playground is caching the results or something.</p>
-
-<p>How can it be that fast? Is go's optimizing compiler that clever? It's not, and there's a trick in the code. Can you see it?</p>
-
-<p></p>",
+        "description" : "\x3cp\x3eComputing large integer powers modulo some number is a somewhat common operation. For example, it\x27s used in RSA encryption. Usually, this is done using exponentiation by squaring, but this go program correctly prints the results of \x3cspan  class=\x22math\x22\x3e\\(n^{2^{64}}\\ (\\mathrm{mod}\\ 115763)\\)\x3c\/span\x3e for \x3cspan  class=\x22math\x22\x3e\\(n\\)\x3c\/span\x3e from 1 to 20, seemingly naively:\x3c\/p\x3e\n\x3cdiv class=\x22highlight\x22\x3e\x3cpre style=\x22color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4\x22\x3e\x3ccode class=\x22language-go\x22 data-lang=\x22go\x22\x3e\x3cspan style=\x22color:#f92672\x22\x3epackage\x3c\/span\x3e \x3cspan style=\x22color:#a6e22e\x22\x3emain\x3c\/span\x3e\n\n\x3cspan style=\x22color:#f92672\x22\x3eimport\x3c\/span\x3e \x3cspan style=\x22color:#e6db74\x22\x3e\x26#34;fmt\x26#34;\x3c\/span\x3e\n\n\x3cspan style=\x22color:#66d9ef\x22\x3efunc\x3c\/span\x3e \x3cspan style=\x22color:#a6e22e\x22\x3emain\x3c\/span\x3e() {\n\t\x3cspan style=\x22color:#66d9ef\x22\x3efor\x3c\/span\x3e \x3cspan style=\x22color:#a6e22e\x22\x3en\x3c\/span\x3e \x3cspan style=\x22color:#f92672\x22\x3e:=\x3c\/span\x3e \x3cspan style=\x22color:#ae81ff\x22\x3e1\x3c\/span\x3e; \x3cspan style=\x22color:#a6e22e\x22\x3en\x3c\/span\x3e \x3cspan style=\x22color:#f92672\x22\x3e\x26lt;=\x3c\/span\x3e \x3cspan style=\x22color:#ae81ff\x22\x3e20\x3c\/span\x3e; \x3cspan style=\x22color:#a6e22e\x22\x3en\x3c\/span\x3e\x3cspan style=\x22color:#f92672\x22\x3e\x2b\x2b\x3c\/span\x3e {\n\t\t\x3cspan style=\x22color:#a6e22e\x22\x3eresult\x3c\/span\x3e \x3cspan style=\x22color:#f92672\x22\x3e:=\x3c\/span\x3e \x3cspan style=\x22color:#ae81ff\x22\x3e1\x3c\/span\x3e\n\t\t\x3cspan style=\x22color:#66d9ef\x22\x3efor\x3c\/span\x3e \x3cspan style=\x22color:#a6e22e\x22\x3ei\x3c\/span\x3e \x3cspan style=\x22color:#f92672\x22\x3e:=\x3c\/span\x3e \x3cspan style=\x22color:#ae81ff\x22\x3e0\x3c\/span\x3e; \x3cspan style=\x22color:#a6e22e\x22\x3ei\x3c\/span\x3e \x26lt; \x3cspan style=\x22color:#ae81ff\x22\x3e2\x3c\/span\x3e^\x3cspan style=\x22color:#ae81ff\x22\x3e64\x3c\/span\x3e; \x3cspan style=\x22color:#a6e22e\x22\x3ei\x3c\/span\x3e\x3cspan style=\x22color:#f92672\x22\x3e\x2b\x2b\x3c\/span\x3e {\n\t\t\t\x3cspan style=\x22color:#a6e22e\x22\x3eresult\x3c\/span\x3e = (\x3cspan style=\x22color:#a6e22e\x22\x3eresult\x3c\/span\x3e \x3cspan style=\x22color:#f92672\x22\x3e*\x3c\/span\x3e \x3cspan style=\x22color:#a6e22e\x22\x3en\x3c\/span\x3e) \x3cspan style=\x22color:#f92672\x22\x3e%\x3c\/span\x3e \x3cspan style=\x22color:#ae81ff\x22\x3e115763\x3c\/span\x3e\n\t\t}\n\t\t\x3cspan style=\x22color:#a6e22e\x22\x3efmt\x3c\/span\x3e.\x3cspan style=\x22color:#a6e22e\x22\x3ePrintf\x3c\/span\x3e(\x3cspan style=\x22color:#e6db74\x22\x3e\x26#34;pow(%d, pow(2, 64)) mod 115763 = %d\\n\x26#34;\x3c\/span\x3e, \x3cspan style=\x22color:#a6e22e\x22\x3en\x3c\/span\x3e, \x3cspan style=\x22color:#a6e22e\x22\x3eresult\x3c\/span\x3e)\n\t}\n}\x3c\/code\x3e\x3c\/pre\x3e\x3c\/div\x3e\n\x3cp\x3eIt runs, unoptimized, in a few milliseconds on my desktop.\nYou can run it yourself online using the \x3ca href=\x22https:\/\/play.golang.org\/p\/y2L63tDfUMJ\x22\x3ego playground\x3c\/a\x3e. Feel free to edit the code a little before running it to convince yourself it\x27s not just fast because the playground is caching the results or something.\x3c\/p\x3e\n\n\x3cp\x3eHow can it be that fast? Is go\x27s optimizing compiler that clever? It\x27s not, and there\x27s a trick in the code. Can you see it?\x3c\/p\x3e",
         "inLanguage" : "en-US",
         "author" : "",
         "creator" : "",
@@ -43,12 +21,12 @@ You can run it yourself online using the <a href="https://play.golang.org/p/y2L6
         "accountablePerson" : "",
         "copyrightHolder" : "",
         "copyrightYear" : "2019",
-        "datePublished": "2019-06-16 00:00:00 &#43;0000 UTC",
-        "dateModified" : "2019-06-16 00:00:00 &#43;0000 UTC",
-        "url" : "https://blog.paulhankin.net/powercheat/",
-        "wordCount" : "0",
-        "image" : https://blog.paulhankin.net//img/post/bent_pencil.png",
-        "keywords" : [ "programming","mathematics","golang","Blog" ]   
+        "datePublished": "2019-06-16 00:00:00 \x2b0000 UTC",
+        "dateModified" : "2019-06-16 00:00:00 \x2b0000 UTC",
+        "url" : "https:\/\/blog.paulhankin.net\/powercheat\/",
+        "wordCount" : "561",
+        "image" : "https://blog.paulhankin.net//img/post/bent_pencil.png"",
+        "keywords" : [ ""programming"",""mathematics"",""golang"","Blog" ]   
     }
     </script>
 
@@ -72,12 +50,16 @@ You can run it yourself online using the <a href="https://play.golang.org/p/y2L6
 <link rel="icon" href="https://blog.paulhankin.net/img/favicon.ico" type="image/x-icon">
 
 
-<script>
-window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-ga('create', 'UA-63206765-1', 'auto');
-ga('send', 'pageview');
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-63206765-1', 'auto');
+	
+	ga('send', 'pageview');
+}
 </script>
-<script async src='//www.google-analytics.com/analytics.js'></script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
 
 </head>
 
@@ -98,11 +80,11 @@ ga('send', 'pageview');
       <ul id="menu-secondary-items" class="menu-secondary-items">
         
         <li id="menu-item" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item">
-          <a href="/categories/computer-science">computer science</a>
+          <a href="/categories/computer-science">computer-science</a>
         </li>
         
         <li id="menu-item" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item">
-          <a href="/categories/game-theory">game theory</a>
+          <a href="/categories/game-theory">game-theory</a>
         </li>
         
         <li id="menu-item" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item">
@@ -255,66 +237,58 @@ ga('send', 'pageview');
           <div class="entry-content">
             <article>
               <p>Computing large integer powers modulo some number is a somewhat common operation. For example, it's used in RSA encryption. Usually, this is done using exponentiation by squaring, but this go program correctly prints the results of <span  class="math">\(n^{2^{64}}\ (\mathrm{mod}\ 115763)\)</span> for <span  class="math">\(n\)</span> from 1 to 20, seemingly naively:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#f92672">package</span> <span style="color:#a6e22e">main</span>
 
-<pre><code class="language-go">package main
+<span style="color:#f92672">import</span> <span style="color:#e6db74">&#34;fmt&#34;</span>
 
-import &quot;fmt&quot;
-
-func main() {
-	for n := 1; n &lt;= 20; n++ {
-		result := 1
-		for i := 0; i &lt; 2^64; i++ {
-			result = (result * n) % 115763
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+	<span style="color:#66d9ef">for</span> <span style="color:#a6e22e">n</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">1</span>; <span style="color:#a6e22e">n</span> <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">20</span>; <span style="color:#a6e22e">n</span><span style="color:#f92672">++</span> {
+		<span style="color:#a6e22e">result</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">1</span>
+		<span style="color:#66d9ef">for</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">0</span>; <span style="color:#a6e22e">i</span> &lt; <span style="color:#ae81ff">2</span>^<span style="color:#ae81ff">64</span>; <span style="color:#a6e22e">i</span><span style="color:#f92672">++</span> {
+			<span style="color:#a6e22e">result</span> = (<span style="color:#a6e22e">result</span> <span style="color:#f92672">*</span> <span style="color:#a6e22e">n</span>) <span style="color:#f92672">%</span> <span style="color:#ae81ff">115763</span>
 		}
-		fmt.Printf(&quot;pow(%d, pow(2, 64)) mod 115763 = %d\n&quot;, n, result)
+		<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;pow(%d, pow(2, 64)) mod 115763 = %d\n&#34;</span>, <span style="color:#a6e22e">n</span>, <span style="color:#a6e22e">result</span>)
 	}
-}
-</code></pre>
-
+}</code></pre></div>
 <p>It runs, unoptimized, in a few milliseconds on my desktop.
 You can run it yourself online using the <a href="https://play.golang.org/p/y2L63tDfUMJ">go playground</a>. Feel free to edit the code a little before running it to convince yourself it's not just fast because the playground is caching the results or something.</p>
 
 <p>How can it be that fast? Is go's optimizing compiler that clever? It's not, and there's a trick in the code. Can you see it?</p>
 
-<p></p>
-
 <p>First, let's check it's giving the correct results. We'll use go's big integer package <code>big</code> to write a unit test, since <code>big</code> helpfully already contains a function <code>big.Int.Exp</code> that computes modular powers. The syntax of go's big integers is a bit clumsy, but the test runs like this:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#f92672">package</span> <span style="color:#a6e22e">main</span>
 
-<pre><code class="language-go">package main
-
-import (
-	&quot;math/big&quot;
-	&quot;testing&quot;
+<span style="color:#f92672">import</span> (
+	<span style="color:#e6db74">&#34;math/big&#34;</span>
+	<span style="color:#e6db74">&#34;testing&#34;</span>
 )
 
-func PowBig(n, mod int) int {
-	x := big.NewInt(int64(n)) // x = n
-	y := big.NewInt(2)
-	y.Exp(y, big.NewInt(64), nil) // y = exp(2, 64)
-	m := big.NewInt(int64(mod)) // m = mod
-	return int(new(big.Int).Exp(x, y, m).Int64())
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">PowBig</span>(<span style="color:#a6e22e">n</span>, <span style="color:#a6e22e">mod</span> <span style="color:#66d9ef">int</span>) <span style="color:#66d9ef">int</span> {
+	<span style="color:#a6e22e">x</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">big</span>.<span style="color:#a6e22e">NewInt</span>(int64(<span style="color:#a6e22e">n</span>)) <span style="color:#75715e">// x = n
+</span><span style="color:#75715e"></span>	<span style="color:#a6e22e">y</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">big</span>.<span style="color:#a6e22e">NewInt</span>(<span style="color:#ae81ff">2</span>)
+	<span style="color:#a6e22e">y</span>.<span style="color:#a6e22e">Exp</span>(<span style="color:#a6e22e">y</span>, <span style="color:#a6e22e">big</span>.<span style="color:#a6e22e">NewInt</span>(<span style="color:#ae81ff">64</span>), <span style="color:#66d9ef">nil</span>) <span style="color:#75715e">// y = exp(2, 64)
+</span><span style="color:#75715e"></span>	<span style="color:#a6e22e">m</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">big</span>.<span style="color:#a6e22e">NewInt</span>(int64(<span style="color:#a6e22e">mod</span>)) <span style="color:#75715e">// m = mod
+</span><span style="color:#75715e"></span>	<span style="color:#66d9ef">return</span> int(new(<span style="color:#a6e22e">big</span>.<span style="color:#a6e22e">Int</span>).<span style="color:#a6e22e">Exp</span>(<span style="color:#a6e22e">x</span>, <span style="color:#a6e22e">y</span>, <span style="color:#a6e22e">m</span>).<span style="color:#a6e22e">Int64</span>())
 }
 
-func PowFast(n, mod int) int {
-	result := 1
-	for i := 0; i &lt; 2^64; i++ {
-		result = (result * n) % mod
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">PowFast</span>(<span style="color:#a6e22e">n</span>, <span style="color:#a6e22e">mod</span> <span style="color:#66d9ef">int</span>) <span style="color:#66d9ef">int</span> {
+	<span style="color:#a6e22e">result</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">1</span>
+	<span style="color:#66d9ef">for</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">0</span>; <span style="color:#a6e22e">i</span> &lt; <span style="color:#ae81ff">2</span>^<span style="color:#ae81ff">64</span>; <span style="color:#a6e22e">i</span><span style="color:#f92672">++</span> {
+		<span style="color:#a6e22e">result</span> = (<span style="color:#a6e22e">result</span> <span style="color:#f92672">*</span> <span style="color:#a6e22e">n</span>) <span style="color:#f92672">%</span> <span style="color:#a6e22e">mod</span>
 	}
-	return result
+	<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">result</span>
 }
 
-func TestPowFast(t *testing.T) {
-	const P = 115763
-	for n := 1; n &lt;= 20; n++ {
-		got := PowFast(n, P)
-		want := PowBig(n, P)
-		if got != want {
-			t.Errorf(&quot;PowFast(%d, %d) = %d, want %d&quot;, n, P, got, want)
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">TestPowFast</span>(<span style="color:#a6e22e">t</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">testing</span>.<span style="color:#a6e22e">T</span>) {
+	<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">P</span> = <span style="color:#ae81ff">115763</span>
+	<span style="color:#66d9ef">for</span> <span style="color:#a6e22e">n</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">1</span>; <span style="color:#a6e22e">n</span> <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">20</span>; <span style="color:#a6e22e">n</span><span style="color:#f92672">++</span> {
+		<span style="color:#a6e22e">got</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">PowFast</span>(<span style="color:#a6e22e">n</span>, <span style="color:#a6e22e">P</span>)
+		<span style="color:#a6e22e">want</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">PowBig</span>(<span style="color:#a6e22e">n</span>, <span style="color:#a6e22e">P</span>)
+		<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">got</span> <span style="color:#f92672">!=</span> <span style="color:#a6e22e">want</span> {
+			<span style="color:#a6e22e">t</span>.<span style="color:#a6e22e">Errorf</span>(<span style="color:#e6db74">&#34;PowFast(%d, %d) = %d, want %d&#34;</span>, <span style="color:#a6e22e">n</span>, <span style="color:#a6e22e">P</span>, <span style="color:#a6e22e">got</span>, <span style="color:#a6e22e">want</span>)
 		}
 	}
-}
-</code></pre>
-
+}</code></pre></div>
 <p>The tests pass, again in a fraction of a second.</p>
 
 <h2 id="whats-going-on">What's going on</h2>
@@ -422,7 +396,7 @@ title="github icon"></i>
 
 <section id="comments" class="comments">
   <div id="disqus_thread"></div>
-<script>
+<script type="application/javascript">
     var disqus_config = function () {
     
     
@@ -531,7 +505,7 @@ title="github icon"></i>
 
 				</ul>	<div class="design-credit">
 		
-		<p>&copy; 2015 &mdash; 2018 Paul Hankin</p>
+		<p>© 2015 — 2018 Paul Hankin</p>
 		
 		<p>Nederburg Hugo Theme by <a href="https://appernetic.io">Appernetic</a>.</p>
 		

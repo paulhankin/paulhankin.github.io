@@ -8,19 +8,12 @@
         "@type" : "BlogPosting",
         "mainEntityOfPage": {
              "@type": "WebPage",
-             "@id": "https://blog.paulhankin.net/"
+             "@id": "https:\/\/blog.paulhankin.net\/"
         },
         "articleSection" : "post",
         "name" : "An integer formula for Fibonacci numbers",
         "headline" : "An integer formula for Fibonacci numbers",
-        "description" : "<p>This code, somewhat surprisingly, generates Fibonacci numbers.</p>
-
-<pre><code>def fib(n):
-    return (4 &lt;&lt; n*(3+n)) // ((4 &lt;&lt; 2*n) - (2 &lt;&lt; n) - 1) &amp; ((2 &lt;&lt; n) - 1)
-</code></pre>
-
-<p>In this blog post, I'll explain where it comes from and how it works.
-</p>",
+        "description" : "\x3cp\x3eThis code, somewhat surprisingly, generates Fibonacci numbers.\x3c\/p\x3e\n\x3cpre\x3e\x3ccode\x3edef fib(n):\n    return (4 \x26lt;\x26lt; n*(3\x2bn)) \/\/ ((4 \x26lt;\x26lt; 2*n) - (2 \x26lt;\x26lt; n) - 1) \x26amp; ((2 \x26lt;\x26lt; n) - 1)\x3c\/code\x3e\x3c\/pre\x3e\n\x3cp\x3eIn this blog post, I\x27ll explain where it comes from and how it works.\x3c\/p\x3e",
         "inLanguage" : "en-US",
         "author" : "",
         "creator" : "",
@@ -28,12 +21,12 @@
         "accountablePerson" : "",
         "copyrightHolder" : "",
         "copyrightYear" : "2015",
-        "datePublished": "2015-04-27 00:00:00 &#43;0000 UTC",
-        "dateModified" : "2015-04-27 00:00:00 &#43;0000 UTC",
-        "url" : "https://blog.paulhankin.net/fibonacci/",
-        "wordCount" : "0",
-        "image" : https://blog.paulhankin.net/img/post/fibonacci.png",
-        "keywords" : [ "maths","compsci","fibonacci","python","Blog" ]   
+        "datePublished": "2015-04-27 00:00:00 \x2b0000 UTC",
+        "dateModified" : "2015-04-27 00:00:00 \x2b0000 UTC",
+        "url" : "https:\/\/blog.paulhankin.net\/fibonacci\/",
+        "wordCount" : "1169",
+        "image" : "https://blog.paulhankin.net/img/post/fibonacci.png"",
+        "keywords" : [ ""maths"",""compsci"",""fibonacci"",""python"","Blog" ]   
     }
     </script>
 
@@ -57,12 +50,16 @@
 <link rel="icon" href="https://blog.paulhankin.net/img/favicon.ico" type="image/x-icon">
 
 
-<script>
-window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-ga('create', 'UA-63206765-1', 'auto');
-ga('send', 'pageview');
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-63206765-1', 'auto');
+	
+	ga('send', 'pageview');
+}
 </script>
-<script async src='//www.google-analytics.com/analytics.js'></script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
 
 </head>
 
@@ -83,11 +80,11 @@ ga('send', 'pageview');
       <ul id="menu-secondary-items" class="menu-secondary-items">
         
         <li id="menu-item" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item">
-          <a href="/categories/computer-science">computer science</a>
+          <a href="/categories/computer-science">computer-science</a>
         </li>
         
         <li id="menu-item" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item">
-          <a href="/categories/game-theory">game theory</a>
+          <a href="/categories/game-theory">game-theory</a>
         </li>
         
         <li id="menu-item" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item">
@@ -246,13 +243,9 @@ ga('send', 'pageview');
           <div class="entry-content">
             <article>
               <p>This code, somewhat surprisingly, generates Fibonacci numbers.</p>
-
 <pre><code>def fib(n):
-    return (4 &lt;&lt; n*(3+n)) // ((4 &lt;&lt; 2*n) - (2 &lt;&lt; n) - 1) &amp; ((2 &lt;&lt; n) - 1)
-</code></pre>
-
-<p>In this blog post, I'll explain where it comes from and how it works.
-</p>
+    return (4 &lt;&lt; n*(3+n)) // ((4 &lt;&lt; 2*n) - (2 &lt;&lt; n) - 1) &amp; ((2 &lt;&lt; n) - 1)</code></pre>
+<p>In this blog post, I'll explain where it comes from and how it works.</p>
 
 <p>Before getting to explaining, I'll give a whirlwind background overview of
 Fibonacci numbers and how to compute them. If you're already a maths whiz, you can skip
@@ -279,28 +272,19 @@ by this recurrence relation:</p>
 <h3 id="computing-fibonacci-numbers">Computing Fibonacci numbers</h3>
 
 <p>There's a few different reasonably well-known ways of computing the sequence. The obvious recursive implementation is slow:</p>
-
 <pre><code>def fib_recursive(n):
     if n &lt; 2: return 1
-    return fib_recursive(n - 1) + fib_recursive(n - 2)
-</code></pre>
-
+    return fib_recursive(n - 1) + fib_recursive(n - 2)</code></pre>
 <p>An iterative implementation works in <span  class="math">\(O(n)\)</span> operations:</p>
-
 <pre><code>def fib_iter(n):
     a, b = 1, 1
     for _ in xrange(n):
         a, b = a + b, a
-    return b
-</code></pre>
-
+    return b</code></pre>
 <p>And a slightly less well-known matrix power implementation works in <span  class="math">\(O(\mathrm{log}\ n)\)</span> operations.</p>
-
 <pre><code>def fib_matpow(n):
-    m = numpy.matrix('1 1 ; 1 0') ** n
-    return m.item(0)
-</code></pre>
-
+    m = numpy.matrix(&#39;1 1 ; 1 0&#39;) ** n
+    return m.item(0)</code></pre>
 <p>The last method works by considering the <code>a</code> and <code>b</code> in <code>fib_iter</code>
 as sequences, and noting that</p>
 
@@ -341,13 +325,10 @@ b_{n} \end{array} \right) =
 <p>It's <span  class="math">\(O(\mathrm{log}\ n)\)</span> based on the assumption that numpy's matrix power does something like exponentation by squaring.</p>
 
 <p>Another method is to find a closed form for the solution of the recurrence relation. This leads to the real-valued formula: <span  class="math">\(\mathrm{Fib}(n) = (\phi^{n+1} - \psi^{n+1}) / \sqrt{5})\)</span> where <span  class="math">\(\phi = (1 + \sqrt{5}) / 2\)</span> and <span  class="math">\(\psi = (1 - \sqrt{5}) / 2\)</span>. The practical flaw in this method is that it requires arbitrary precision real-valued arithmetic, but it works for small <span  class="math">\(n\)</span>.</p>
-
 <pre><code>def fib_phi(n):
     phi = (1 + math.sqrt(5)) / 2.0
     psi = (1 - math.sqrt(5)) / 2.0
-    return int((phi ** (n+1) - psi ** (n+1)) / math.sqrt(5))
-</code></pre>
-
+    return int((phi ** (n+1) - psi ** (n+1)) / math.sqrt(5))</code></pre>
 <h3 id="generating-functions">Generating Functions</h3>
 
 <p>A generating function for an arbitrary sequence <span  class="math">\(a_n\)</span> is the infinite sum <span  class="math">\(\Sigma_n a_nx^n\)</span>.
@@ -429,11 +410,8 @@ grow like <span  class="math">\(\phi^n\)</span>, and <span  class="math">\(\phi 
 <p><span  class="math">\[ \mathrm{Fib}(n)  \equiv \frac{4 << n(3+n)}{(4 << 2n) - (2 << n) - 1} \mathrm{mod}\ (2 << n)  \]</span></p>
 
 <p>Observing that <span  class="math">\(\mathrm{mod}\ (2 << n)\)</span> can be expressed as the bitwise and (<code>&amp;</code>) of <span  class="math">\((2 << n) - 1\)</span>, we reconstruct our original Python program:</p>
-
 <pre><code>def fib(n):
-    return (4 &lt;&lt; n*(3+n)) // ((4 &lt;&lt; 2*n) - (2 &lt;&lt; n) - 1) &amp; ((2 &lt;&lt; n) - 1)
-</code></pre>
-
+    return (4 &lt;&lt; n*(3+n)) // ((4 &lt;&lt; 2*n) - (2 &lt;&lt; n) - 1) &amp; ((2 &lt;&lt; n) - 1)</code></pre>
 <p>Although it's curious to find a non-iterative, closed-form solution, this isn't a practical method at all. We're doing integer arithmetic with integers of size <span  class="math">\(O(n^2)\)</span> bits, and in fact, before performing the final bit-wise and, we've got an integer that is the first <span  class="math">\(n\)</span> Fibonacci numbers concatenated together!</p>
             </article>
           </div>
@@ -530,7 +508,7 @@ title="github icon"></i>
 
 <section id="comments" class="comments">
   <div id="disqus_thread"></div>
-<script>
+<script type="application/javascript">
     var disqus_config = function () {
     
     
@@ -639,7 +617,7 @@ title="github icon"></i>
 
 				</ul>	<div class="design-credit">
 		
-		<p>&copy; 2015 &mdash; 2018 Paul Hankin</p>
+		<p>© 2015 — 2018 Paul Hankin</p>
 		
 		<p>Nederburg Hugo Theme by <a href="https://appernetic.io">Appernetic</a>.</p>
 		

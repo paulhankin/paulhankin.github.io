@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en-us">
 <head>
-	<meta name="generator" content="Hugo 0.40.1" /><meta charset="utf-8">
+	<meta name="generator" content="Hugo 0.68.3" /><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <script type="application/ld+json">
     {
@@ -9,11 +9,11 @@
         "@type" : "BlogPosting",
         "mainEntityOfPage": {
              "@type": "WebPage",
-             "@id": "https://blog.paulhankin.net/"
+             "@id": "https:\/\/blog.paulhankin.net\/"
         },
         "articleSection" : "",
-        "name" : "Paul&#39;s blog",
-        "headline" : "Paul&#39;s blog",
+        "name" : "Paul\x27s blog",
+        "headline" : "Paul\x27s blog",
         "description" : "",
         "inLanguage" : "en-US",
         "author" : "",
@@ -21,12 +21,12 @@
         "publisher": "",
         "accountablePerson" : "",
         "copyrightHolder" : "",
-        "copyrightYear" : "2020",
-        "datePublished": "2020-03-16 00:00:00 &#43;0000 UTC",
-        "dateModified" : "2020-03-16 00:00:00 &#43;0000 UTC",
-        "url" : "https://blog.paulhankin.net/",
+        "copyrightYear" : "2018",
+        "datePublished": "2018-06-03 00:00:00 \x2b0000 UTC",
+        "dateModified" : "2018-06-03 00:00:00 \x2b0000 UTC",
+        "url" : "https:\/\/blog.paulhankin.net\/",
         "wordCount" : "0",
-        "image" : https://blog.paulhankin.net/%!s(&lt;nil&gt;)",
+        "image" : "https://blog.paulhankin.net/%!s(\u003cnil\u003e)"",
         "keywords" : [ "Blog" ]   
     }
     </script>
@@ -54,12 +54,16 @@
 <link href="https://blog.paulhankin.net/index.xml" rel="feed" type="application/rss+xml" title="Paul&#39;s blog" />
 
 
-<script>
-window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-ga('create', 'UA-63206765-1', 'auto');
-ga('send', 'pageview');
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-63206765-1', 'auto');
+	
+	ga('send', 'pageview');
+}
 </script>
-<script async src='//www.google-analytics.com/analytics.js'></script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
 
 </head>
 
@@ -79,11 +83,11 @@ ga('send', 'pageview');
       <ul id="menu-secondary-items" class="menu-secondary-items">
         
         <li id="menu-item" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item">
-          <a href="/categories/computer-science">computer science</a>
+          <a href="/categories/computer-science">computer-science</a>
         </li>
         
         <li id="menu-item" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item">
-          <a href="/categories/game-theory">game theory</a>
+          <a href="/categories/game-theory">game-theory</a>
         </li>
         
         <li id="menu-item" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item">
@@ -264,8 +268,6 @@ and the number of ways to climb <span  class="math">\(n\)</span> steps taking 1 
 
 <p>These formulas can be used to efficiently compute Fibonacci numbers (see the the end of the post for how). They are usually derived from a matrix power representation of Fibonacci numbers (or see <a href="https://blog.paulhankin.net/fibonacci2/">one of my earlier posts</a> for an alternative). This blog post gives a direct combinatorial derivation.</p>
 
-<p></p>
-
 							<div class="more-link-wrapper"><a class="more-link" href="https://blog.paulhankin.net/fibonacci_doubling/">Read the post<span class="screen-reader-text">This is a Standard Post</span></a></div>
 						</article>
 					</div>
@@ -322,8 +324,6 @@ observations about how things have and haven't changed. It's not a critique of C
 and some of the obvious problems with writing C (such as lack of bounds checking
 of arrays) aren't discussed.</p>
 
-<p></p>
-
 							<div class="more-link-wrapper"><a class="more-link" href="https://blog.paulhankin.net/back-to-c/">Read the post<span class="screen-reader-text">This is a Standard Post</span></a></div>
 						</article>
 					</div>
@@ -368,28 +368,23 @@ of arrays) aren't discussed.</p>
 					<div class='excerpt-content'>
 						<article>
 							<p>Computing large integer powers modulo some number is a somewhat common operation. For example, it's used in RSA encryption. Usually, this is done using exponentiation by squaring, but this go program correctly prints the results of <span  class="math">\(n^{2^{64}}\ (\mathrm{mod}\ 115763)\)</span> for <span  class="math">\(n\)</span> from 1 to 20, seemingly naively:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#f92672">package</span> <span style="color:#a6e22e">main</span>
 
-<pre><code class="language-go">package main
+<span style="color:#f92672">import</span> <span style="color:#e6db74">&#34;fmt&#34;</span>
 
-import &quot;fmt&quot;
-
-func main() {
-	for n := 1; n &lt;= 20; n++ {
-		result := 1
-		for i := 0; i &lt; 2^64; i++ {
-			result = (result * n) % 115763
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+	<span style="color:#66d9ef">for</span> <span style="color:#a6e22e">n</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">1</span>; <span style="color:#a6e22e">n</span> <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">20</span>; <span style="color:#a6e22e">n</span><span style="color:#f92672">++</span> {
+		<span style="color:#a6e22e">result</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">1</span>
+		<span style="color:#66d9ef">for</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">0</span>; <span style="color:#a6e22e">i</span> &lt; <span style="color:#ae81ff">2</span>^<span style="color:#ae81ff">64</span>; <span style="color:#a6e22e">i</span><span style="color:#f92672">++</span> {
+			<span style="color:#a6e22e">result</span> = (<span style="color:#a6e22e">result</span> <span style="color:#f92672">*</span> <span style="color:#a6e22e">n</span>) <span style="color:#f92672">%</span> <span style="color:#ae81ff">115763</span>
 		}
-		fmt.Printf(&quot;pow(%d, pow(2, 64)) mod 115763 = %d\n&quot;, n, result)
+		<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;pow(%d, pow(2, 64)) mod 115763 = %d\n&#34;</span>, <span style="color:#a6e22e">n</span>, <span style="color:#a6e22e">result</span>)
 	}
-}
-</code></pre>
-
+}</code></pre></div>
 <p>It runs, unoptimized, in a few milliseconds on my desktop.
 You can run it yourself online using the <a href="https://play.golang.org/p/y2L63tDfUMJ">go playground</a>. Feel free to edit the code a little before running it to convince yourself it's not just fast because the playground is caching the results or something.</p>
 
 <p>How can it be that fast? Is go's optimizing compiler that clever? It's not, and there's a trick in the code. Can you see it?</p>
-
-<p></p>
 
 							<div class="more-link-wrapper"><a class="more-link" href="https://blog.paulhankin.net/powercheat/">Read the post<span class="screen-reader-text">This is a Standard Post</span></a></div>
 						</article>
@@ -437,10 +432,8 @@ You can run it yourself online using the <a href="https://play.golang.org/p/y2L6
 							<p>Generation of random Latin Squares (such that each latin square of a given size is equally
 likely) is a deceptively difficult problem.</p>
 
-<p>This post describes my own implementation, loosely based on the <a href="https://www.researchgate.net/publication/308517970_Generation_of_Random_Latin_Squares_Step_By_Step_and_Graphically">Java implementation described by Ignacio Gallego Sagastume</a> which
+<p>This post describes my own implementation, loosely based on the <a href="https://www.researhcgate.net/publication/308517970_Generation_of_Random_Latin_Squares_Step_By_Step_and_Graphically">Java implementation described by Ignacio Gallego Sagastume</a> which
 implements the rather ingenious method of <a href="https://onlinelibrary.wiley.com/doi/abs/10.1002/%28SICI%291520-6610%281996%294%3A6%3C405%3A%3AAID-JCD3%3E3.0.CO%3B2-J">Jacobson and Matthews</a></p>
-
-<p></p>
 
 							<div class="more-link-wrapper"><a class="more-link" href="https://blog.paulhankin.net/latinsquares/">Read the post<span class="screen-reader-text">This is a Standard Post</span></a></div>
 						</article>
@@ -503,8 +496,6 @@ it currently is.</p>
 <p>This post takes a look at what made home micros effective
 learning environments, and considers what a modern equivalent might look
 like.</p>
-
-<p></p>
 
 							<div class="more-link-wrapper"><a class="more-link" href="https://blog.paulhankin.net/learnprogramming/">Read the post<span class="screen-reader-text">This is a Standard Post</span></a></div>
 						</article>
@@ -640,7 +631,7 @@ like.</p>
 
 				</ul>	<div class="design-credit">
 		
-		<p>&copy; 2015 &mdash; 2018 Paul Hankin</p>
+		<p>© 2015 — 2018 Paul Hankin</p>
 		
 		<p>Nederburg Hugo Theme by <a href="https://appernetic.io">Appernetic</a>.</p>
 		
