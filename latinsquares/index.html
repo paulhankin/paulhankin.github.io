@@ -291,12 +291,12 @@ exactly one 1 entry.</p>
 <p>I take a similar, but slightly more efficient, approach to Sagastume's Java implementation.</p>
 
 <p>The matrix <span  class="math">\(M\)</span> is represented like this:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#a6e22e">xy</span> [<span style="color:#a6e22e">n</span>][<span style="color:#a6e22e">n</span>]<span style="color:#66d9ef">int</span> <span style="color:#75715e">// an array of n by n integers
-</span><span style="color:#75715e"></span><span style="color:#a6e22e">yz</span> [<span style="color:#a6e22e">n</span>][<span style="color:#a6e22e">n</span>]<span style="color:#66d9ef">int</span>
-<span style="color:#a6e22e">xz</span> [<span style="color:#a6e22e">n</span>][<span style="color:#a6e22e">n</span>]<span style="color:#66d9ef">int</span>
-<span style="color:#a6e22e">perfect</span> <span style="color:#66d9ef">bool</span>
-<span style="color:#a6e22e">m</span> [<span style="color:#ae81ff">3</span>]<span style="color:#66d9ef">int</span>
-<span style="color:#a6e22e">mxy</span>, <span style="color:#a6e22e">myz</span>, <span style="color:#a6e22e">mxz</span> <span style="color:#66d9ef">int</span></code></pre></div>
+<pre><code>xy [n][n]int // an array of n by n integers
+yz [n][n]int
+xz [n][n]int
+perfect bool
+m [3]int
+mxy, myz, mxz int</code></pre>
 <p>(as a pedantic side note, the <code>xy</code>, <code>yz</code> and <code>xz</code> arrays are actually slices in go to allow for <code>n</code> to be varied at runtime).</p>
 
 <p>The correspondence to the <span  class="math">\(M\)</span> matrix is as follows:</p>
@@ -318,105 +318,105 @@ of the incidence matrix when the incidence matrix is proper.</p>
 The code is small and fast enough to run on the go playground, which you
 can find here <a href="https://play.golang.org/p/7Ycmxh5T5EP">by clicking here</a>. The playground
 version has a <code>Seed</code> and <code>N</code> parameter that you can change to get different Latin squares.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#f92672">package</span> <span style="color:#a6e22e">main</span>
+<pre><code>package main
 
-<span style="color:#f92672">import</span> (
-	<span style="color:#e6db74">&#34;fmt&#34;</span>
-	<span style="color:#e6db74">&#34;math/rand&#34;</span>
-	<span style="color:#e6db74">&#34;time&#34;</span>
+import (
+	&#34;fmt&#34;
+	&#34;math/rand&#34;
+	&#34;time&#34;
 )
 
-<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">rand2</span>(<span style="color:#a6e22e">a</span>, <span style="color:#a6e22e">b</span> <span style="color:#66d9ef">int</span>) (<span style="color:#66d9ef">int</span>, <span style="color:#66d9ef">int</span>) {
-	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">rand</span>.<span style="color:#a6e22e">Intn</span>(<span style="color:#ae81ff">2</span>) <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> {
-		<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">a</span>, <span style="color:#a6e22e">b</span>
+func rand2(a, b int) (int, int) {
+	if rand.Intn(2) == 0 {
+		return a, b
 	}
-	<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">b</span>, <span style="color:#a6e22e">a</span>
+	return b, a
 }
 
-<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">Latin</span>(<span style="color:#a6e22e">n</span> <span style="color:#66d9ef">int</span>) [][]<span style="color:#66d9ef">int</span> {
-	<span style="color:#a6e22e">xy</span> <span style="color:#f92672">:=</span> make([][]<span style="color:#66d9ef">int</span>, <span style="color:#a6e22e">n</span>)
-	<span style="color:#a6e22e">xz</span> <span style="color:#f92672">:=</span> make([][]<span style="color:#66d9ef">int</span>, <span style="color:#a6e22e">n</span>)
-	<span style="color:#a6e22e">yz</span> <span style="color:#f92672">:=</span> make([][]<span style="color:#66d9ef">int</span>, <span style="color:#a6e22e">n</span>)
-	<span style="color:#66d9ef">for</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">0</span>; <span style="color:#a6e22e">i</span> &lt; <span style="color:#a6e22e">n</span>; <span style="color:#a6e22e">i</span><span style="color:#f92672">++</span> {
-		<span style="color:#a6e22e">xy</span>[<span style="color:#a6e22e">i</span>] = make([]<span style="color:#66d9ef">int</span>, <span style="color:#a6e22e">n</span>)
-		<span style="color:#a6e22e">yz</span>[<span style="color:#a6e22e">i</span>] = make([]<span style="color:#66d9ef">int</span>, <span style="color:#a6e22e">n</span>)
-		<span style="color:#a6e22e">xz</span>[<span style="color:#a6e22e">i</span>] = make([]<span style="color:#66d9ef">int</span>, <span style="color:#a6e22e">n</span>)
+func Latin(n int) [][]int {
+	xy := make([][]int, n)
+	xz := make([][]int, n)
+	yz := make([][]int, n)
+	for i := 0; i &lt; n; i++ {
+		xy[i] = make([]int, n)
+		yz[i] = make([]int, n)
+		xz[i] = make([]int, n)
 	}
-	<span style="color:#66d9ef">for</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">0</span>; <span style="color:#a6e22e">i</span> &lt; <span style="color:#a6e22e">n</span>; <span style="color:#a6e22e">i</span><span style="color:#f92672">++</span> {
-		<span style="color:#66d9ef">for</span> <span style="color:#a6e22e">j</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">0</span>; <span style="color:#a6e22e">j</span> &lt; <span style="color:#a6e22e">n</span>; <span style="color:#a6e22e">j</span><span style="color:#f92672">++</span> {
-			<span style="color:#a6e22e">k</span> <span style="color:#f92672">:=</span> (<span style="color:#a6e22e">i</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">j</span>) <span style="color:#f92672">%</span> <span style="color:#a6e22e">n</span>
-			<span style="color:#a6e22e">xy</span>[<span style="color:#a6e22e">i</span>][<span style="color:#a6e22e">j</span>] = <span style="color:#a6e22e">k</span>
-			<span style="color:#a6e22e">xz</span>[<span style="color:#a6e22e">i</span>][<span style="color:#a6e22e">k</span>] = <span style="color:#a6e22e">j</span>
-			<span style="color:#a6e22e">yz</span>[<span style="color:#a6e22e">j</span>][<span style="color:#a6e22e">k</span>] = <span style="color:#a6e22e">i</span>
+	for i := 0; i &lt; n; i++ {
+		for j := 0; j &lt; n; j++ {
+			k := (i + j) % n
+			xy[i][j] = k
+			xz[i][k] = j
+			yz[j][k] = i
 		}
 	}
 
-	<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">mxy</span>, <span style="color:#a6e22e">mxz</span>, <span style="color:#a6e22e">myz</span> <span style="color:#66d9ef">int</span>
-	<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">m</span> [<span style="color:#ae81ff">3</span>]<span style="color:#66d9ef">int</span>
-	<span style="color:#a6e22e">proper</span> <span style="color:#f92672">:=</span> <span style="color:#66d9ef">true</span>
-	<span style="color:#a6e22e">minIter</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">n</span> <span style="color:#f92672">*</span> <span style="color:#a6e22e">n</span> <span style="color:#f92672">*</span> <span style="color:#a6e22e">n</span>
-	<span style="color:#66d9ef">for</span> <span style="color:#a6e22e">iter</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">0</span>; <span style="color:#a6e22e">iter</span> &lt; <span style="color:#a6e22e">minIter</span> <span style="color:#f92672">||</span> !<span style="color:#a6e22e">proper</span>; <span style="color:#a6e22e">iter</span><span style="color:#f92672">++</span> {
-		<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">i</span>, <span style="color:#a6e22e">j</span>, <span style="color:#a6e22e">k</span>, <span style="color:#a6e22e">i2</span>, <span style="color:#a6e22e">j2</span>, <span style="color:#a6e22e">k2</span> <span style="color:#66d9ef">int</span>
-		<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">i2_</span>, <span style="color:#a6e22e">j2_</span>, <span style="color:#a6e22e">k2_</span> <span style="color:#66d9ef">int</span>
+	var mxy, mxz, myz int
+	var m [3]int
+	proper := true
+	minIter := n * n * n
+	for iter := 0; iter &lt; minIter || !proper; iter++ {
+		var i, j, k, i2, j2, k2 int
+		var i2_, j2_, k2_ int
 
-		<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">proper</span> {
-			<span style="color:#75715e">// Pick a random 0 in the array
-</span><span style="color:#75715e"></span>			<span style="color:#a6e22e">i</span>, <span style="color:#a6e22e">j</span>, <span style="color:#a6e22e">k</span> = <span style="color:#a6e22e">rand</span>.<span style="color:#a6e22e">Intn</span>(<span style="color:#a6e22e">n</span>), <span style="color:#a6e22e">rand</span>.<span style="color:#a6e22e">Intn</span>(<span style="color:#a6e22e">n</span>), <span style="color:#a6e22e">rand</span>.<span style="color:#a6e22e">Intn</span>(<span style="color:#a6e22e">n</span>)
-			<span style="color:#66d9ef">for</span> <span style="color:#a6e22e">xy</span>[<span style="color:#a6e22e">i</span>][<span style="color:#a6e22e">j</span>] <span style="color:#f92672">==</span> <span style="color:#a6e22e">k</span> {
-				<span style="color:#a6e22e">i</span>, <span style="color:#a6e22e">j</span>, <span style="color:#a6e22e">k</span> = <span style="color:#a6e22e">rand</span>.<span style="color:#a6e22e">Intn</span>(<span style="color:#a6e22e">n</span>), <span style="color:#a6e22e">rand</span>.<span style="color:#a6e22e">Intn</span>(<span style="color:#a6e22e">n</span>), <span style="color:#a6e22e">rand</span>.<span style="color:#a6e22e">Intn</span>(<span style="color:#a6e22e">n</span>)
+		if proper {
+			// Pick a random 0 in the array
+			i, j, k = rand.Intn(n), rand.Intn(n), rand.Intn(n)
+			for xy[i][j] == k {
+				i, j, k = rand.Intn(n), rand.Intn(n), rand.Intn(n)
 			}
-			<span style="color:#75715e">// find i2 such that [i2, j, k] is 1. same for j2, k2
-</span><span style="color:#75715e"></span>			<span style="color:#a6e22e">i2</span> = <span style="color:#a6e22e">yz</span>[<span style="color:#a6e22e">j</span>][<span style="color:#a6e22e">k</span>]
-			<span style="color:#a6e22e">j2</span> = <span style="color:#a6e22e">xz</span>[<span style="color:#a6e22e">i</span>][<span style="color:#a6e22e">k</span>]
-			<span style="color:#a6e22e">k2</span> = <span style="color:#a6e22e">xy</span>[<span style="color:#a6e22e">i</span>][<span style="color:#a6e22e">j</span>]
-			<span style="color:#a6e22e">i2_</span>, <span style="color:#a6e22e">j2_</span>, <span style="color:#a6e22e">k2_</span> = <span style="color:#a6e22e">i</span>, <span style="color:#a6e22e">j</span>, <span style="color:#a6e22e">k</span>
-		} <span style="color:#66d9ef">else</span> {
-			<span style="color:#a6e22e">i</span>, <span style="color:#a6e22e">j</span>, <span style="color:#a6e22e">k</span> = <span style="color:#a6e22e">m</span>[<span style="color:#ae81ff">0</span>], <span style="color:#a6e22e">m</span>[<span style="color:#ae81ff">1</span>], <span style="color:#a6e22e">m</span>[<span style="color:#ae81ff">2</span>]
-			<span style="color:#75715e">// find one such that [i2, j, k] is 1, same for j2, k2.
-</span><span style="color:#75715e"></span>			<span style="color:#75715e">// each is either the value stored in the corresponding
-</span><span style="color:#75715e"></span>			<span style="color:#75715e">// slice, or one of our three temporary &#34;extra&#34; 1s.
-</span><span style="color:#75715e"></span>			<span style="color:#75715e">// That&#39;s because (i, j, k) is -1.
-</span><span style="color:#75715e"></span>			<span style="color:#a6e22e">i2</span>, <span style="color:#a6e22e">i2_</span> = <span style="color:#a6e22e">rand2</span>(<span style="color:#a6e22e">yz</span>[<span style="color:#a6e22e">j</span>][<span style="color:#a6e22e">k</span>], <span style="color:#a6e22e">myz</span>)
-			<span style="color:#a6e22e">j2</span>, <span style="color:#a6e22e">j2_</span> = <span style="color:#a6e22e">rand2</span>(<span style="color:#a6e22e">xz</span>[<span style="color:#a6e22e">i</span>][<span style="color:#a6e22e">k</span>], <span style="color:#a6e22e">mxz</span>)
-			<span style="color:#a6e22e">k2</span>, <span style="color:#a6e22e">k2_</span> = <span style="color:#a6e22e">rand2</span>(<span style="color:#a6e22e">xy</span>[<span style="color:#a6e22e">i</span>][<span style="color:#a6e22e">j</span>], <span style="color:#a6e22e">mxy</span>)
+			// find i2 such that [i2, j, k] is 1. same for j2, k2
+			i2 = yz[j][k]
+			j2 = xz[i][k]
+			k2 = xy[i][j]
+			i2_, j2_, k2_ = i, j, k
+		} else {
+			i, j, k = m[0], m[1], m[2]
+			// find one such that [i2, j, k] is 1, same for j2, k2.
+			// each is either the value stored in the corresponding
+			// slice, or one of our three temporary &#34;extra&#34; 1s.
+			// That&#39;s because (i, j, k) is -1.
+			i2, i2_ = rand2(yz[j][k], myz)
+			j2, j2_ = rand2(xz[i][k], mxz)
+			k2, k2_ = rand2(xy[i][j], mxy)
 		}
 
-		<span style="color:#a6e22e">proper</span> = <span style="color:#a6e22e">xy</span>[<span style="color:#a6e22e">i2</span>][<span style="color:#a6e22e">j2</span>] <span style="color:#f92672">==</span> <span style="color:#a6e22e">k2</span>
-		<span style="color:#66d9ef">if</span> !<span style="color:#a6e22e">proper</span> {
-			<span style="color:#a6e22e">m</span> = [<span style="color:#ae81ff">3</span>]<span style="color:#66d9ef">int</span>{<span style="color:#a6e22e">i2</span>, <span style="color:#a6e22e">j2</span>, <span style="color:#a6e22e">k2</span>}
-			<span style="color:#a6e22e">mxy</span> = <span style="color:#a6e22e">xy</span>[<span style="color:#a6e22e">i2</span>][<span style="color:#a6e22e">j2</span>]
-			<span style="color:#a6e22e">myz</span> = <span style="color:#a6e22e">yz</span>[<span style="color:#a6e22e">j2</span>][<span style="color:#a6e22e">k2</span>]
-			<span style="color:#a6e22e">mxz</span> = <span style="color:#a6e22e">xz</span>[<span style="color:#a6e22e">i2</span>][<span style="color:#a6e22e">k2</span>]
+		proper = xy[i2][j2] == k2
+		if !proper {
+			m = [3]int{i2, j2, k2}
+			mxy = xy[i2][j2]
+			myz = yz[j2][k2]
+			mxz = xz[i2][k2]
 		}
 
-		<span style="color:#a6e22e">xy</span>[<span style="color:#a6e22e">i</span>][<span style="color:#a6e22e">j</span>] = <span style="color:#a6e22e">k2_</span>
-		<span style="color:#a6e22e">xy</span>[<span style="color:#a6e22e">i</span>][<span style="color:#a6e22e">j2</span>] = <span style="color:#a6e22e">k2</span>
-		<span style="color:#a6e22e">xy</span>[<span style="color:#a6e22e">i2</span>][<span style="color:#a6e22e">j</span>] = <span style="color:#a6e22e">k2</span>
-		<span style="color:#a6e22e">xy</span>[<span style="color:#a6e22e">i2</span>][<span style="color:#a6e22e">j2</span>] = <span style="color:#a6e22e">k</span>
+		xy[i][j] = k2_
+		xy[i][j2] = k2
+		xy[i2][j] = k2
+		xy[i2][j2] = k
 
-		<span style="color:#a6e22e">yz</span>[<span style="color:#a6e22e">j</span>][<span style="color:#a6e22e">k</span>] = <span style="color:#a6e22e">i2_</span>
-		<span style="color:#a6e22e">yz</span>[<span style="color:#a6e22e">j</span>][<span style="color:#a6e22e">k2</span>] = <span style="color:#a6e22e">i2</span>
-		<span style="color:#a6e22e">yz</span>[<span style="color:#a6e22e">j2</span>][<span style="color:#a6e22e">k</span>] = <span style="color:#a6e22e">i2</span>
-		<span style="color:#a6e22e">yz</span>[<span style="color:#a6e22e">j2</span>][<span style="color:#a6e22e">k2</span>] = <span style="color:#a6e22e">i</span>
+		yz[j][k] = i2_
+		yz[j][k2] = i2
+		yz[j2][k] = i2
+		yz[j2][k2] = i
 
-		<span style="color:#a6e22e">xz</span>[<span style="color:#a6e22e">i</span>][<span style="color:#a6e22e">k</span>] = <span style="color:#a6e22e">j2_</span>
-		<span style="color:#a6e22e">xz</span>[<span style="color:#a6e22e">i</span>][<span style="color:#a6e22e">k2</span>] = <span style="color:#a6e22e">j2</span>
-		<span style="color:#a6e22e">xz</span>[<span style="color:#a6e22e">i2</span>][<span style="color:#a6e22e">k</span>] = <span style="color:#a6e22e">j2</span>
-		<span style="color:#a6e22e">xz</span>[<span style="color:#a6e22e">i2</span>][<span style="color:#a6e22e">k2</span>] = <span style="color:#a6e22e">j</span>
+		xz[i][k] = j2_
+		xz[i][k2] = j2
+		xz[i2][k] = j2
+		xz[i2][k2] = j
 	}
-	<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">xy</span>
+	return xy
 }
 
-<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
-	<span style="color:#a6e22e">rand</span>.<span style="color:#a6e22e">Seed</span>(<span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Now</span>().<span style="color:#a6e22e">UnixNano</span>())
-	<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">N</span> = <span style="color:#ae81ff">25</span>
-	<span style="color:#66d9ef">for</span> <span style="color:#a6e22e">_</span>, <span style="color:#a6e22e">row</span> <span style="color:#f92672">:=</span> <span style="color:#66d9ef">range</span> <span style="color:#a6e22e">Latin</span>(<span style="color:#a6e22e">N</span>) {
-		<span style="color:#66d9ef">for</span> <span style="color:#a6e22e">_</span>, <span style="color:#a6e22e">c</span> <span style="color:#f92672">:=</span> <span style="color:#66d9ef">range</span> <span style="color:#a6e22e">row</span> {
-			<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;%3d &#34;</span>, <span style="color:#a6e22e">c</span><span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>)
+func main() {
+	rand.Seed(time.Now().UnixNano())
+	const N = 25
+	for _, row := range Latin(N) {
+		for _, c := range row {
+			fmt.Printf(&#34;%3d &#34;, c+1)
 		}
-		<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;\n&#34;</span>)
+		fmt.Printf(&#34;\n&#34;)
 	}
-}</code></pre></div>
+}</code></pre>
             </article>
           </div>
           

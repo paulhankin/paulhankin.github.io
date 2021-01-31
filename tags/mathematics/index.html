@@ -249,19 +249,19 @@ if (!doNotTrack) {
 							<div class='excerpt-content'>
 								<article>
 									<p>Computing large integer powers modulo some number is a somewhat common operation. For example, it's used in RSA encryption. Usually, this is done using exponentiation by squaring, but this go program correctly prints the results of <span  class="math">\(n^{2^{64}}\ (\mathrm{mod}\ 115763)\)</span> for <span  class="math">\(n\)</span> from 1 to 20, seemingly naively:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#f92672">package</span> <span style="color:#a6e22e">main</span>
+<pre><code>package main
 
-<span style="color:#f92672">import</span> <span style="color:#e6db74">&#34;fmt&#34;</span>
+import &#34;fmt&#34;
 
-<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
-	<span style="color:#66d9ef">for</span> <span style="color:#a6e22e">n</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">1</span>; <span style="color:#a6e22e">n</span> <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">20</span>; <span style="color:#a6e22e">n</span><span style="color:#f92672">++</span> {
-		<span style="color:#a6e22e">result</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">1</span>
-		<span style="color:#66d9ef">for</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">0</span>; <span style="color:#a6e22e">i</span> &lt; <span style="color:#ae81ff">2</span>^<span style="color:#ae81ff">64</span>; <span style="color:#a6e22e">i</span><span style="color:#f92672">++</span> {
-			<span style="color:#a6e22e">result</span> = (<span style="color:#a6e22e">result</span> <span style="color:#f92672">*</span> <span style="color:#a6e22e">n</span>) <span style="color:#f92672">%</span> <span style="color:#ae81ff">115763</span>
+func main() {
+	for n := 1; n &lt;= 20; n++ {
+		result := 1
+		for i := 0; i &lt; 2^64; i++ {
+			result = (result * n) % 115763
 		}
-		<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;pow(%d, pow(2, 64)) mod 115763 = %d\n&#34;</span>, <span style="color:#a6e22e">n</span>, <span style="color:#a6e22e">result</span>)
+		fmt.Printf(&#34;pow(%d, pow(2, 64)) mod 115763 = %d\n&#34;, n, result)
 	}
-}</code></pre></div>
+}</code></pre>
 <p>It runs, unoptimized, in a few milliseconds on my desktop.
 You can run it yourself online using the <a href="https://play.golang.org/p/y2L63tDfUMJ">go playground</a>. Feel free to edit the code a little before running it to convince yourself it's not just fast because the playground is caching the results or something.</p>
 
