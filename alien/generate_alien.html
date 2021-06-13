@@ -3,13 +3,21 @@
 <script>
 	Module.onRuntimeInitialized = _ => {
 		const generateAlien = Module.cwrap('generateAlien', 'number',
-			['number', 'number', 'number', 'number', 'number', 'number']);
+			['number', 'number', 'number']);
+		const configNew = Module.cwrap('configNew', 'number', []);
+		const configFree = Module.cwrap('configFree', '', ['number']);
+		const configSetSize = Module.cwrap('configSetSize', '', ['number', 'number', 'number']);
+		const configSetSeed = Module.cwrap('configSetSeed', '', ['number', 'number']);
+		const configSetPixelSize = Module.cwrap('configSetPixelSize', '', ['number', 'number']);
+		const configSetFlowSteps = Module.cwrap('configSetFlowSteps', '', ['number', 'number']);
+
 		const params = new URL(window.location.href).searchParams;
 		const W = Math.floor(params.get("W")) || 32;
 		const H = Math.floor(params.get("H")) || 18;
 		const PS = Math.floor(params.get("PS")) || 4;
 		const SEED_BASE = Math.floor(params.get("SEED")) || Math.floor(Math.random() * 256 * 256 * 256);
 		const MIN_GAP = 8;
+		const FLOW_STEPS = Math.floor(params.get("FLOW_STEPS") || 0);
 
 		var canvas = document.getElementById('cantvas');
 		canvas.width = window.innerWidth;
@@ -21,7 +29,6 @@
 
 		const canv_width = canvas.width;
 		const canv_height = canvas.height;
-		console.log(canv_width, canv_height);
 
 		const per_line = Math.floor(canv_width / (W * PS + MIN_GAP));
 		const per_col = Math.floor(canv_height / (H * PS + MIN_GAP));
@@ -31,13 +38,21 @@
 
 		const BUF_SIZE = W * H * PS * PS * 3;
 		var buf = Module._malloc(BUF_SIZE);
+		var cfg = configNew();
+
+		configSetSize(cfg, W, H);
+		configSetPixelSize(cfg, PS);
+		if (FLOW_STEPS != 0) {
+			configSetFlowSteps(cfg, FLOW_STEPS);
+		}
 
 		var seed = SEED_BASE;
 		for (var X = 0; X < per_line; X++) {
 			var Xoff = Math.floor(gap_line/2 + X * (gap_line + W * PS));
 			for (var Y = 0; Y < per_col; Y++) {
 				var Yoff = Math.floor(gap_col/2 + Y * (gap_col + H * PS));
-				var r = generateAlien(seed, W, H, PS, buf, BUF_SIZE);
+				configSetSeed(cfg, seed);
+				var r = generateAlien(cfg, buf, BUF_SIZE);
 				seed += 1;
 				if (r != 0) {
 					console.log("generateAlien error" + r);
@@ -55,6 +70,7 @@
 				}
 			}
 		}
+		configFree(cfg);
 		Module._free(buf);
 		ctx.putImageData(id, 0, 0);
 	};
