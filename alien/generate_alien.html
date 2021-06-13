@@ -1,0 +1,60 @@
+<script src="wasm_main.js"></script>
+<script>
+	Module.onRuntimeInitialized = _ => {
+		const generateAlien = Module.cwrap('generateAlien', 'number',
+			['number', 'number', 'number', 'number', 'number', 'number']);
+		const params = new URL(window.location.href).searchParams;
+		const W = Math.floor(params.get("W")) || 32;
+		const H = Math.floor(params.get("H")) || 18;
+		const PS = Math.floor(params.get("PS")) || 4;
+		const SEED_BASE = Math.floor(params.get("SEED")) || Math.floor(Math.random() * 256 * 256 * 256);
+		const MIN_GAP = 8;
+
+		var canvas = document.getElementById('cantvas');
+
+		const canv_width = canvas.width;
+		const canv_height = canvas.height;
+
+		const per_line = Math.floor(canv_width / (W * PS + MIN_GAP));
+		const per_col = Math.floor(canv_height / (H * PS + MIN_GAP));
+
+		const gap_line = (canv_width - (per_line * W * PS)) / per_line;
+		const gap_col = (canv_height - (per_col * H * PS)) / per_col;
+
+		const BUF_SIZE = W * H * PS * PS * 3;
+		var buf = Module._malloc(BUF_SIZE);
+
+		var seed = SEED_BASE;
+		for (var X = 0; X < per_line; X++) {
+			var Xoff = Math.floor(gap_line/2 + X * (gap_line + W * PS));
+			for (var Y = 0; Y < per_col; Y++) {
+				var Yoff = Math.floor(gap_col/2 + Y * (gap_col + H * PS));
+				var r = generateAlien(seed, W, H, PS, buf, BUF_SIZE);
+				seed += 1;
+				if (r != 0) {
+					console.log("generateAlien error" + r);
+					return;
+				}
+				var ctx = canvas.getContext('2d');
+				var id = ctx.getImageData(0, 0, canvas.width, canvas.height);
+				var pixels = id.data;
+				for (var j = 0; j < H * PS; j++) {
+					for (var i = 0; i < W * PS; i++) {
+						var off = (j * W * PS + i) * 3;
+						var poff = ((j + Yoff) * id.width + (i + Xoff)) * 4;
+						pixels[poff] = (256 + Module.getValue(buf + off + 0, 'i8')) % 256;
+						pixels[poff+1] = (256 + Module.getValue(buf + off + 1, 'i8')) % 256;
+						pixels[poff+2] = (256 + Module.getValue(buf + off + 2, 'i8')) % 256;
+						pixels[poff+3] = 255;
+					}
+				}
+				ctx.putImageData(id, 0, 0);
+			}
+		}
+		Module._free(buf);
+	};
+</script>
+
+<body>
+	<canvas id="cantvas" width="1536" height="1024"></canvas>
+</body>
