@@ -1,3 +1,4 @@
+<html>
 <script src="wasm_main.js"></script>
 <script>
 	Module.onRuntimeInitialized = _ => {
@@ -11,12 +12,16 @@
 		const MIN_GAP = 8;
 
 		var canvas = document.getElementById('cantvas');
+		canvas.width = window.innerWidth;
+		canvas.height = window.innerHeight;
 		var ctx = canvas.getContext('2d');
 		var id = ctx.getImageData(0, 0, canvas.width, canvas.height);
 		var pixels = id.data;
 
+
 		const canv_width = canvas.width;
 		const canv_height = canvas.height;
+		console.log(canv_width, canv_height);
 
 		const per_line = Math.floor(canv_width / (W * PS + MIN_GAP));
 		const per_col = Math.floor(canv_height / (H * PS + MIN_GAP));
@@ -55,6 +60,7 @@
 	};
 </script>
 
-<body>
-	<canvas id="cantvas" width="1536" height="1024"></canvas>
+<body style="margin:0;">
+	<canvas id="cantvas" width="2048" height="1024"></canvas>
 </body>
+</html>
