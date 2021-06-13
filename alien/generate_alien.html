@@ -11,6 +11,9 @@
 		const MIN_GAP = 8;
 
 		var canvas = document.getElementById('cantvas');
+		var ctx = canvas.getContext('2d');
+		var id = ctx.getImageData(0, 0, canvas.width, canvas.height);
+		var pixels = id.data;
 
 		const canv_width = canvas.width;
 		const canv_height = canvas.height;
@@ -35,9 +38,6 @@
 					console.log("generateAlien error" + r);
 					return;
 				}
-				var ctx = canvas.getContext('2d');
-				var id = ctx.getImageData(0, 0, canvas.width, canvas.height);
-				var pixels = id.data;
 				for (var j = 0; j < H * PS; j++) {
 					for (var i = 0; i < W * PS; i++) {
 						var off = (j * W * PS + i) * 3;
@@ -48,10 +48,10 @@
 						pixels[poff+3] = 255;
 					}
 				}
-				ctx.putImageData(id, 0, 0);
 			}
 		}
 		Module._free(buf);
+		ctx.putImageData(id, 0, 0);
 	};
 </script>
 
